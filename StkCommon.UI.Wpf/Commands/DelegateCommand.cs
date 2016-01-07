@@ -20,7 +20,7 @@ namespace StkCommon.UI.Wpf.Commands
 		/// </summary>
 		public SimpleDelegateCommand(Action executeMethod, Func<bool> canExecuteMethod = null, 
 			string commandName = null, bool isAutomaticRequeryDisabled = false)
-			: base(ConvertExecuteAction(executeMethod), ConvertCanExecuteFunc(canExecuteMethod), commandName, isAutomaticRequeryDisabled)
+			: base(DelegateCommand.ConvertExecuteAction(executeMethod), DelegateCommand.ConvertCanExecuteFunc(canExecuteMethod), commandName, isAutomaticRequeryDisabled)
 		{
 			if (executeMethod == null)
 			{
@@ -46,22 +46,6 @@ namespace StkCommon.UI.Wpf.Commands
 		}
 
 		#endregion
-
-		#region Private Methods
-
-		private static Func<object, bool> ConvertCanExecuteFunc(Func<bool> canExecuteMethod)
-		{
-			if (canExecuteMethod == null)
-				return null;
-			return p => canExecuteMethod();
-		}
-
-		private static Action<object> ConvertExecuteAction(Action executeAction)
-		{
-			return p => executeAction();
-		}
-
-		#endregion
 	}
 
 	/// <summary>
@@ -74,6 +58,27 @@ namespace StkCommon.UI.Wpf.Commands
 			base(executeMethod, canExecuteMethod, commandName, false)
 		{
 		}
+
+		public DelegateCommand(Action executeMethod, Func<bool> canExecuteMethod = null, string commandName = null) :
+			base(ConvertExecuteAction(executeMethod), ConvertCanExecuteFunc(canExecuteMethod), commandName, false)
+		{
+		}
+
+		#region Private Methods
+
+		public static Func<object, bool> ConvertCanExecuteFunc(Func<bool> canExecuteMethod)
+		{
+			if (canExecuteMethod == null)
+				return null;
+			return p => canExecuteMethod();
+		}
+
+		public static Action<object> ConvertExecuteAction(Action executeAction)
+		{
+			return p => executeAction();
+		}
+
+		#endregion
 	}
 
 	/// <summary>
