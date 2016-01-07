@@ -1,0 +1,17 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/ButtonDictionary.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/ComboBoxDictionary.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/CommonDictionary.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/DataGridDictionary.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/DatePickerDictionary.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/ISBorderDictionary.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/ListBoxDictionary.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/PasswordBoxDictionary.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/ScrollBarDictionary.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/TabControlDictionary.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/TextBlockDictionary.xaml"/>
+		<ResourceDictionary Source="pack://application:,,,/StkCommon.UI.Wpf.Theme;component/TextBoxDictionary.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

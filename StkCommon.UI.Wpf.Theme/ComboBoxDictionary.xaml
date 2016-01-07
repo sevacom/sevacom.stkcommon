@@ -1,0 +1,272 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+					xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<ResourceDictionary.MergedDictionaries>
+		<ResourceDictionary Source="ScrollBarDictionary.xaml"/>
+	</ResourceDictionary.MergedDictionaries>
+
+	<Geometry x:Key="ArrowGeometry">M 0 0 L 3.5 4 L 7 0 Z</Geometry>
+
+	<LinearGradientBrush x:Key="StlnComboBoxBackgroundBrush" StartPoint="0,0" EndPoint="0,1" >
+		<GradientStop Color="#fbfbfb" Offset="0" />
+		<GradientStop Color="#e3e3e3" Offset="1" />
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="StlnComboBoxBackgroundMouseOverBrush" StartPoint="0,0" EndPoint="0,1" >
+		<GradientStop Color="#fafafa" Offset="0" />
+		<GradientStop Color="#d4e0f7" Offset="1" />
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="StlnActiveComboboxItemBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+		<GradientStop Color="#6699ff" Offset="0" />
+		<GradientStop Color="#3467cd" Offset="1"/>
+	</LinearGradientBrush>
+
+	<!--================    Объединенный стиль для комбобокса (редактируемого и нередактируемого)    ================-->
+	
+	<!--ComboBoxItemStyle-->
+	<Style x:Key="StlnComboBoxItemStyle" TargetType="{x:Type ComboBoxItem}">
+		<Setter Property="Background" Value="Transparent"/>
+		<Setter Property="Padding" Value="3,0"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ComboBoxItem}">
+					<Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsHighlighted" Value="true">
+							<Setter Property="Background" TargetName="Bd" Value="{StaticResource StlnActiveComboboxItemBackgroundBrush}"/>
+							<Setter Property="Foreground" Value="#ffffff"/>
+						</Trigger>
+						<Trigger Property="IsHighlighted" Value="false">
+							<Setter Property="Foreground" Value="#000000"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--EditableToggleButton-->
+	<Style x:Key="ComboBoxEditableToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="ClickMode" Value="Press"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ToggleButton}">
+					<Border x:Name="bd" BorderThickness="1" BorderBrush="Transparent" Background="Transparent" SnapsToDevicePixels="True" UseLayoutRounding="True" >
+						<Grid >
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="*" />
+								<ColumnDefinition Width="Auto"/>
+							</Grid.ColumnDefinitions>
+							<ContentPresenter  />
+							<Path  x:Name="arrow" Data="{StaticResource ArrowGeometry}" Grid.Column="1" Fill="#99373B45" Margin="5,2,5,0" VerticalAlignment="Center" />
+						</Grid>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="true" >
+							<Setter Property="Fill" TargetName="arrow" Value="#FF373b45"/>
+						</Trigger>
+						<Trigger Property="IsPressed" Value="true" >
+							<Setter Property="Fill" TargetName="arrow" Value="#FF373b45"/>
+						</Trigger>
+						<Trigger Property="IsChecked" Value="true" >
+							<Setter Property="Fill" TargetName="arrow" Value="#FF373b45"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Fill" TargetName="arrow" Value="#999999"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--EditableTextBox-->
+	<Style x:Key="ComboBoxEditableTextBoxStyle" TargetType="{x:Type TextBox}">
+		<Setter Property="Foreground" Value="#333333"/>
+		<Setter Property="Background" Value="#fafafa"/>
+		<Setter Property="BorderBrush" Value="#66000000"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Padding" Value="1,1,0,0"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TextBox}">
+					<Grid >
+						<Border >
+							<ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center"/>
+						</Border>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--StlnComboBoxEditableTemplate-->
+	<ControlTemplate x:Key="StlnComboBoxEditableTemplate"  TargetType="{x:Type ComboBox}">
+		<Grid x:Name="MainGrid">
+			<Popup x:Name="PART_Popup" AllowsTransparency="true"  IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" >
+				<Border x:Name="Shdw"  MinWidth="{Binding ActualWidth, ElementName=MainGrid}"  UseLayoutRounding="true" SnapsToDevicePixels="true">
+					<Border x:Name="DropDownBorder" CornerRadius="3" Background="#ffffff" BorderThickness="1" BorderBrush="{TemplateBinding BorderBrush}">
+						<ScrollViewer x:Name="DropDownScrollViewer">
+							<ScrollViewer.Resources>
+								<Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource StlnScrollBarStyle}" >
+									<Setter Property="Background" Value="Transparent"/>
+								</Style>
+							</ScrollViewer.Resources>
+							<Grid>
+								<Border HorizontalAlignment="Left" Height="0" VerticalAlignment="Top" Width="0"/>
+								<ItemsPresenter x:Name="ItemsPresenter" />
+							</Grid>
+						</ScrollViewer>
+					</Border>
+				</Border>
+			</Popup>
+			<Border BorderBrush="#54FFFFFF" BorderThickness="0,0,0,1" CornerRadius="3" >
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="Auto"/>
+					</Grid.ColumnDefinitions>
+					<Border x:Name="Border" CornerRadius="3" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Grid.ColumnSpan="2" SnapsToDevicePixels="True" UseLayoutRounding="True" />
+					<TextBox Grid.Column="0" x:Name="PART_EditableTextBox" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}" Margin="{TemplateBinding Padding}" Style="{StaticResource ComboBoxEditableTextBoxStyle}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
+					<ToggleButton Grid.Column="1" IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxEditableToggleButtonStyle}"/>
+				</Grid>
+			</Border>
+		</Grid>
+		<ControlTemplate.Triggers>
+			<Trigger Property="HasItems" Value="False">
+				<Setter Property="Visibility" TargetName="DropDownBorder" Value="Collapsed"/>
+			</Trigger>
+			<Trigger Property="HasItems" Value="True">
+				<Setter Property="MinHeight" TargetName="DropDownBorder" Value="50"/>
+				<Setter Property="BorderBrush" Value="#7F003399" TargetName="DropDownBorder" />
+				<Setter Property="Visibility" TargetName="DropDownBorder" Value="Visible"/>
+			</Trigger>
+			<Trigger Property="IsMouseOver" Value="true">
+				<Setter Property="Background" TargetName="Border" Value="#ffffff" />
+				<Setter Property="BorderBrush" TargetName="Border" Value="#7F000000"/>
+			</Trigger>
+			<DataTrigger Binding="{Binding IsKeyboardFocused, ElementName=PART_EditableTextBox}" Value="true">
+				<Setter Property="BorderBrush" Value="#7F003399" TargetName="Border" />
+				<Setter Property="Background" Value="#ffffff" TargetName="Border" />
+			</DataTrigger>
+			<Trigger Property="IsDropDownOpen" Value="true">
+				<Setter Property="BorderBrush" Value="#7F003399" TargetName="Border"/>
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+	<!--ToggleButtonStyle-->
+	<Style  x:Key="ComboBoxToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+		<Setter Property="Foreground" Value="#333333"/>
+		<Setter Property="Background" Value="{StaticResource StlnComboBoxBackgroundBrush}"/>
+		<Setter Property="BorderBrush" Value="#66000000"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ToggleButton}">
+					<Border BorderBrush="#54FFFFFF" BorderThickness="0,0,0,1" CornerRadius="3" >
+						<Border CornerRadius="3" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}"  SnapsToDevicePixels="True" UseLayoutRounding="True" >
+							<Grid >
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="*" />
+									<ColumnDefinition Width="Auto"/>
+								</Grid.ColumnDefinitions>
+								<ContentPresenter  />
+								<Path x:Name="arrow" Data="{StaticResource ArrowGeometry}" Grid.Column="1" Fill="#99373B45" Margin="5,2,5,0" VerticalAlignment="Center"/>
+							</Grid>
+						</Border>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsMouseOver" Value="true" >
+							<Setter Property="Background" Value="{StaticResource StlnComboBoxBackgroundMouseOverBrush}"  />
+							<Setter Property="BorderBrush" Value="#7F003399"/>
+							<Setter Property="Fill" TargetName="arrow" Value="#FF373b45"/>
+						</Trigger>
+						<Trigger Property="IsPressed" Value="true" >
+							<Setter Property="Background" Value="{StaticResource StlnComboBoxBackgroundBrush}" />
+							<Setter Property="BorderBrush" Value="#7F003399"  />
+							<Setter Property="Fill" TargetName="arrow" Value="#FF373b45"/>
+						</Trigger>
+						<Trigger Property="IsChecked" Value="true" >
+							<Setter Property="Background" Value="{StaticResource StlnComboBoxBackgroundBrush}" />
+							<Setter Property="BorderBrush" Value="#7F003399"  />
+							<Setter Property="Fill" TargetName="arrow" Value="#FF373b45"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Background" Value="#f7f7f7"/>
+							<Setter Property="Foreground" Value="#999999"/>
+							<Setter Property="Fill" TargetName="arrow" Value="#999999"/>
+							<Setter Property="BorderBrush" Value="#19000000"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	<!--ComboBoxStyle-->
+	<Style x:Key="StlnComboBoxStyle" TargetType="{x:Type ComboBox}">
+		<Setter Property="Foreground" Value="#333333"/>
+		<Setter Property="BorderBrush" Value="#7F003399"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+		<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+		<Setter Property="Padding" Value="6,1,6,2"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="ItemContainerStyle" Value="{StaticResource StlnComboBoxItemStyle}"/>
+		<Setter Property="MinHeight" Value="23" />
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type ComboBox}">
+					<Grid x:Name="MainGrid">
+						<Grid.RowDefinitions>
+							<RowDefinition Height="*"/>
+							<RowDefinition Height="2"/>
+						</Grid.RowDefinitions>
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="18"/>
+						</Grid.ColumnDefinitions>
+						<Popup x:Name="PART_Popup" Grid.ColumnSpan="2" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Margin="1" AllowsTransparency="True">
+							<Border x:Name="DropDownBorder"  MinWidth="{Binding ActualWidth, ElementName=MainGrid}" CornerRadius="3" Background="#ffffff" BorderThickness="1" UseLayoutRounding="true" SnapsToDevicePixels="true">
+								<ScrollViewer x:Name="DropDownScrollViewer">
+									<ScrollViewer.Resources>
+										<Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource StlnScrollBarStyle}" >
+											<Setter Property="Background" Value="Transparent"/>
+										</Style>
+									</ScrollViewer.Resources>
+									<Grid>
+										<ItemsPresenter x:Name="ItemsPresenter"  />
+									</Grid>
+								</ScrollViewer>
+							</Border>
+						</Popup>
+						<ToggleButton Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" IsChecked="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" Style="{StaticResource ComboBoxToggleButtonStyle}" />
+						<ContentPresenter Grid.Row="0" Grid.Column="0" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}" Content="{TemplateBinding SelectionBoxItem}" ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}" IsHitTestVisible="false"  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="HasItems" Value="true">
+							<Setter Property="MinHeight" TargetName="DropDownBorder" Value="50"/>
+							<Setter Property="BorderBrush" Value="#7F003399" TargetName="DropDownBorder" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<Trigger Property="IsEditable" Value="true">
+				<Setter Property="Foreground" Value="#333333"/>
+				<Setter Property="Background" Value="#fafafa"/>
+				<Setter Property="BorderBrush" Value="#66000000"/>
+				<Setter Property="BorderThickness" Value="1"/>
+				<Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+				<Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+				<Setter Property="Padding" Value="3,1,3,2"/>
+				<Setter Property="ItemContainerStyle" Value="{StaticResource StlnComboBoxItemStyle}"/>
+				<Setter Property="MinHeight" Value="23" />
+				<Setter Property="Template" Value="{StaticResource StlnComboBoxEditableTemplate}"/>
+			</Trigger>
+		</Style.Triggers>
+	</Style>
+	
+	<!--====   Стиль, повторяющий стиль редактируемого комбобокса   ====-->
+	<Style x:Key="StlnComboBoxEditableStyle" TargetType="ComboBox" BasedOn="{StaticResource StlnComboBoxStyle}"></Style>
+
+</ResourceDictionary>

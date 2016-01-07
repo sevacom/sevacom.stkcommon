@@ -1,0 +1,100 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls1="clr-namespace:StkCommon.UI.Wpf.Views.Controls">
+    
+    <LinearGradientBrush x:Key="FadeBrush" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Color="#00FFFFFF" Offset="0"/>
+        <GradientStop Color="#FFFFFFFF" Offset="1"/>
+    </LinearGradientBrush>
+    
+    <!--Dislogment List Default Style-->
+    
+    <Style TargetType="{x:Type controls1:DislodgmentList}">
+        <Setter Property="Background" Value="#FFF2F2F2" />
+        <Setter Property="ItemsPanel">
+            <Setter.Value>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" IsItemsHost="True" />
+                </ItemsPanelTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls1:DislodgmentList}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ItemsPresenter x:Name="PART_ItemsList" Grid.Column="0" />
+                        <Rectangle Grid.Column="0" HorizontalAlignment="Right" Width="20" Fill="{TemplateBinding Background}" IsHitTestVisible="False" OpacityMask="{StaticResource FadeBrush}" />
+                        <Border x:Name="HiddenSelectionContainer" Grid.Column="1" Visibility="Collapsed">
+                            <controls1:DislodgmentListItem x:Name="PART_HiddenSelection" />
+                        </Border>
+                        <ToggleButton x:Name="PART_ShowMenu" Grid.Column="2" Visibility="Collapsed">
+                            <ToggleButton.Template>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <Border Background="Transparent" Cursor="Hand" ToolTip="Список фильтров">
+                                        <Path Fill="Black" Width="7" Height="5" Data="M0,0 L6,0 3,3 z" Margin="2,0,4,0" />
+                                    </Border>
+                                </ControlTemplate>
+                            </ToggleButton.Template>
+                        </ToggleButton>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsOverloaded" Value="True">
+                            <Setter TargetName="PART_ShowMenu" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsSelectedHidden" Value="True">
+                            <Setter TargetName="HiddenSelectionContainer" Property="Visibility" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Dislogment List Item Default Style-->
+
+    <Style TargetType="{x:Type controls1:DislodgmentListItem}">
+        <Setter Property="MaxWidth" Value="180" />
+        <Setter Property="Background" Value="#FFF2F2F2" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls1:DislodgmentListItem}">
+                    <Border x:Name="bd" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                        <Grid>
+                            <Border x:Name="Selection" Margin="2,5" CornerRadius="2" BorderThickness="0,1,0,0" Background="Transparent" BorderBrush="Transparent" Visibility="Collapsed" />
+                            <ContentPresenter Margin="7,5" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Selection" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Selection" Property="Background" Value="#44BABABA"/>
+                            <Setter TargetName="Selection" Property="BorderBrush" Value="#449E9E9E"/>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Selection" Property="Visibility" Value="Visible" />
+                            <Setter TargetName="Selection" Property="Background" Value="#FFBABABA"/>
+                            <Setter TargetName="Selection" Property="BorderBrush" Value="#FF9E9E9E"/>
+                            <Setter Property="Foreground" Value="White" />
+                        </Trigger>
+                        <Trigger Property="IsHidden" Value="True">
+                            <Setter Property="Visibility" Value="Hidden" />
+                        </Trigger>
+                        <Trigger Property="IsDropPreview" Value="True">
+                            <Setter Property="Padding" Value="30,0,0,0" />
+                        </Trigger>
+                        <Trigger Property="IsDraged" Value="True">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>    
+</ResourceDictionary>

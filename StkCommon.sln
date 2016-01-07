@@ -1,0 +1,145 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkCommon.UI.Wpf", "StkCommon.UI.Wpf\StkCommon.UI.Wpf.csproj", "{1742F56B-F8A4-4FE4-9BE6-5A732359CFB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B08FAEEF-F4D1-419B-9924-96A1D9383C20}"
+	ProjectSection(SolutionItems) = preProject
+		common_info.targets = common_info.targets
+		VersionAssemblyInfo.cs = VersionAssemblyInfo.cs
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkCommon.UI.Wpf.Theme", "StkCommon.UI.Wpf.Theme\StkCommon.UI.Wpf.Theme.csproj", "{53E5C46F-24DC-444B-A0AF-6D0EF565D6EF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4E3C6C39-8C17-49E2-B30F-D7F8A588D7FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demos", "Demos", "{3253F8A4-4568-4D35-826F-68EBED5AB73E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.DemoApp", "Wpf.DemoApp\Wpf.DemoApp.csproj", "{704622AD-5660-4AC1-AAF7-BA1B3C75E41C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkCommon.UI.Wpf.Test", "StkCommon.UI.Wpf.Test\StkCommon.UI.Wpf.Test.csproj", "{34371A4B-82AE-4909-9051-B573A87C5BB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{82BA720B-A21B-4634-961C-573CB81CD80B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{9D312DBC-0131-4261-9D78-0D64EA3057AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{70FE83AA-1F43-4FE9-9E31-0F04AA981A58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkCommon.Data", "StkCommon.Data\StkCommon.Data.csproj", "{DA5588E9-5C49-4378-BF77-D04D95C4327F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{3C7D0999-353D-43A3-9DCF-788F3D2BD65F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WPF", "WPF", "{BE00034D-AB18-436F-9BE1-B6DA5EF2D8AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{EFF15D13-1577-41BD-A267-5F079CB2CBFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkCommon.Data.Test", "StkCommon.Data.Test\StkCommon.Data.Test.csproj", "{38687D33-5120-4B2E-B2D2-E515CDDF088A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8567066C-377C-4B0C-85B9-AF31EDF612CC}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkCommon.UI.Wpf.Repositories", "StkCommon.UI.Wpf.Repositories\StkCommon.UI.Wpf.Repositories.csproj", "{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkCommon.UI.Wpf.Repositories.Test", "StkCommon.UI.Wpf.Repositories.Test\StkCommon.UI.Wpf.Repositories.Test.csproj", "{B0ED1019-71F6-4313-8C36-F2BD19113284}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://signatectfs:8080/tfs/collection2
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = StkCommon.UI.Wpf\\StkCommon.UI.Wpf.csproj
+		SccProjectTopLevelParentUniqueName1 = StkCommon.sln
+		SccProjectName1 = StkCommon.UI.Wpf
+		SccLocalPath1 = StkCommon.UI.Wpf
+		SccProjectUniqueName2 = StkCommon.UI.Wpf.Theme\\StkCommon.UI.Wpf.Theme.csproj
+		SccProjectTopLevelParentUniqueName2 = StkCommon.sln
+		SccProjectName2 = StkCommon.UI.Wpf.Theme
+		SccLocalPath2 = StkCommon.UI.Wpf.Theme
+		SccProjectUniqueName3 = Wpf.DemoApp\\Wpf.DemoApp.csproj
+		SccProjectTopLevelParentUniqueName3 = StkCommon.sln
+		SccProjectName3 = Wpf.DemoApp
+		SccLocalPath3 = Wpf.DemoApp
+		SccProjectUniqueName4 = StkCommon.UI.Wpf.Test\\StkCommon.UI.Wpf.Test.csproj
+		SccProjectTopLevelParentUniqueName4 = StkCommon.sln
+		SccProjectName4 = StkCommon.UI.Wpf.Test
+		SccLocalPath4 = StkCommon.UI.Wpf.Test
+		SccProjectUniqueName5 = StkCommon.Data\\StkCommon.Data.csproj
+		SccProjectTopLevelParentUniqueName5 = StkCommon.sln
+		SccProjectName5 = StkCommon.Data
+		SccLocalPath5 = StkCommon.Data
+		SccProjectUniqueName6 = StkCommon.Data.Test\\StkCommon.Data.Test.csproj
+		SccProjectTopLevelParentUniqueName6 = StkCommon.sln
+		SccProjectName6 = StkCommon.Data.Test
+		SccLocalPath6 = StkCommon.Data.Test
+		SccProjectUniqueName7 = StkCommon.UI.Wpf.Repositories\\StkCommon.UI.Wpf.Repositories.csproj
+		SccProjectTopLevelParentUniqueName7 = StkCommon.sln
+		SccProjectName7 = StkCommon.UI.Wpf.Repositories
+		SccLocalPath7 = StkCommon.UI.Wpf.Repositories
+		SccProjectUniqueName8 = StkCommon.UI.Wpf.Repositories.Test\\StkCommon.UI.Wpf.Repositories.Test.csproj
+		SccProjectTopLevelParentUniqueName8 = StkCommon.sln
+		SccProjectName8 = StkCommon.UI.Wpf.Repositories.Test
+		SccLocalPath8 = StkCommon.UI.Wpf.Repositories.Test
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1742F56B-F8A4-4FE4-9BE6-5A732359CFB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1742F56B-F8A4-4FE4-9BE6-5A732359CFB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1742F56B-F8A4-4FE4-9BE6-5A732359CFB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1742F56B-F8A4-4FE4-9BE6-5A732359CFB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53E5C46F-24DC-444B-A0AF-6D0EF565D6EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53E5C46F-24DC-444B-A0AF-6D0EF565D6EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53E5C46F-24DC-444B-A0AF-6D0EF565D6EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53E5C46F-24DC-444B-A0AF-6D0EF565D6EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{704622AD-5660-4AC1-AAF7-BA1B3C75E41C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{704622AD-5660-4AC1-AAF7-BA1B3C75E41C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{704622AD-5660-4AC1-AAF7-BA1B3C75E41C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{704622AD-5660-4AC1-AAF7-BA1B3C75E41C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34371A4B-82AE-4909-9051-B573A87C5BB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34371A4B-82AE-4909-9051-B573A87C5BB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34371A4B-82AE-4909-9051-B573A87C5BB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34371A4B-82AE-4909-9051-B573A87C5BB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA5588E9-5C49-4378-BF77-D04D95C4327F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA5588E9-5C49-4378-BF77-D04D95C4327F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA5588E9-5C49-4378-BF77-D04D95C4327F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA5588E9-5C49-4378-BF77-D04D95C4327F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38687D33-5120-4B2E-B2D2-E515CDDF088A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38687D33-5120-4B2E-B2D2-E515CDDF088A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38687D33-5120-4B2E-B2D2-E515CDDF088A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38687D33-5120-4B2E-B2D2-E515CDDF088A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0ED1019-71F6-4313-8C36-F2BD19113284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0ED1019-71F6-4313-8C36-F2BD19113284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0ED1019-71F6-4313-8C36-F2BD19113284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0ED1019-71F6-4313-8C36-F2BD19113284}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1742F56B-F8A4-4FE4-9BE6-5A732359CFB3} = {82BA720B-A21B-4634-961C-573CB81CD80B}
+		{53E5C46F-24DC-444B-A0AF-6D0EF565D6EF} = {82BA720B-A21B-4634-961C-573CB81CD80B}
+		{704622AD-5660-4AC1-AAF7-BA1B3C75E41C} = {3253F8A4-4568-4D35-826F-68EBED5AB73E}
+		{34371A4B-82AE-4909-9051-B573A87C5BB3} = {BE00034D-AB18-436F-9BE1-B6DA5EF2D8AD}
+		{82BA720B-A21B-4634-961C-573CB81CD80B} = {70FE83AA-1F43-4FE9-9E31-0F04AA981A58}
+		{DA5588E9-5C49-4378-BF77-D04D95C4327F} = {9D312DBC-0131-4261-9D78-0D64EA3057AD}
+		{3C7D0999-353D-43A3-9DCF-788F3D2BD65F} = {4E3C6C39-8C17-49E2-B30F-D7F8A588D7FF}
+		{BE00034D-AB18-436F-9BE1-B6DA5EF2D8AD} = {3C7D0999-353D-43A3-9DCF-788F3D2BD65F}
+		{EFF15D13-1577-41BD-A267-5F079CB2CBFD} = {4E3C6C39-8C17-49E2-B30F-D7F8A588D7FF}
+		{38687D33-5120-4B2E-B2D2-E515CDDF088A} = {EFF15D13-1577-41BD-A267-5F079CB2CBFD}
+		{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73} = {9D312DBC-0131-4261-9D78-0D64EA3057AD}
+		{B0ED1019-71F6-4313-8C36-F2BD19113284} = {EFF15D13-1577-41BD-A267-5F079CB2CBFD}
+	EndGlobalSection
+EndGlobal

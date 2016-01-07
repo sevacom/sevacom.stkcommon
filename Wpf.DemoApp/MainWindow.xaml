@@ -1,0 +1,52 @@
+﻿<Window x:Class="StkCommon.UI.Wpf.DemoApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:converters="clr-namespace:StkCommon.UI.Wpf.Converters;assembly=StkCommon.UI.Wpf"
+		WindowStartupLocation="CenterScreen"
+		SizeToContent="Width"
+        Title="MainWindow" Height="350" Background="#fff2f2f2">
+    <Window.Resources>
+        <ResourceDictionary>
+            <!-- Пример использования конвертеров-->
+            <converters:NumeralConverter x:Key="NumeralConverter" Separator="," />
+            <converters:BoolToVisibilityConverter x:Key="InvertBooleanToVisibilityConverter" True="Collapsed" False="Visible" />
+            <converters:EmptyStringToVisibilityConverter x:Key="StringToVisibilityConverter" EmptyString="Collapsed" NotEmptyString="Visible" IsCheckWhiteSpace="True" />
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" NullValue="Collapsed" NotNullValue="Visible"/>
+            <converters:EqualParameterToVisibilityConverter x:Key="EqualParameterToVisibilityConverter" Equal="Visible" NotEqual="Collapsed"/>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid x:Name="LayoutRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="12">
+            <TextBlock Margin="0,3,6,0">Количество булочек:</TextBlock>
+            <TextBox x:Name="PieCount" Width="40">5</TextBox>
+            <TextBlock Margin="12,3,0,0" Text="{Binding Text, ElementName=PieCount, Converter={StaticResource NumeralConverter}, ConverterParameter='Вы съели {0} булочку,Вы съели {0} булочек,Вы съели {0} булочки,Вы голодны'}" />
+        </StackPanel>
+        
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="6">
+            <Button Content="ShowAboutWindow" Margin="4" Padding="4"  HorizontalAlignment="Left" VerticalAlignment="Top" Click="ShowAboutWindowClick" />
+            <Button Content="ShowSplashScreenWindow" Margin="4"   Padding="3" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ShowSplashScreenWindowClick"/>
+            <Button Content="CloseSplashScreenWindow" Margin="4"  Padding="3" HorizontalAlignment="Left" VerticalAlignment="Top" Click="CloseSplashScreenWindowClick"/>
+            <Button Content="ShowAuthorizationWindow" Margin="4"  Padding="3" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ShowAuthorizationWindowClick"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="6">
+            <Button Content="Примеры StkCommon.UI.Wpf.Theme" Margin="4" Padding="3" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ShowStkCommonUiWpfTheme"/>
+            <Button Content="Вьюмодельный репозиторий SourceSynchronizedViewModelCollection" Margin="4" Padding="3" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ShowViewModelRepositoryExample"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="6">
+            <Button Content="Примеры StkCommon.UI.Wpf.View.Controls" Margin="4" Padding="3" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ShowControlsWindow"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="6">
+			<Button Content="Примеры ErrorMessageWindow" Margin="4" Padding="3" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ShowErrorMessageWindow"/>
+		</StackPanel>
+    </Grid>
+</Window>

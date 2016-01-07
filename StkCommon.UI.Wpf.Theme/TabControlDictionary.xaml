@@ -1,0 +1,110 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<LinearGradientBrush x:Key="MainTabItemBackgroundBrush" EndPoint="0,1" StartPoint="0,0">
+		<GradientStop Color="#FFDEDEDE" Offset="0"/>
+		<GradientStop Color="#FFBABABA" Offset="1"/>
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="MainHeaderBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+		<GradientStop Color="#FF9D9D9D" Offset="0"/>
+		<GradientStop Color="#FF828282" Offset="1"/>
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="StlnHeaderBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+		<GradientStop Color="#FFf2f2f2"/>
+		<GradientStop Color="#FFE7E7E7" Offset="1"/>
+	</LinearGradientBrush>
+	
+	<!--===========Стиль табконтрола для главного окна==========-->
+	<Style x:Key="MainTabControlStyle" TargetType="{x:Type TabControl}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TabControl}">
+					<Grid ClipToBounds="true" KeyboardNavigation.TabNavigation="Local" UseLayoutRounding="true" SnapsToDevicePixels="true" >
+						<Grid.RowDefinitions>
+							<RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+							<RowDefinition x:Name="RowDefinition1" Height="*"/>
+						</Grid.RowDefinitions>
+						<Border x:Name="ContentPanel" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" BorderThickness="0,1,0,1" BorderBrush="#FF828282" Background="#FFf2f2f2">
+							<ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"  />
+						</Border>
+						<Border Grid.Row="0" Background="{StaticResource MainHeaderBackgroundBrush}" BorderBrush="#FF828282" BorderThickness="0" >
+							<TabPanel x:Name="HeaderPanel" IsItemsHost="true" Margin="16,4,0,-1" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1" />
+						</Border>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<Style x:Key="stlnTabControlStyle" TargetType="{x:Type TabControl}" BasedOn="{StaticResource MainTabControlStyle}">
+		<Style.Resources>
+			<LinearGradientBrush x:Key="MainHeaderBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+				<GradientStop Color="#FFf2f2f2"/>
+				<GradientStop Color="#FFE7E7E7" Offset="1"/>
+			</LinearGradientBrush>
+		</Style.Resources>
+	</Style>
+
+
+	<!--=======Стиль табконтрола с градиентом для окна настроек=======-->
+	<Style x:Key="StlnTabControlStyle" TargetType="{x:Type TabControl}" >
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TabControl}">
+					<Grid ClipToBounds="true" KeyboardNavigation.TabNavigation="Local" UseLayoutRounding="true" SnapsToDevicePixels="True" >
+						<Grid.RowDefinitions>
+							<RowDefinition x:Name="RowDefinition0" Height="Auto"/>
+							<RowDefinition x:Name="RowDefinition1" Height="*"/>
+						</Grid.RowDefinitions>
+						<Border x:Name="ContentPanel" KeyboardNavigation.DirectionalNavigation="Contained" Grid.Row="1" KeyboardNavigation.TabIndex="2" KeyboardNavigation.TabNavigation="Local" BorderThickness="0,1,0,1" BorderBrush="#FF828282" Background="#FFf2f2f2">
+							<ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"  />
+						</Border>
+						<Border Grid.Row="0" Background="{StaticResource StlnHeaderBackgroundBrush}" BorderBrush="#FF828282" BorderThickness="0" >
+							<TabPanel x:Name="HeaderPanel" IsItemsHost="true" Margin="16,4,0,-1" KeyboardNavigation.TabIndex="1" Panel.ZIndex="1" />
+						</Border>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+	
+	<!--========Cтиль вкладки для табконтрола ===========-->
+	<Style x:Key="MainTabItemStyle" TargetType="{x:Type TabItem}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type TabItem}">
+					<Grid Margin="-17,0,0,0" UseLayoutRounding="true" SnapsToDevicePixels="true">
+						<Grid Height="26"  Margin="0" >
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="19" />
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="19" />
+							</Grid.ColumnDefinitions>
+							<Border Grid.ColumnSpan="3" Height="1" VerticalAlignment="Bottom" Background="#fff2f2f2" Margin="1,0" UseLayoutRounding="true" SnapsToDevicePixels="true" />
+							<Path Grid.Column="0" x:Name="LeftEnd" Fill="{StaticResource MainTabItemBackgroundBrush}"  Height="26" Stroke="#FF828282"  Stretch="Fill" Width="212" Data="F1 M280,34.6667 C278.207,34.616 275.247,34.0867 274.016,30.7654 L265.095,6.66669 C263.816,3.21338 261.873,0 257.095,0 L22.9067,0 C18.128,0 16.184,3.21338 14.9067,6.66669 L5.98533,30.7654 C4.75466,34.0867 1.79467,34.616 0,34.6667" />
+							<Path x:Name="RightEnd" Grid.Column="2" HorizontalAlignment="Right" Fill="{StaticResource MainTabItemBackgroundBrush}"  Height="26" Stroke="#FF828282"  Stretch="Fill" Width="212" Data="F1 M280,34.6667 C278.207,34.616 275.247,34.0867 274.016,30.7654 L265.095,6.66669 C263.816,3.21338 261.873,0 257.095,0 L22.9067,0 C18.128,0 16.184,3.21338 14.9067,6.66669 L5.98533,30.7654 C4.75466,34.0867 1.79467,34.616 0,34.6667" />
+							<Border x:Name="MiddleEnd" Grid.Column="1" Background="{StaticResource MainTabItemBackgroundBrush}" Margin="-1,0" BorderThickness="0,1,0,0"  BorderBrush="#FF828282"  Padding="12,0">
+								<ContentPresenter x:Name="Content" TextElement.Foreground="#FF333333" TextElement.FontFamily="Segoe UI Semibold" TextElement.FontSize="12" Margin="0,1,0,0"  ContentSource="Header" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" RecognizesAccessKey="True" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+							</Border>
+						</Grid>
+						<Border x:Name="BB" Grid.ColumnSpan="2" BorderThickness="0,0,0,1" BorderBrush="#FF828282" Margin="0" Visibility="Visible"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsSelected" Value="true">
+							<Setter Property="Panel.ZIndex" Value="1"/>
+							<Setter Property="Fill" TargetName="LeftEnd" Value="#FFf2f2f2"/>
+							<Setter Property="Fill" TargetName="RightEnd" Value="#FFf2f2f2"/>
+							<Setter Property="Background" TargetName="MiddleEnd" Value="#FFf2f2f2"/>
+							<Setter Property="Visibility" TargetName="BB" Value="Collapsed"/>
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false" >
+							<Setter Property="TextElement.Foreground" Value="#FF767575" TargetName="Content"/>
+							<Setter Property="Panel.ZIndex" Value="-1"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+</ResourceDictionary>

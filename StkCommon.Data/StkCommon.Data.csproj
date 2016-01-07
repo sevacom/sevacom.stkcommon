@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DA5588E9-5C49-4378-BF77-D04D95C4327F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StkCommon.Data</RootNamespace>
+    <AssemblyName>StkCommon.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\..\Bin\StkCommon\1.1\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\..\..\Bin\StkCommon\1.1\StkCommon.Data.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\VersionAssemblyInfo.cs">
+      <Link>Properties\VersionAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Collections\ObservableKeyedCollection.cs" />
+    <Compile Include="Collections\ObservableRangeCollection.cs" />
+    <Compile Include="Diagnostics\ErrorMessageFormater.cs" />
+    <Compile Include="Diagnostics\ExceptionHandlerBase.cs" />
+    <Compile Include="Diagnostics\IDiagnosticContainer.cs" />
+    <Compile Include="Diagnostics\IExceptionHandler.cs" />
+    <Compile Include="Diagnostics\IExceptionNotifier.cs" />
+    <Compile Include="Diagnostics\ISimpleLogger.cs" />
+    <Compile Include="Diagnostics\TraceFailExceptionNotifier.cs" />
+    <Compile Include="FunctionalComparer.cs" />
+    <Compile Include="IModelObject.cs" />
+    <Compile Include="NotifyPropertyChangedBase.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="PropertyName.cs" />
+    <Compile Include="Repositories\ChangedElement.cs" />
+    <Compile Include="Repositories\ChangedElementType.cs" />
+    <Compile Include="Repositories\ElementRepositoryBase.cs" />
+    <Compile Include="Repositories\ElementRepositoryChangedArg.cs" />
+    <Compile Include="Repositories\IElementRepositoryChangedArg.cs" />
+    <Compile Include="Repositories\IModelReadOnlyWrapper.cs" />
+    <Compile Include="Repositories\SimpleWeakEvent.cs" />
+    <Compile Include="Repositories\IElementRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Text\TextExtensions.cs" />
+    <Compile Include="Utils\DisposeHelper.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

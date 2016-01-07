@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="StkCommon.UI.Wpf.Views.Controls.BusyIndicator"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             x:Name="UserControl"
+			 d:DesignHeight="50"
+			 d:DesignWidth="50"
+			 Loaded="BusyIndicatorOnLoaded">
+	<UserControl.Resources>
+		<Storyboard x:Key="RotationStoryboard" TargetName="SpinnerRotate" TargetProperty="(RotateTransform.Angle)">
+			<DoubleAnimation Duration="0:0:1.6" RepeatBehavior="Forever" DesiredFrameRate="16"
+                             From="0" To="360"/>
+		</Storyboard>
+	</UserControl.Resources>
+	<Viewbox>
+		<Viewbox.Style>
+			<Style TargetType="Viewbox">
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding ElementName=UserControl, Path=IsBusy}" Value="False">
+						<Setter Property="Visibility" Value="Hidden"></Setter>
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+		</Viewbox.Style>
+		<Grid Width="100" Height="100">
+			<Grid.RenderTransform>
+				<RotateTransform x:Name="SpinnerRotate" CenterX="50" CenterY="50" />
+			</Grid.RenderTransform>
+			<Canvas>
+				<Path Name="Figure" Fill="{Binding ElementName=UserControl, Path=Fill}" Width="73" Height="50" Stretch="Fill" Stroke="Transparent" 
+					  Data="M104.00001,1.1368684E-13 C120.15434,-8.1743502E-07 135.44843,3.6831564 149.0883,10.255529 L150.55208,10.982929 137.35881,37.344798 136.31009,36.823657 C126.53596,32.113994 115.57645,29.4747 104.0005,29.4747 62.841599,29.474702 29.475713,62.840587 29.475715,103.99949 L29.47572,104 0,104 C9.7138127E-07,46.562381 46.562387,-8.1743502E-07 104.00001,1.1368684E-13 z">
+				</Path>
+			</Canvas>
+		</Grid>
+	</Viewbox>
+</UserControl>

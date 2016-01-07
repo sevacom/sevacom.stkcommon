@@ -1,0 +1,77 @@
+﻿<Window x:Class="StkCommon.UI.Wpf.Views.Windows.SplashScreenWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:designTime="clr-namespace:StkCommon.UI.Wpf.ViewModels.DesignTime"
+		Title="Заставка" 
+		SizeToContent="WidthAndHeight"
+        WindowStyle="None" 
+        ShowInTaskbar="False" 
+        Background="Transparent" 
+        AllowsTransparency="True" 
+		MinHeight="250" 
+        MinWidth="450"
+        WindowStartupLocation="CenterScreen"
+		mc:Ignorable="d" 	  
+		d:DataContext="{d:DesignInstance Type=designTime:DesignMockSplashScreenViewModel, IsDesignTimeCreatable=True}">
+    <Window.Resources>
+		<ResourceDictionary>
+			<Style x:Key="TextBlockSimpleStyle">
+				<Setter Property="TextBlock.FontFamily" Value="Tahoma"></Setter>
+				<Setter Property="TextBlock.FontSize" Value="8.25pt"></Setter>
+			</Style>
+			<Style x:Key="TextBlockTitleStyle">
+				<Setter Property="TextBlock.FontFamily" Value="Trebuchet MS"></Setter>
+				<Setter Property="TextBlock.FontSize" Value="15pt"></Setter>
+			</Style>
+		</ResourceDictionary>
+	</Window.Resources>
+    <Border CornerRadius="10">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="#FFCDD3D7"/>
+                <GradientStop Color="#FFDBE2E6" Offset="1"/>
+                <GradientStop Color="#FFB5BDC1" Offset="0.3"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="128"></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="128"></ColumnDefinition>
+                <ColumnDefinition Width="20"></ColumnDefinition>
+                <ColumnDefinition Width="128"></ColumnDefinition>
+                <ColumnDefinition Width="20" ></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"></RowDefinition>
+                <RowDefinition Height="128"></RowDefinition>
+                <RowDefinition Height="37"></RowDefinition>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Stretch="None" Grid.Row="1" Grid.Column="1" Margin="0"/>
+
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Left" Grid.ColumnSpan="3" Grid.Column="3" Grid.Row="1">
+                <TextBlock TextWrapping="Wrap" Text="{Binding ApplicationName}" Style="{StaticResource TextBlockTitleStyle}" />
+                <TextBlock TextWrapping="Wrap" Text="{Binding ApplicationVersion}" Style="{StaticResource TextBlockSimpleStyle}"/>
+            </StackPanel>
+
+            <TextBlock Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4" Text="{Binding CurrentLoadingModuleName}" 
+                       Style="{StaticResource TextBlockSimpleStyle}"/>
+
+            <StackPanel Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4" Orientation="Horizontal" VerticalAlignment="Bottom">
+                <TextBlock  Text="&#169; " Style="{StaticResource TextBlockSimpleStyle}"/>
+                <TextBlock Text="{Binding Copyright}" Style="{StaticResource TextBlockSimpleStyle}"/>
+            </StackPanel>
+
+            <TextBlock Grid.Row="3" Grid.Column="5" Text="{Binding ApkVersion}" 
+                       Style="{StaticResource TextBlockSimpleStyle}" VerticalAlignment="Bottom"/>
+
+			<Image Grid.Column="1" Grid.Row="1" Source="{Binding ApplicationIcon}" Width="100" />
+        </Grid>
+    </Border>
+</Window>

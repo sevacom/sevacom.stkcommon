@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1742F56B-F8A4-4FE4-9BE6-5A732359CFB3}</ProjectGuid>
+    <OutputType>library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StkCommon.UI.Wpf</RootNamespace>
+    <AssemblyName>StkCommon.UI.Wpf</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\..\Bin\StkCommon\1.1\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\..\..\Bin\StkCommon\1.1\StkCommon.UI.Wpf.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Converters\NumeralConverter.cs" />
+    <Compile Include="Exceptions\MessageBoxExceptionNotifierWithDetails.cs" />
+    <Compile Include="Helpers\ContextMenuHelper.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Commands\ExceptionHandlerCommand.cs" />
+    <Compile Include="Commands\ICommandExceptionRegistrator.cs" />
+    <Compile Include="Commands\IDelegateCommand.cs" />
+    <Compile Include="Converters\FormatStringMultiConverter.cs" />
+    <Compile Include="Converters\MultiLogicalAndConverter.cs" />
+    <Compile Include="Converters\MultiValueConverterBase.cs" />
+    <Compile Include="Converters\ExceptionHandlerCommandConverterBase.cs" />
+    <Compile Include="Exceptions\MessageBoxExceptionNotifier.cs" />
+    <Compile Include="Exceptions\UserMessageException.cs" />
+    <Compile Include="Model\AuthorizationMode.cs" />
+    <Compile Include="Model\ShortCut.cs" />
+    <Compile Include="Model\ThreadSafeObservableCollection.cs" />
+    <Compile Include="ViewModels\ChangableListViewModelBase.cs" />
+    <Compile Include="ViewModels\ChangableViewModelBase.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignMockAuthorizationViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignMockErrorMessageViewModel.cs" />
+    <Compile Include="ViewModels\ErrorMessageViewModel.cs" />
+    <Compile Include="Views\Attached\PasswordBoxHelper.cs" />
+    <Compile Include="Events\EventManagerEx.cs" />
+    <Compile Include="Events\WeakReferenceEventManager.cs" />
+    <Compile Include="Helpers\UiSearchHelper.cs" />
+    <Compile Include="Helpers\WindowHelper.cs" />
+    <Compile Include="ViewModels\AuthorizationViewModelBase.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignMockAboutViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignMockSplashScreenViewModel.cs" />
+    <Compile Include="ViewModels\IAuthorizationViewModel.cs" />
+    <Compile Include="ViewModels\ISplashScreenViewModel.cs" />
+    <Compile Include="Views\Attached\FocusProperties.cs" />
+    <Compile Include="Views\Attached\TextBoxProperties.cs" />
+    <Compile Include="Views\Attached\WindowProperties.cs" />
+    <Compile Include="Views\Controls\BusyIndicator.xaml.cs">
+      <DependentUpon>BusyIndicator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\DislodgmentList.cs" />
+    <Compile Include="Views\Controls\DislodgmentListItem.cs" />
+    <Compile Include="Views\Controls\DragAdorner.cs" />
+    <Compile Include="Views\Controls\SearchComboBox.xaml.cs">
+      <DependentUpon>SearchComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IShowDialogAgent.cs" />
+    <Compile Include="Views\IWindow.cs" />
+    <Compile Include="Views\Windows\AboutWindow.xaml.cs">
+      <DependentUpon>AboutWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="..\VersionAssemblyInfo.cs">
+      <Link>Properties\VersionAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="Commands\DelegateCommand.cs" />
+    <Compile Include="Converters\BoolConverterBase.cs" />
+    <Compile Include="Converters\ByteArrayToBitmapImageConverter.cs" />
+    <Compile Include="Converters\EmptyStringConverterBase.cs" />
+    <Compile Include="Converters\EqualParameterConverterBase.cs" />
+    <Compile Include="Converters\NullConverterBase.cs" />
+    <Compile Include="Converters\ValueConverterBase.cs" />
+    <Compile Include="IDispatcher.cs" />
+    <Compile Include="ViewModels\IAboutViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\Windows\AuthorizationWindow.xaml.cs">
+      <DependentUpon>AuthorizationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\BaseDialogWindow.cs" />
+    <Compile Include="Views\Windows\ErrorMessageWindow.xaml.cs">
+      <DependentUpon>ErrorMessageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Windows\SplashScreenWindow.xaml.cs">
+      <DependentUpon>SplashScreenWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\BusyIndicatorNew.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\BusyIndicator.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\SearchComboBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Windows\AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\AuthorizationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Windows\ErrorMessageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Windows\SplashScreenWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\Resources\AppIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StkCommon.Data\StkCommon.Data.csproj">
+      <Project>{da5588e9-5c49-4378-bf77-d04d95c4327f}</Project>
+      <Name>StkCommon.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

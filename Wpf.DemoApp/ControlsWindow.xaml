@@ -1,0 +1,76 @@
+﻿
+<Window x:Class="StkCommon.UI.Wpf.DemoApp.ControlsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="clr-namespace:StkCommon.UI.Wpf.Views.Controls;assembly=StkCommon.UI.Wpf"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:demoApp="clr-namespace:StkCommon.UI.Wpf.DemoApp"
+		FocusManager.FocusedElement="{Binding ElementName=searchComboBox}"
+        Title="MainWindow" 
+		Height="350" 
+		Width="525"
+		mc:Ignorable="d"
+		d:DataContext="{d:DesignInstance Type=demoApp:DesignMockControlsWindowVm, IsDesignTimeCreatable=True}">
+	<Window.Background>
+		<SolidColorBrush Color="#FFF0F0F0"/>
+	</Window.Background>
+	<Grid>
+		<Grid Margin="50" VerticalAlignment="Center">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+				<RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+			</Grid.RowDefinitions>
+
+			<controls:SearchComboBox 
+                x:Name="searchComboBox"
+                Grid.Row="0"
+				ShowLabelTextOnFocus="True"
+                BorderThickness="1"
+                VerticalAlignment="Center" 
+                Width="200" 
+
+                Margin="0,0,0,4"
+                LabelText="Простой текст" 
+                SearchEventTimeDelay="00:00:3"
+                SearchCommand="{Binding SearchCommand}"
+                CommandParameter="{Binding}"
+                SearchText="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding Collection}"
+                SelectedItem="{Binding SelectedItem}">
+				<controls:SearchComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding}"></TextBlock>
+					</DataTemplate>
+				</controls:SearchComboBox.ItemTemplate>
+			</controls:SearchComboBox>
+
+			<controls:SearchComboBox 
+                Grid.Row="1" IsEnabled="False"
+                BorderThickness="1"
+                VerticalAlignment="Center" 
+                Width="200" 
+                Height="25"
+                Margin="0,0,0,4"
+                LabelText="Введите сюда текст запроса" 
+                SearchEventTimeDelay="00:00:3"
+                SearchCommand="{Binding SearchCommand}"
+                CommandParameter="{Binding}"
+                SearchText="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding Collection}"
+                SelectedItem="{Binding SelectedItem}">
+				<controls:SearchComboBox.ItemTemplate>
+					<DataTemplate>
+						<TextBlock Text="{Binding}"></TextBlock>
+					</DataTemplate>
+				</controls:SearchComboBox.ItemTemplate>
+			</controls:SearchComboBox>
+			<Button Grid.Row="2" Content="Focus" Click="Button_Click"></Button>
+
+            <controls:DislodgmentList x:Name="List" Grid.Row="3" Height="30" />
+        </Grid>
+
+	</Grid>
+</Window>

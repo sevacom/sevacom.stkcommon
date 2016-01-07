@@ -1,0 +1,406 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+	<!-- 
+		В этом файле:
+	
+        - Иконка главного меню (MainMenuIconPathStyle)
+        - Иконка меню для заголовка настроек (SettingsIconPathStyle)
+        - Иконка меню для заголовка "О программе" (InfoIconPathStyle)
+        - Иконка меню для заголовка "Справка" (HelpIconPathStyle)
+		- Шестеренка для настроек главного окна (SettingButtonStyle) 
+		- Шестеренка для редактирования настроек элемента (EditButtonTemplate)
+		- Кнопка "О программе" (InfoButtonStyle)
+        - Кнопка "Справка" (HelpButtonStyle)
+		- CheckBox (StlnCheckBoxStyle) 
+		- RadioButton (StlnRadioButtonStyle)
+		- Button (StlnButtonStyle)
+        - ToggleButton (StlnButtonStyle)
+	
+	 -->
+
+	<Geometry x:Key="CheckMarkGeometry">M 0,7.87402L 4.72441,14.1733L 14.1732,4.72443L 14.1732,0L 4.72441,11.0237L 0,4.72443L 0,7.87402 Z</Geometry>
+	<Geometry x:Key="TickGeometry">M 4.96552,0C 7.70792,0 9.93103,2.01471 9.93103,4.5C 9.93103,6.98529 7.70792,9 4.96552,9C 2.22313,9 0,6.98529 0,4.5C 0,2.01471 2.22313,0 4.96552,0 Z</Geometry>
+	<Geometry x:Key="SettingButtonGeometry">M 10.6667,14.9921C 8.21066,14.9921 6.34133,13.1227 6.34133,10.6667C 6.34133,8.21069 8.21066,6.34137 10.6667,6.34137C 13.1227,6.34137 14.992,8.21069 14.992,10.6667C 14.992,13.1227 13.1227,14.9921 10.6667,14.9921 Z M 21.3333,12.2147L 21.3333,9.11737L 18.4787,8.83069C 18.2787,7.97339 17.94,7.16803 17.488,6.44006L 19.3053,4.21869L 17.1147,2.02936L 14.8933,3.8454C 14.1653,3.39337 13.3613,3.05469 12.5027,2.85339L 12.2147,6.10352e-005L 10.6667,6.10352e-005L 9.11733,6.10352e-005L 8.832,2.85339C 7.97334,3.05469 7.168,3.39337 6.44134,3.8454L 4.22,2.02936L 2.02934,4.21869L 3.84534,6.44006C 3.39333,7.16803 3.05467,7.97339 2.85333,8.83069L 0,9.11737L 0,12.2147L 2.85333,12.5027C 3.05467,13.36 3.39333,14.1653 3.84534,14.892L 2.02934,17.1147L 4.22,19.304L 6.44134,17.488C 7.168,17.9401 7.97334,18.2787 8.832,18.4787L 9.11733,21.3334L 10.6667,21.3334L 12.2147,21.3334L 12.5027,18.4787C 13.3613,18.2787 14.1653,17.9401 14.8933,17.488L 17.1147,19.304L 19.3053,17.1147L 17.488,14.892C 17.94,14.1653 18.2787,13.36 18.4787,12.5027L 21.3333,12.2147 Z</Geometry>
+	<Geometry x:Key="InfoButtonGeometry">F1 M 10.6667,16L 8,16L 8,6.66669L 10.6667,6.66669M 8,2.66669L 10.6667,2.66669L 10.6667,5.33337L 8,5.33337M 9.33333,0C 4.17867,0 0,4.17871 0,9.33337C 0,14.488 4.17867,18.6667 9.33333,18.6667C 14.488,18.6667 18.6667,14.488 18.6667,9.33337C 18.6667,4.17871 14.488,0 9.33333,0 Z</Geometry>
+	<Geometry x:Key="EditButtonGeometry">F1 M 17.3321,6.30261C 17.3321,5.90875 16.5443,5.12091 16.1504,5.12091C 15.7564,5.12091 14.9686,5.51483 14.5747,5.51483C 14.1808,5.51483 13.7869,5.12091 13.393,4.72699C 12.9991,4.33307 12.6052,3.54529 12.6052,3.15137C 12.9991,2.75745 13.393,1.9696 13.393,1.57568C 13.7869,1.18182 12.9991,0.393982 12.6052,0.393982C 12.2112,6.10352e-005 11.0295,6.10352e-005 11.0295,0.393982C 10.6356,0.787903 10.6356,1.57568 10.2417,1.9696C 9.84778,1.9696 9.45387,2.36353 8.66604,2.36353C 8.27213,2.36353 7.48431,1.9696 7.48431,1.9696C 7.0904,1.57568 7.0904,0.393982 6.69649,0.393982C 6.30258,6.10352e-005 5.51476,6.10352e-005 5.12084,6.10352e-005C 4.33302,0.393982 3.93911,1.18182 3.93911,1.57568C 3.93911,1.9696 4.72693,2.75745 4.72693,3.15137C 4.72693,3.54529 4.33302,3.93915 3.93911,4.33307C 3.5452,4.72699 3.15129,5.12091 2.75738,5.51483C 2.36347,5.51483 1.57565,4.72699 1.18174,4.72699C 0.787827,4.72699 0,5.51483 0,6.30261C 0,6.69653 0,7.48438 0.393911,7.8783C 0.787827,8.27222 1.96956,7.8783 1.96956,8.27222C 2.36347,8.27222 2.75738,9.06 2.75738,9.45392C 2.75738,10.2418 3.15129,10.6357 2.75738,11.0296C 2.36347,11.4235 1.57565,11.8174 1.57565,12.2113C 1.18174,12.6052 1.18174,13.3931 1.57565,13.7869C 1.96956,14.1808 2.75738,14.5748 3.15129,14.5748C 3.5452,14.1808 4.33302,13.3931 4.33302,13.3931C 4.72693,13.3931 5.51476,13.3931 5.90867,13.7869C 6.30258,13.7869 7.0904,14.1808 7.0904,14.5748C 7.0904,14.9687 6.69649,16.1504 7.0904,16.5443C 7.0904,16.9382 7.87822,17.3322 8.66604,17.3322C 9.05996,17.3322 9.84778,16.9382 9.84778,16.5443C 10.2417,16.1504 9.84778,14.9687 9.84778,14.5748C 10.2417,14.5748 10.6356,14.1808 11.0295,13.7869C 11.4234,13.3931 12.2112,13.3931 12.6052,13.3931C 12.9991,13.7869 13.393,14.5748 13.7869,14.5748C 14.1808,14.9687 14.9686,14.5748 15.3625,14.1808C 15.7564,13.7869 16.1504,12.6052 15.7564,12.2113C 15.7564,11.8174 14.5747,11.4235 14.5747,11.4235C 14.1808,11.0296 14.1808,10.2418 14.5747,9.84784C 14.5747,9.06 14.9686,8.66608 14.9686,8.27222C 15.3625,8.27222 16.5443,8.27222 16.9382,8.27222C 16.9382,7.8783 17.3321,7.09045 17.3321,6.30261 Z M 11.4234,9.06C 11.0295,9.45392 11.0295,9.84784 10.6356,9.84784C 10.6356,10.2418 10.2417,10.6357 9.84778,10.6357C 9.45387,11.0296 9.05996,11.0296 8.66604,11.0296C 8.27213,11.0296 7.87822,11.0296 7.48431,10.6357C 7.0904,10.6357 6.69649,10.2418 6.69649,9.84784C 6.30258,9.45392 5.90867,9.06 5.90867,8.66608C 5.90867,8.27222 5.90867,7.8783 5.90867,7.48438C 6.30258,7.09045 6.30258,6.69653 6.69649,6.69653C 6.69649,6.30261 7.0904,5.90875 7.48431,5.90875C 7.87822,5.51483 8.27213,5.51483 8.66604,5.51483C 9.05996,5.51483 9.45387,5.51483 9.84778,5.90875C 10.2417,5.90875 10.6356,6.30261 10.6356,6.69653C 11.0295,7.09045 11.0295,7.48438 11.4234,7.8783C 11.4234,8.27222 11.4234,8.66608 11.4234,9.06 Z</Geometry>
+    <Geometry x:Key="HelpButtonGeometry">M 150.01,0C 67.3271,0 0,67.3271 0,150.01C 0,232.692 67.3271,300.019 150.01,300.019C 232.692,300.019 300.019,232.692 300.019,150.01C 300.019,67.3271 232.692,0 150.01,0 Z M 146.072,261.04C 133.473,261.04 122.842,250.803 122.842,238.204C 122.842,225.211 133.473,214.974 146.072,214.974C 158.671,214.974 168.908,225.211 168.908,238.204C 168.908,250.803 158.671,261.04 146.072,261.04 Z M 212.612,141.741C 209.068,146.86 201.194,153.553 190.957,161.034L 179.933,168.908C 174.027,173.633 170.483,177.964 168.908,182.295C 167.727,185.839 167.333,186.626 167.333,193.713L 167.333,195.682L 125.205,195.682L 125.205,192.138C 125.992,177.177 126.386,168.515 132.292,161.428C 141.741,150.403 162.609,136.623 163.79,136.229C 166.546,133.867 169.302,131.504 171.271,128.748C 175.602,122.449 177.57,117.724 177.57,112.999C 177.57,106.306 175.602,100.4 171.664,94.8879C 168.121,89.7695 161.034,87.0134 150.797,87.0134C 140.954,87.0134 133.867,90.5569 129.536,96.8565C 125.599,103.55 123.236,110.637 123.236,117.724L 123.236,120.086L 79.9263,120.086L 80.3201,118.118C 81.5012,91.3444 90.9507,72.0518 108.275,61.0275C 119.299,53.9404 133.079,50.3969 149.222,50.3969C 170.09,50.3969 187.807,55.5153 201.588,65.3585C 215.762,75.5953 223.243,90.9506 223.243,110.637C 223.243,122.055 219.699,132.292 212.612,141.741 Z</Geometry>
+    <Geometry x:Key="MainMenuButtonGeometry">M0,0 l20,0 0,2 -20,0 z M0,4 l20,0 0,2 -20,0 z M0,8 l20,0 0,2 -20,0 z M0,12 l20,0 0,2 -20,0 z</Geometry>
+
+    <LinearGradientBrush x:Key="StlnButtonBackgroundBrush" StartPoint="0,0" EndPoint="0,1" >
+		<GradientStop Color="#FFF4F4F4" Offset="0" />
+		<GradientStop Color="#FFC1C1C1" Offset="1" />
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="StlnButtonBackgroundMouseOverBrush" StartPoint="0,0" EndPoint="0,1" >
+		<GradientStop Color="#FFF9F9FA" Offset="0" />
+		<GradientStop Color="#FFD5E1F7" Offset="1" />
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="StlnButtonBackgroundClickBrush" StartPoint="0,0" EndPoint="0,1" >
+		<GradientStop Color="#b6b6b6" Offset="0" />
+		<GradientStop Color="#838383" Offset="1" />
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="StlnButtonBackgroundDisabledBrush" StartPoint="0,0" EndPoint="0,1" >
+		<GradientStop Color="#f7f7f7" Offset="0" />
+		<GradientStop Color="#d3d3d3" Offset="1" />
+	</LinearGradientBrush>
+	<LinearGradientBrush x:Key="StlnBlueFillBrush"  StartPoint="0,0" EndPoint="0,1" >
+		<GradientStop Color="#FCFDFE" Offset="0" />
+		<GradientStop Color="#D7DFEE" Offset="1" />
+	</LinearGradientBrush>
+    <LinearGradientBrush x:Key="StlnButtonBackgroundCheckBrush" StartPoint="0,0" EndPoint="0,1" >
+        <GradientStop Color="#FFD6D6D6" Offset="0" />
+        <GradientStop Color="#FFA3A3A3" Offset="1" />
+    </LinearGradientBrush>
+    
+    <!--==============Иконка главного меню=================-->
+    <Style x:Key="MainMenuIconPathStyle" TargetType="{x:Type Path}">
+        <Setter Property="Height" Value="15"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="Fill" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=MenuItem, AncestorLevel=1}, Path=Foreground}"/>
+        <Setter Property="Data" Value="{StaticResource MainMenuButtonGeometry}"/>
+    </Style>
+
+    <!--==========Иконка меню для заголовка настроек=======-->
+    <Style x:Key="SettingsIconPathStyle" TargetType="{x:Type Path}">
+        <Setter Property="Height" Value="14"/>
+        <Setter Property="Width" Value="14"/>
+        <Setter Property="Stretch" Value="Fill"/>
+        <Setter Property="Fill" Value="#ff838383"/>
+        <Setter Property="Margin" Value="0,0.75,0,0"/>
+        <Setter Property="Data" Value="{StaticResource SettingButtonGeometry}"/>
+    </Style>
+
+    <!--==========Иконка меню для заголовка "О программе"=======-->
+    <Style x:Key="InfoIconPathStyle" TargetType="{x:Type Path}">
+        <Setter Property="Height" Value="14"/>
+        <Setter Property="Width" Value="14"/>
+        <Setter Property="Stretch" Value="Fill"/>
+        <Setter Property="Fill" Value="#ff838383"/>
+        <Setter Property="Margin" Value="0,0.75,0,0"/>
+        <Setter Property="Data" Value="{StaticResource InfoButtonGeometry}"/>
+    </Style>
+
+    <!--==========Иконка меню для заголовка "Справка"=======-->
+    <Style x:Key="HelpIconPathStyle" TargetType="{x:Type Path}">
+        <Setter Property="Height" Value="14"/>
+        <Setter Property="Width" Value="14"/>
+        <Setter Property="Stretch" Value="Fill"/>
+        <Setter Property="Fill" Value="#ff838383"/>
+        <Setter Property="Margin" Value="0,0.75,0,0"/>
+        <Setter Property="Data" Value="{StaticResource HelpButtonGeometry}"/>
+    </Style>
+
+    <!--========Шестеренка для настроек главного окна=======-->
+	<Style x:Key="SettingButtonStyle" TargetType="{x:Type Button}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<ControlTemplate.Resources>
+						<Style TargetType="Path">
+							<Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"/>
+						</Style>
+					</ControlTemplate.Resources>
+					<Grid Background="Transparent" Cursor="Hand">
+						<Path Width="16" Height="16"  Stretch="Fill" Data="{StaticResource SettingButtonGeometry}" Margin="0,1,0,0"/>
+						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsFocused" Value="True"/>
+						<Trigger Property="IsDefaulted" Value="True"/>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Opacity" Value="0.85" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Opacity" Value="0.5" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False"/>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--==========Кнопка "О программе"============-->
+	<Style x:Key="InfoButtonStyle" TargetType="{x:Type Button}">
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<ControlTemplate.Resources>
+						<Style TargetType="Path">
+							<Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"/>
+						</Style>
+					</ControlTemplate.Resources>
+					<Grid Background="Transparent" Cursor="Hand">
+						<Path Width="14" Height="14" Stretch="Fill" Data="{StaticResource InfoButtonGeometry}" Margin="0,0.75,0,0"/>
+						<ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsFocused" Value="True"/>
+						<Trigger Property="IsDefaulted" Value="True"/>
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Opacity" Value="0.85" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="True">
+							<Setter Property="Opacity" Value="0.5" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="False"/>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+    <!--==========Кнопка "Справка"============-->
+    <Style x:Key="HelpButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="Path">
+                            <Setter Property="Fill" Value="{Binding Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Button}}}"/>
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <Grid Background="Transparent" Cursor="Hand">
+                        <Path Width="14" Height="14" Stretch="Fill" Data="{StaticResource HelpButtonGeometry}" Margin="0,0.75,0,0"/>
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True"/>
+                        <Trigger Property="IsDefaulted" Value="True"/>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Opacity" Value="0.85" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.5" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False"/>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--=====Шестеренка для редактирования настроек элемента=====-->
+	<ControlTemplate x:Key="EditButtonTemplate" TargetType="{x:Type Button}">
+		<Border Background="#00000000">
+			<Path x:Name="picture" Width="11" Height="11" Stretch="UniformToFill" UseLayoutRounding="True" Fill="#7FFFFFFF" Data="{StaticResource EditButtonGeometry}"/>
+		</Border>
+		<ControlTemplate.Triggers>
+			<Trigger Property="IsMouseOver" Value="true">
+				<Setter Property="Fill" Value="#FFFFFF" TargetName="picture" />
+			</Trigger>
+			<Trigger Property="IsEnabled" Value="false">
+				<Setter Property="Visibility" Value="Collapsed" />
+			</Trigger>
+		</ControlTemplate.Triggers>
+	</ControlTemplate>
+
+	<!--=============CheckBox=============-->
+	<Style x:Key="StlnCheckBoxStyle" TargetType="{x:Type CheckBox}">
+		<Setter Property="Background" Value="#ffffff"/>
+		<Setter Property="BorderBrush" Value="#66333333"/>
+		<Setter Property="VerticalAlignment" Value="Top"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type CheckBox}">
+					<Grid MinWidth="40" Background="Transparent">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Border VerticalAlignment="Top" Padding="0,1,0,0" BorderThickness="0,0,0,1"  BorderBrush="#54FFFFFF" CornerRadius="2"  Margin="0,2,6,0" Height="13" Width="11" >
+							<Border  Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2" BorderBrush="{TemplateBinding BorderBrush}" UseLayoutRounding="True" SnapsToDevicePixels="True">
+								<Canvas>
+									<Path SnapsToDevicePixels="False" Name="CheckMark"  Width="9" Height="9" Canvas.Left="1" Canvas.Bottom="1" Stretch="Fill" Data="{StaticResource CheckMarkGeometry}" Fill="#000000" Visibility="Hidden" />
+								</Canvas>
+							</Border>
+						</Border>
+						<ContentPresenter UseLayoutRounding="true"  Name="CheckBoxText" VerticalAlignment="{TemplateBinding VerticalAlignment}"  Grid.Column="1" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="true">
+							<Setter Property="Visibility" Value="Visible" TargetName="CheckMark"/>
+							<Setter Property="BorderBrush" Value="#99000000" />
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="Background" Value="{StaticResource StlnBlueFillBrush}" />
+							<Setter Property="BorderBrush" Value="#99003399" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Background" Value="#EDEDED"/>
+							<Setter Property="Foreground" Value="#999999"/>
+							<Setter Property="BorderBrush" Value="#26000000"/>
+							<Setter Property="Fill" Value="#999999" TargetName="CheckMark"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--============RadioButton===========-->
+	<Style x:Key="StlnRadioButtonStyle" TargetType="{x:Type RadioButton}" >
+		<Setter Property="Background" Value="#ffffff"/>
+		<Setter Property="BorderBrush" Value="#66333333"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="VerticalAlignment" Value="Center"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type RadioButton}">
+					<Grid UseLayoutRounding="False" SnapsToDevicePixels="False" Background="Transparent">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="Auto" />
+							<ColumnDefinition Width="*" />
+						</Grid.ColumnDefinitions>
+						<Border BorderThickness="0,0,0,1" Padding="0,1,0,0" BorderBrush="#54FFFFFF" CornerRadius="5"  Margin="0,0,6,0" Height="13" Width="11" >
+							<Border  Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5" BorderBrush="{TemplateBinding BorderBrush}" >
+								<Path Name="Tick" Height="6" Width="6" Stretch="Fill" Data="{StaticResource TickGeometry}"  UseLayoutRounding="False" SnapsToDevicePixels="False" Visibility="Hidden">
+									<Path.Fill>
+										<LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+											<GradientStop Color="#4d4d4d" Offset="0" />
+											<GradientStop Color="#000000" Offset="1" />
+										</LinearGradientBrush>
+									</Path.Fill>
+								</Path>
+							</Border>
+						</Border>
+						<ContentPresenter Name="RadioButtonText" Grid.Column="1" VerticalAlignment="{TemplateBinding VerticalAlignment}" Margin="0,0,0,1" />
+					</Grid>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsChecked" Value="true">
+							<Setter Property="Visibility" Value="Visible" TargetName="Tick"/>
+							<Setter Property="BorderBrush" Value="#B2000000" />
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="Background" Value="{StaticResource StlnBlueFillBrush}" />
+							<Setter Property="BorderBrush" Value="#B2003399" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Background" Value="#EDEDED"/>
+							<Setter Property="Foreground" Value="#999999"/>
+							<Setter Property="BorderBrush" Value="#33000000"/>
+							<Setter Property="Fill" Value="#999999" TargetName="Tick"/>
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+	<!--============Button============-->
+	<Style x:Key="StlnButtonStyle" TargetType="{x:Type Button}" >
+		<Setter Property="Background" Value="{StaticResource StlnButtonBackgroundBrush}"/>
+		<Setter Property="BorderBrush" Value="#66000000"/>
+		<Setter Property="BorderThickness" Value="1"/>
+		<Setter Property="Foreground" Value="#333333"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="FontWeight" Value="SemiBold" />
+		<Setter Property="Padding" Value="1"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type Button}">
+					<Border BorderThickness="0,0,0,1" BorderBrush="#54FFFFFF" CornerRadius="3" >
+						<Border Background="{TemplateBinding Background}" CornerRadius="3" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="True" UseLayoutRounding="True" >
+							<Grid >
+								<ContentPresenter Name="ButtonText" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+								<Grid Name="InnerShadow" Visibility="Collapsed" UseLayoutRounding="False">
+									<Border Background="Transparent" BorderThickness="0,1,0,0" BorderBrush="#000000" Margin="0,0,0,0" Opacity="0.7" CornerRadius="2"  />
+									<Border Background="Transparent" BorderThickness="0,1,0,0" BorderBrush="#000000" Margin="0,1,0,0" Opacity="0.5" CornerRadius="2"  />
+									<Border Background="Transparent" BorderThickness="1,1,1,0" BorderBrush="#000000" Margin="0,2,0,0" Opacity="0.35" CornerRadius="2"  />
+									<Border Background="Transparent" BorderThickness="1,1,1,0" BorderBrush="#000000" Margin="1,3,1,0" Opacity="0.2" CornerRadius="1"  />
+									<Border Background="Transparent" BorderThickness="1,1,1,1" BorderBrush="#000000" Margin="2,4,2,0" Opacity="0.1" CornerRadius="1" />
+									<Border Background="Transparent" BorderThickness="1,1,1,1" BorderBrush="#000000" Margin="3,5,3,1" Opacity="0.05" CornerRadius="1" />
+								</Grid>
+							</Grid>
+						</Border>
+					</Border>
+					<ControlTemplate.Triggers>
+						<Trigger Property="IsDefault" Value="true">
+							<Setter Property="BorderBrush" Value="#7F003399" />
+						</Trigger>
+						<Trigger Property="IsEnabled" Value="false">
+							<Setter Property="Background" Value="{StaticResource StlnButtonBackgroundDisabledBrush}"/>
+							<Setter Property="BorderBrush" Value="#33000000" />
+							<Setter Property="Foreground" Value="#999999" />
+						</Trigger>
+						<Trigger Property="IsMouseOver" Value="true">
+							<Setter Property="Background" Value="{StaticResource StlnButtonBackgroundMouseOverBrush}" />
+							<Setter Property="BorderBrush" Value="#7F003399" />
+							<Setter Property="Foreground" Value="#000000" />
+						</Trigger>
+						<Trigger Property="IsPressed" Value="true">
+							<Setter Property="Background" Value="{StaticResource StlnButtonBackgroundClickBrush}"/>
+							<Setter Property="BorderBrush" Value="#B2000000" />
+							<Setter Property="Foreground" Value="#000000" />
+							<Setter Property="Visibility" Value="Visible" TargetName="InnerShadow" />
+						</Trigger>
+					</ControlTemplate.Triggers>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+	</Style>
+
+    <!-- Стиль для вжимаемой кнопки ToggleButton -->
+    <Style x:Key="StlnToggleButtonStyle" TargetType="ToggleButton">
+        <Setter Property="Background" Value="{StaticResource StlnButtonBackgroundBrush}" />
+        <Setter Property="BorderBrush" Value="#66000000"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="Foreground" Value="#333333"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Padding" Value="1"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border BorderThickness="0,0,0,1" BorderBrush="#54FFFFFF" CornerRadius="3" >
+                        <Border Background="{TemplateBinding Background}" CornerRadius="3" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" SnapsToDevicePixels="True" UseLayoutRounding="True" >
+                            <Grid>
+                                <ContentPresenter Name="ButtonText" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                <Grid Name="InnerShadow" Visibility="Collapsed" UseLayoutRounding="False">
+                                    <Border Background="Transparent" BorderThickness="0,1,0,0" BorderBrush="#000000" Margin="0,0,0,0" Opacity="0.7" CornerRadius="2"  />
+                                    <Border Background="Transparent" BorderThickness="0,1,0,0" BorderBrush="#000000" Margin="0,1,0,0" Opacity="0.5" CornerRadius="2"  />
+                                    <Border Background="Transparent" BorderThickness="1,1,1,0" BorderBrush="#000000" Margin="0,2,0,0" Opacity="0.35" CornerRadius="2"  />
+                                    <Border Background="Transparent" BorderThickness="1,1,1,0" BorderBrush="#000000" Margin="1,3,1,0" Opacity="0.2" CornerRadius="1"  />
+                                    <Border Background="Transparent" BorderThickness="1,1,1,1" BorderBrush="#000000" Margin="2,4,2,0" Opacity="0.1" CornerRadius="1" />
+                                    <Border Background="Transparent" BorderThickness="1,1,1,1" BorderBrush="#000000" Margin="3,5,3,1" Opacity="0.05" CornerRadius="1" />
+                                    <Border Background="Transparent" BorderThickness="2,2,2,0" BorderBrush="#000000" Margin="0" Opacity="0.05" CornerRadius="2" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Background" Value="{StaticResource StlnButtonBackgroundDisabledBrush}"/>
+                            <Setter Property="BorderBrush" Value="#33000000" />
+                            <Setter Property="Foreground" Value="#999999" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="{StaticResource StlnButtonBackgroundMouseOverBrush}" />
+                            <Setter Property="BorderBrush" Value="#7F003399" />
+                            <Setter Property="Foreground" Value="#000000" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Background" Value="{StaticResource StlnButtonBackgroundClickBrush}"/>
+                            <Setter Property="BorderBrush" Value="#B2000000" />
+                            <Setter Property="Foreground" Value="#000000" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="InnerShadow" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Background" Value="{StaticResource StlnButtonBackgroundCheckBrush}" />
+                            <Setter Property="Visibility" Value="Visible" TargetName="InnerShadow" />
+                            <Setter Property="Opacity" Value="0.75" TargetName="InnerShadow" />
+                        </Trigger>
+                        <!-- Повторяется чтобы правильно взаимодействовать с изчекедом -->
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Opacity" Value="1" TargetName="InnerShadow" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

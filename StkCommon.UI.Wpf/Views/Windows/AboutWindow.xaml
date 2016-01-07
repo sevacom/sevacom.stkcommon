@@ -1,0 +1,78 @@
+﻿<windows:BaseDialogWindow x:Class="StkCommon.UI.Wpf.Views.Windows.AboutWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:resources="clr-namespace:StkCommon.UI.Wpf.Properties"
+		xmlns:converters="clr-namespace:StkCommon.UI.Wpf.Converters"
+		xmlns:designTime="clr-namespace:StkCommon.UI.Wpf.ViewModels.DesignTime"
+		xmlns:windows="clr-namespace:StkCommon.UI.Wpf.Views.Windows"
+		mc:Ignorable="d"
+		Title="{x:Static resources:Resources.AboutWindow_Title}" 
+		ShowInTaskbar="False"
+		SizeToContent="WidthAndHeight" 
+		ResizeMode="NoResize" 
+		WindowStartupLocation="CenterOwner"
+		MinWidth="350"
+		MinHeight="300"
+		d:DataContext="{d:DesignInstance Type=designTime:DesignMockAboutViewModel, IsDesignTimeCreatable=True}">
+	<Window.Resources>
+		<ResourceDictionary>
+			<converters:EmptyStringToVisibilityConverter x:Key="EmptyStringToVisibilityConverter"/>
+		</ResourceDictionary>	
+	</Window.Resources>
+	<Border>
+		<Border.LayoutTransform>
+			<ScaleTransform CenterX="0" CenterY="0"
+				ScaleX="{Binding UiScale}"
+				ScaleY="{Binding UiScale}"/>
+		</Border.LayoutTransform>
+		<Grid MinHeight="300" Background="#fff2f2f2" UseLayoutRounding="True">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="96" />
+				<ColumnDefinition Width="*" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+			<!-- Иконка -->
+			<Image HorizontalAlignment="Center" VerticalAlignment="Top" Margin="24" Source="{Binding ApplicationIcon}" />
+			<!-- О программе -->
+			<DockPanel Grid.Row="0" Grid.Column="1" Margin="0,12,12,12" LastChildFill="False">
+				<TextBlock DockPanel.Dock="Top" Margin="0,3,0,0" Text="{Binding ApplicationName}" FontSize="13pt" 
+						   AutomationProperties.AutomationId="textApplicationName"/>
+				<TextBlock DockPanel.Dock="Top" Margin="0,6,0,6" AutomationProperties.AutomationId="textApplicationVersion">
+					<Run Text="{x:Static resources:Resources.AboutWindow_ApplicationVersionName}" /><Run Text="{Binding ApplicationVersion}"/>
+				</TextBlock>
+				<TextBlock DockPanel.Dock="Top" Text="{Binding AdditionalInfo}" 
+						   AutomationProperties.AutomationId="textAdditionalInfo"
+						   Visibility="{Binding RelativeSource={RelativeSource Self}, Path=Text, Converter={StaticResource EmptyStringToVisibilityConverter}}" TextWrapping="Wrap" />
+				<TextBlock DockPanel.Dock="Bottom">
+					<Hyperlink Command="{Binding GoToSiteUrlCommand}" AutomationProperties.AutomationId="textSiteUrl"><Run Text="{Binding SiteUrl}"/></Hyperlink>
+				</TextBlock>
+				<TextBlock DockPanel.Dock="Bottom">
+					<Hyperlink Command="{Binding GoToEmailCommand}" AutomationProperties.AutomationId="textEmail"><Run Text="{Binding Email}"/></Hyperlink>
+				</TextBlock>
+				<TextBlock DockPanel.Dock="Bottom" Margin="0,0,0,6" 
+						   AutomationProperties.AutomationId="textFax"
+						   Visibility="{Binding Fax, Converter={StaticResource EmptyStringToVisibilityConverter}}">
+					<Run Text="{x:Static resources:Resources.AboutWindow_FaxName}" /><Run Text="{Binding Fax}"/>
+				</TextBlock>
+				<TextBlock DockPanel.Dock="Bottom" Margin="0,6,0,0" 
+						   AutomationProperties.AutomationId="textTelephone"
+						   Visibility="{Binding Telephone, Converter={StaticResource EmptyStringToVisibilityConverter}}">
+					<Run Text="{x:Static resources:Resources.AboutWindow_PhonesName}" /><Run Text="{Binding Telephone}"/>
+				</TextBlock>
+				<TextBlock DockPanel.Dock="Bottom" Margin="0,12,0,0" AutomationProperties.AutomationId="textCopyright">
+					<Run Text="&#169; " /><Run Text="{Binding Copyright}"/>
+				</TextBlock>
+			</DockPanel>
+			<!-- Подвал -->
+			<Border Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="#ffcccccc">
+				<Button Content="OK" IsDefault="True" IsCancel="True" Width="75" Height="23" HorizontalAlignment="Right" Margin="12"
+						AutomationProperties.AutomationId="cmdOk"/>
+			</Border>
+		</Grid>
+	</Border>
+</windows:BaseDialogWindow>

@@ -1,0 +1,379 @@
+﻿<UserControl x:Class="StkCommon.UI.Wpf.Views.Controls.SearchComboBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 	
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             mc:Ignorable="d" 
+			 SnapsToDevicePixels="True"
+             Focusable="True"
+			 UseLayoutRounding="True"			
+			 x:Name="UserControl"
+             d:DesignHeight="23" 
+             d:DesignWidth="300">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Geometry x:Key="PopupButtonArrowPathGeometry">M 0 0 L 3.5 4 L 7 0 Z</Geometry>
+            <Geometry x:Key="ClearSearchTextPathGeometry">M 56.53278 0 C 25.4 0 0.08819444 25.223611 0.08819444 56.444444 c 0 31.13278 25.31180556 56.444446 56.44458556 56.444446 31.132498 0 56.44444 -25.311666 56.44444 -56.444446 C 112.97722 25.223611 87.665278 0 56.53278 0 Z M 77.081944 83.873058 C 56.53278 63.323611 56.53278 63.323611 56.53278 63.323611 35.983333 83.873058 35.983333 83.873058 35.983333 83.873058 29.104167 76.993891 29.104167 76.993891 29.104167 76.993891 49.653613 56.444444 49.653613 56.444444 49.653613 56.444444 30.250836 37.041667 30.250836 37.041667 30.250836 37.041667 37.130002 30.1625 37.130002 30.1625 37.130002 30.1625 56.53278 49.565278 56.53278 49.565278 56.53278 49.565278 75.935558 30.1625 75.935558 30.1625 75.935558 30.1625 c 6.879166 6.879167 6.879166 6.879167 6.879166 6.879167 C 63.411947 56.444444 63.411947 56.444444 63.411947 56.444444 83.961111 76.993891 83.961111 76.993891 83.961111 76.993891 Z</Geometry>
+            <Geometry x:Key="LookupGlassPathGeometry">M 214.949,180.699C 226.759,162.196 233.845,140.543 233.845,116.923C 233.845,52.3593 181.486,3.05176e-005 116.923,3.05176e-005C 52.3593,3.05176e-005 0,52.3593 0,116.923C 0,181.486 52.3593,233.845 116.923,233.845C 139.756,233.845 161.408,227.153 179.518,215.736C 282.661,317.699 284.236,317.699 284.236,317.699L 317.305,284.63C 317.305,284.63 316.911,283.842 214.949,180.699 Z M 116.135,200.383C 70.0748,200.383 32.2817,162.983 32.2817,116.529C 32.2817,70.0748 70.0748,32.6754 116.135,32.6754C 162.589,32.6754 199.989,70.0748 199.989,116.529C 199.989,162.983 162.589,200.383 116.135,200.383 Z</Geometry>
+
+            <LinearGradientBrush x:Key="StlnActiveComboboxItemBackgroundBrush" StartPoint="0,0" EndPoint="0,1">
+                <GradientStop Color="#6699ff" Offset="0" />
+                <GradientStop Color="#3467cd" Offset="1"/>
+            </LinearGradientBrush>
+
+            <Style x:Key="StlnScrollBarStyle" TargetType="{x:Type ScrollBar}">
+                <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false"/>
+                <Setter Property="Stylus.IsFlicksEnabled" Value="false"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ScrollBar}">
+                            <Grid x:Name="Bg" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                                <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Orientation="Vertical" >
+                                    <Track.Resources>
+                                        <!-- Set the Thumb's minimum height to 50.
+								The Thumb's minimum height is half the
+								value of VerticalScrollBarButtonHeightKey. -->
+                                        <system:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">
+                                            40
+                                        </system:Double>
+                                        <system:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}">
+                                            40
+                                        </system:Double>
+                                    </Track.Resources>
+                                    <Track.DecreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" IsTabStop="false" Focusable="False" Opacity="0" />
+                                    </Track.DecreaseRepeatButton>
+                                    <Track.IncreaseRepeatButton>
+                                        <RepeatButton Command="{x:Static ScrollBar.PageDownCommand}" IsTabStop="false" Focusable="False" Opacity="0" />
+                                    </Track.IncreaseRepeatButton>
+                                    <Track.Thumb>
+                                        <Thumb OverridesDefaultStyle="True" IsTabStop="False">
+                                            <Thumb.Template>
+                                                <ControlTemplate TargetType="{x:Type Thumb}">
+                                                    <Border CornerRadius="3" Background="#FFA4A4A4" Margin="1,0,1,0" />
+                                                </ControlTemplate>
+                                            </Thumb.Template>
+                                        </Thumb>
+                                    </Track.Thumb>
+                                </Track>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="Orientation" Value="Vertical">
+                        <Setter Property="MinWidth" Value="10"/>
+                        <Setter Property="MaxWidth" Value="10"/>
+                    </Trigger>
+                    <Trigger Property="Orientation" Value="Horizontal">
+                        <Setter Property="MinHeight" Value="10"/>
+                        <Setter Property="MaxHeight" Value="10"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ScrollBar}">
+                                    <Grid x:Name="Bg"  SnapsToDevicePixels="true" >
+                                        <Track x:Name="PART_Track" IsEnabled="{TemplateBinding IsMouseOver}" Orientation="Horizontal" >
+                                            <Track.DecreaseRepeatButton>
+                                                <RepeatButton Command="{x:Static ScrollBar.PageLeftCommand}" IsTabStop="false" Focusable="False" Opacity="0" />
+                                            </Track.DecreaseRepeatButton>
+                                            <Track.IncreaseRepeatButton>
+                                                <RepeatButton Command="{x:Static ScrollBar.PageRightCommand}" IsTabStop="false" Focusable="False" Opacity="0" />
+                                            </Track.IncreaseRepeatButton>
+                                            <Track.Thumb>
+                                                <Thumb OverridesDefaultStyle="True" IsTabStop="False">
+                                                    <Thumb.Template>
+                                                        <ControlTemplate TargetType="{x:Type Thumb}">
+                                                            <Border CornerRadius="3" Background="#FFA4A4A4" Margin="0,1,0,1" />
+                                                        </ControlTemplate>
+                                                    </Thumb.Template>
+                                                </Thumb>
+                                            </Track.Thumb>
+                                        </Track>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+            <!--Стиль для кнопки с лупой-->
+            <Style x:Key="LoupeButtonStyle"  TargetType="Button">
+                <Setter Property="IsTabStop" Value="False"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Path x:Name="LoupePath" Fill="Black" Height="10" Width="10" Margin="4,1,3,0" Stretch="UniformToFill" VerticalAlignment="Center" Data="{StaticResource LookupGlassPathGeometry}"/>
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content=""/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Fill" TargetName="LoupePath"  Value="#999999"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="LabelComboBoxItem" TargetType="ComboBoxItem">
+                <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+                <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+                <Setter Property="Padding" Value="4,0"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="Foreground" Value="#333333"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                            <Border x:Name="Bd" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                                <ContentPresenter  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsHighlighted" Value="true">
+                                    <Setter Property="Background" TargetName="Bd" Value="{StaticResource StlnActiveComboboxItemBackgroundBrush}"/>
+                                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter Property="Foreground" Value="#999999"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Стиль для элемента управления ComboBox-->
+            <Style x:Key="ComboBoxStyle" TargetType="ComboBox">
+                <Setter Property="ItemContainerStyle" Value="{StaticResource LabelComboBoxItem}"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ComboBox">
+                            <Border Padding="0,2" Background="Transparent" BorderThickness="0">
+                                <Grid x:Name="MainGrid" SnapsToDevicePixels="true">
+                                    <ToggleButton x:Name="DropDownToggle" Grid.Row="0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" HorizontalAlignment="Stretch" 
+										  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" >
+                                        <ToggleButton.Style>
+                                            <Style TargetType="ToggleButton">
+                                                <Setter Property="Padding" Value="0"/>
+                                                <Setter Property="IsTabStop" Value="False"/>
+                                                <Setter Property="Template">
+                                                    <Setter.Value>
+                                                        <ControlTemplate TargetType="ToggleButton">
+                                                            <Grid>
+                                                                <Border x:Name="Border" BorderThickness="0" Background="Transparent">
+                                                                    <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Width="11" />
+                                                                </Border>
+                                                            </Grid>
+                                                        </ControlTemplate>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </Style>
+                                        </ToggleButton.Style>
+
+                                        <Path x:Name="BtnArrow" Width="5" Height="3" Stretch="Fill" VerticalAlignment="Center" HorizontalAlignment="Left" Data="{StaticResource PopupButtonArrowPathGeometry}">
+                                            <Path.Style>
+                                                <Style TargetType="Path">
+                                                    <Setter Property="Fill" Value="Black"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="false">
+                                                            <Setter Property="Fill"  Value="#999999"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Path.Style>
+                                        </Path>
+
+                                    </ToggleButton>
+                                    <Popup x:Name="Popup" Grid.Row="0" IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}" MinHeight="50"
+								           Opened="PopupOpened" AllowsTransparency="True" Placement="Relative" PlacementTarget="{Binding ElementName=MainGrid}"
+                                           MinWidth="{Binding ActualWidth, ElementName=MainGrid}" >
+                                        <Border x:Name="PopupBorder" Background="#FFFFFF" BorderThickness="1" BorderBrush="#7F003399" CornerRadius="3" >
+                                            <ScrollViewer x:Name="ScrollViewer">
+                                                <ScrollViewer.Resources>
+                                                    <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource StlnScrollBarStyle}" >
+                                                        <Setter Property="Background" Value="Transparent"/>
+                                                    </Style>
+                                                </ScrollViewer.Resources>
+                                                <Grid>
+                                                    <ItemsPresenter />
+                                                </Grid>
+                                            </ScrollViewer>
+                                        </Border>
+                                    </Popup>
+                                </Grid>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--Стиль для кнопки с крестиком-->
+            <Style x:Key="SearchButton" TargetType="Button">
+                <Setter Property="IsTabStop" Value="False"/>
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Width" Value="20"/>
+                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+                                <Path Data="{StaticResource ClearSearchTextPathGeometry}"  Height="11" Width="11" Margin="4,1,4,0" Stretch="UniformToFill" Fill="#FF373b45" VerticalAlignment="Center"/> 
+                                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content=""/>
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Opacity" Value="0.6" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--Включает невидимость если есть клавиатурный фокус ввода или введенный текст-->
+            <Style x:Key="InVisibleIfHasText" TargetType="FrameworkElement">
+                <Style.Triggers>
+                    <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                            <Condition Binding="{Binding ElementName=SearchTextBox, Path=IsKeyboardFocused}" Value="True"/>
+                            <Condition Binding="{Binding ElementName=UserControl, Path=ShowLabelTextOnFocus}" Value="False"/>
+                        </MultiDataTrigger.Conditions>
+                        <Setter Property="Visibility" Value="Hidden"/>
+                    </MultiDataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=UserControl, Path=HasText}" Value="True">
+                        <Setter Property="Visibility" Value="Hidden"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style x:Key="TextBoxNoBorder" TargetType="{x:Type TextBox}">
+                <Setter Property="UseLayoutRounding" Value="True"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+				<Setter Property="VerticalAlignment" Value="Center"/>
+				<Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="AllowDrop" Value="true"/>
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst"/>
+                <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+				<Setter Property="Padding" Value="0,0,0,0"/>
+				<Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBox}">
+                            <Grid>
+                                <ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border UseLayoutRounding="True" SnapsToDevicePixels="True">
+        <Border.Style>
+            <Style TargetType="Border">
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="BorderBrush" Value="#66000000"/>
+                <Setter Property="Background" Value="#fafafa"/>
+                <Setter Property="CornerRadius" Value="3"/>
+                <Style.Triggers>
+                    <Trigger Property="Border.IsMouseOver" Value="true">
+                        <Setter Property="BorderBrush" Value="#7F000000"/>
+                        <Setter Property="Background" Value="#ffffff"/>
+                    </Trigger>
+                    <Trigger Property="Border.IsEnabled" Value="false">
+                        <Setter Property="BorderBrush" Value="#19000000"/>
+                        <Setter Property="Background" Value="#f7f7f7"/>
+                    </Trigger>
+                    <DataTrigger Binding="{Binding ElementName=SearchTextBox, Path=IsKeyboardFocused}" Value="True">
+                        <Setter Property="Background" Value="#ffffff"/>
+                        <Setter Property="BorderBrush" Value="#7F003399"/>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding ElementName=ItemsComboBox, Path=IsDropDownOpen}" Value="True">
+                        <Setter Property="Background" Value="#ffffff"/>
+                        <Setter Property="BorderBrush" Value="#7F003399"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Border.Style>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button x:Name="LoupeButton" Grid.Column="0" Style="{StaticResource LoupeButtonStyle}" Click="LoupeButton_Click" Margin="1,0,0,0" />
+
+            <ComboBox x:Name="ItemsComboBox" 
+                          DropDownClosed="ItemsComboBox_DropDownClosed"
+                          IsTabStop="False"
+						  Grid.Column="1" 
+						  ItemsSource="{Binding ElementName=UserControl, Path=ItemsSource}" 
+						  SelectedItem="{Binding ElementName=UserControl, Path=SelectedItem, Mode=TwoWay}"
+						  Background="Transparent"
+						  BorderThickness="0"                         
+						  HorizontalContentAlignment="Left"
+                          MinHeight="21">
+                <ComboBox.Style>
+                    <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxStyle}">
+                        <Style.Triggers>
+                            <Trigger Property="HasItems" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding ElementName=UserControl, Path=ShowComboBox}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </ComboBox.Style>
+            </ComboBox>
+
+            <TextBlock Grid.Column="2" VerticalAlignment="Center" Text="{Binding ElementName=UserControl, Path=LabelText}" Margin="3,0" 
+                       Opacity="0.6" Style="{StaticResource InVisibleIfHasText}" TextTrimming="CharacterEllipsis"
+                       FontStyle="Italic" Foreground="Black" >
+            </TextBlock>
+
+            <TextBox x:Name="SearchTextBox" Margin="0,0,0,0"
+                     IsTabStop="True"
+                     KeyboardNavigation.TabNavigation="Continue"
+                     Style="{DynamicResource TextBoxNoBorder}" 
+                     Grid.Column="2" 
+                     BorderThickness="0"    
+                     Background="Transparent"
+                     Text="{Binding ElementName=UserControl, Path=SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                     TextChanged="SearchTextBoxTextChanged"
+                     KeyUp="SearchTextBox_KeyUp"/>
+
+            <Button Grid.Column="3" IsTabStop="False" Click="ButtonClick">
+                <Button.Style>
+                    <Style x:Name="clearButton" TargetType="Button" BasedOn="{StaticResource SearchButton}">
+                        <Setter Property="Visibility" Value="Visible"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=UserControl, Path=HasText}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
+
+    </Border>
+</UserControl>
