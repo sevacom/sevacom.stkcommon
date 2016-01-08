@@ -85,10 +85,10 @@ namespace StkCommon.UI.Wpf.ViewModels
 		/// <summary>
 		/// Заполнить
 		/// </summary>
-		public void Fill(IEnumerable<TModel> models)
+		public virtual void Fill(IEnumerable<TModel> models)
 		{
 			models = models ?? new TModel[0];
-			Items = new ObservableCollection<TVModel>(models.Select(p => CreateViewModel(p, false)));
+			Items = new ObservableCollection<TVModel>(CreateViewModels(models, false));
 		}
 
 		/// <summary>
@@ -100,15 +100,8 @@ namespace StkCommon.UI.Wpf.ViewModels
 
 			var delViewModel = Items.FirstOrDefault(t => t.Model.Equals(model));
 			if (delViewModel == null)
-			{
 				return;
-			}
-			Items.Remove(delViewModel);
-
-			if (Equals(delViewModel, SelectedItem))
-			{
-				SelectedItem = null;
-			}
+			OnDeleteViewModel(delViewModel);
 		}
 
 		/// <summary>
@@ -141,9 +134,14 @@ namespace StkCommon.UI.Wpf.ViewModels
 		/// Создание TVModel из TModel
 		/// </summary>
 		/// <param name="model"></param>
-		/// <param name="isAdd">для добавления</param>
+		/// <param name="isAdd">true - добавление к существующим, false - первоначальное наполнение</param>
 		/// <returns></returns>
 		protected abstract TVModel CreateViewModel(TModel model, bool isAdd);
+		
+		protected virtual IEnumerable<TVModel> CreateViewModels(IEnumerable<TModel> models, bool isAdd)
+		{
+			return models.Select(p => CreateViewModel(p, isAdd));
+		}
 
 		/// <summary>
 		/// Добавление нового элемента
@@ -163,6 +161,20 @@ namespace StkCommon.UI.Wpf.ViewModels
 		{
 			existViewModel.Update(model);
 			RefreshCollectionViewElement(existViewModel);
+		}
+
+		/// <summary>
+		/// Удаление существующей ViewModel
+		/// </summary>
+		/// <param name="delViewModel"></param>
+		protected virtual void OnDeleteViewModel(TVModel delViewModel)
+		{
+			Items.Remove(delViewModel);
+
+			if (Equals(delViewModel, SelectedItem))
+			{
+				SelectedItem = null;
+			}
 		}
 
 		/// <summary>

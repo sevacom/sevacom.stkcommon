@@ -37,6 +37,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 
 		public AuthorizationViewModelBase(AuthorizationMode mode, IShowDialogAgent agent)
 		{
+			if (agent == null) throw new ArgumentNullException("agent");
 			_agent = agent;
 			Mode = mode;
 			UiScale = 1.0;
@@ -276,11 +277,14 @@ namespace StkCommon.UI.Wpf.ViewModels
 
 		private bool CanOkCommandHandler(object obj)
 		{
-			return !string.IsNullOrWhiteSpace(_userName) && 
-				((Mode == AuthorizationMode.LoginPassword )
-				   || (Mode == AuthorizationMode.Server && !string.IsNullOrWhiteSpace(_server))
-				   || (Mode == AuthorizationMode.Database && !string.IsNullOrWhiteSpace(_database))
-				   || (Mode == AuthorizationMode.ServerDatabase && !string.IsNullOrWhiteSpace(_server) && !string.IsNullOrWhiteSpace(_database)));
+			if (string.IsNullOrWhiteSpace(UserName))
+				return false;
+			if (IsShowServer && string.IsNullOrWhiteSpace(Server))
+				return false;
+			if (IsShowDatabase && string.IsNullOrWhiteSpace(Database))
+				return false;
+
+			return true;
 		}
 
 		private void OkCommandHandler(object obj)

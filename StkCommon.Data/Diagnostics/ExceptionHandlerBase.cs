@@ -109,7 +109,7 @@ namespace StkCommon.Data.Diagnostics
 		/// <param name="exceptionNotifier">Дополнительный информатор для оповещения об исключении.</param>
 		public virtual void RegisterException(Exception ex, string message = null, IExceptionNotifier exceptionNotifier = null)
 		{
-			var errorId = _logger.Error(ex.Message, ex);
+			var errorId = _logger.Error(string.IsNullOrEmpty(message) ? ex.Message : message, ex);
 
 			if (exceptionNotifier != null)
 				exceptionNotifier.Notify(ex, message, errorId);

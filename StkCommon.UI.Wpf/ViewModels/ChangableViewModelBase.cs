@@ -72,6 +72,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 
 		/// <summary>
 		/// Обновление внутреннего состояния свойст, когда произошло обновление модели 
+		/// После будет вызвано OnPropertyChanged()
 		/// </summary>
 		protected virtual void UpdateInternal()
 		{

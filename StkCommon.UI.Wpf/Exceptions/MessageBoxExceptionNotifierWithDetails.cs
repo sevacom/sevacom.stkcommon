@@ -4,7 +4,6 @@ using StkCommon.UI.Wpf.Views;
 
 namespace StkCommon.UI.Wpf.Exceptions
 {
-	//TODO: расставить automationID и дать возможность выделять текст в подробностях
 	/// <summary>
 	/// Отображение ошибок с подробностями
 	/// </summary>

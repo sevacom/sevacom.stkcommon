@@ -194,8 +194,8 @@ namespace StkCommon.UI.Wpf.Views.Controls
 					if (IsInsideRightPartOfElement(dislogmentListItem, point)) nextItemIsDropPreviewed = true;
 					else targetDislodgmentListItem = dislogmentListItem;
 				}
-				if (targetDislodgmentListItem != null) targetDislodgmentListItem.IsDropPreview = true;
-				if (_dragAdorner != null) _dragAdorner.Show();
+				if (targetDislodgmentListItem != null) 
+					targetDislodgmentListItem.IsDropPreview = true;
 			}
 			base.OnDragOver(e);
 		}
@@ -209,7 +209,8 @@ namespace StkCommon.UI.Wpf.Views.Controls
 					var dislogmentListItem = GetDislodgmentListItemFromItem(item);
 					if (dislogmentListItem.IsDropPreview) dislogmentListItem.IsDropPreview = false;
 				}
-				if (_dragAdorner != null) _dragAdorner.Hide();
+				if (_dragAdorner != null) 
+					_dragAdorner.Hide();
 			}
 			base.OnDragLeave(e);
 		}

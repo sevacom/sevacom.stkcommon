@@ -63,20 +63,12 @@ namespace StkCommon.UI.Wpf.Converters
 			    countNothing = CountNothing;
 			}
 
-			count1 = FormatWithTrim(count1, number);
-			countMany = FormatWithTrim(countMany, number);
-			count234 = FormatWithTrim(count234, number);
-			countNothing = FormatWithTrim(countNothing, number);
-
 			if (string.IsNullOrWhiteSpace(count1) && 
 				string.IsNullOrWhiteSpace(countMany) && 
 				string.IsNullOrWhiteSpace(count234))
 				return value;
 
-		    if (number == 0 && !string.IsNullOrEmpty(countNothing))
-				return countNothing;
-
-			return TextExtensions.NumeralText(number, count1, countMany, count234);
+			return TextExtensions.NumeralTextFormat(number, count1, countMany, count234, countNothing);
 		}
 
 		public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -122,11 +114,6 @@ namespace StkCommon.UI.Wpf.Converters
 				return int.TryParse((string) value, out number);
 			}
 			return false;
-		}
-
-		private static string FormatWithTrim(string format, object value)
-		{
-			return !string.IsNullOrEmpty(format) ? string.Format(format.Trim(), value) : format;
 		}
 	}
 }

@@ -9,7 +9,6 @@ namespace StkCommon.Data.Text
 	/// </summary>
 	public static class TextExtensions
     {
-		//TODO: поддержать возможность указывать строку форматирования в count1Name и т.д и сделать правки в конвертере
 		/// <summary>
 		/// Правильно выбирает вариант текста исходя из числа
 		/// </summary>
@@ -20,20 +19,48 @@ namespace StkCommon.Data.Text
 		/// <returns></returns>
 		public static string NumeralText(int count, string count1Name, string countManyName, string count234Name)
 		{
+			return NumeralTextFormat(count, count1Name, countManyName, count234Name);
+		}
+
+		/// <summary>
+		/// Правильно выбирает вариант текста исходя из числа
+		/// Строковые параметры count поддерживают форматирование '{0}'
+		/// </summary>
+		/// <param name="count">число для которого надо окончание</param>
+		/// <param name="count1Name">что подставить если цифра заканчивается на 1 (1 сеанс)</param>
+		/// <param name="countManyName">что подставить если множественное число (25 сеансов)</param>
+		/// <param name="count234Name">что подставить если число заканчивается на 2,3,4 (24 сеанса)</param>
+		/// <param name="countNothing">Текст если знчение 0, если не задан то используется countManyName</param>
+		/// <returns></returns>
+		public static string NumeralTextFormat(int count, string count1Name,
+			string countManyName, string count234Name, string countNothing = null)
+		{
+			if (count == 0 && !string.IsNullOrEmpty(countNothing))
+				return string.Format(countNothing, count);
+
+			var text = countManyName;
 			var index2 = count % 100;
-			if (index2 >= 11 && index2 <= 20)
+
+			if (index2 < 11 || index2 > 14)
 			{
-				return countManyName;
+				var index = count % 10;
+
+				switch (index)
+				{
+					case 1:
+						text = count1Name;
+						break;
+					case 2:
+					case 3:
+					case 4:
+						text = count234Name;
+						break;
+					default:
+						text = countManyName;
+						break;
+				}
 			}
-			var index = count % 10;
-			switch (index)
-			{
-				case 1: return count1Name;
-				case 2:
-				case 3:
-				case 4: return count234Name;
-				default: return countManyName;
-			}
+			return !string.IsNullOrEmpty(text) ? string.Format(text, count) : text;
 		}
 
 		/// <summary>

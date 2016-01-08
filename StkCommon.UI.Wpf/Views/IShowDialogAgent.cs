@@ -120,7 +120,7 @@ namespace StkCommon.UI.Wpf.Views
 		MessageBoxResult ShowMessageDialog(
 			IWindow owner, 
 			string message, 
-			string caption,
+			string caption = null,
 			MessageBoxButton button = MessageBoxButton.OK, 
 			MessageBoxImage icon = MessageBoxImage.Information, 
 			MessageBoxResult defaultButton = MessageBoxResult.OK,
@@ -129,12 +129,12 @@ namespace StkCommon.UI.Wpf.Views
 		/// <summary>
 		/// Показать диалог с сообщением об ошибке для активного окна.
 		/// </summary>
-		void ShowErrorMessageDialog(string message, string details);
+		void ShowErrorMessageDialog(string message, string details, string caption = null);
 
 		/// <summary>
 		/// Показать диалог с сообщением об ошибке с указанием owner.
 		/// </summary>
-		void ShowErrorMessageDialog(IWindow owner, string message, string details, string caption);
+		void ShowErrorMessageDialog(IWindow owner, string message, string details, string caption = null);
 
 		/// <summary>
 		/// Показать диалог открытия файла
@@ -352,7 +352,7 @@ namespace StkCommon.UI.Wpf.Views
 		public MessageBoxResult ShowMessageDialog(
 			IWindow owner, 
 			string message, 
-			string caption,
+			string caption = null,
 			MessageBoxButton button = MessageBoxButton.OK, 
 			MessageBoxImage icon = MessageBoxImage.Information, 
             MessageBoxResult defaultButton = MessageBoxResult.OK,
@@ -366,12 +366,12 @@ namespace StkCommon.UI.Wpf.Views
 		/// <summary>
 		/// Показать диалог с сообщением об ошибке.
 		/// </summary>
-		public void ShowErrorMessageDialog(string message, string details)
+		public void ShowErrorMessageDialog(string message, string details, string caption = null)
 		{
-			ShowErrorMessageDialogInternal(ActiveWindow, message, details, null);
+			ShowErrorMessageDialogInternal(ActiveWindow, message, details, caption);
 		}
 
-		public void ShowErrorMessageDialog(IWindow owner, string message, string details, string caption)
+		public void ShowErrorMessageDialog(IWindow owner, string message, string details, string caption = null)
 		{
 			ThrowArgumentExceptionInNotWindow(owner);
 			ShowErrorMessageDialogInternal((Window)owner, message, details, caption);
@@ -451,7 +451,7 @@ namespace StkCommon.UI.Wpf.Views
 			{
 				var dialog = new T
 				{
-					Owner = (owner != null && owner.IsLoaded) ? owner : null,
+					Owner = owner != null && owner.IsLoaded ? owner : null,
 					DataContext = dialogViewModel
 				};
 
@@ -475,7 +475,7 @@ namespace StkCommon.UI.Wpf.Views
 
 			var window = new T
 			{
-				Owner = (owner != null && owner.IsLoaded) ? owner : null,
+				Owner = owner != null && owner.IsLoaded ? owner : null,
 				DataContext = viewModel
 			};
 			window.Show();
@@ -483,7 +483,7 @@ namespace StkCommon.UI.Wpf.Views
 			return window;
 		}
 
-		protected void ShowErrorMessageDialogInternal(Window owner, string message, string details, string caption)
+		protected virtual void ShowErrorMessageDialogInternal(Window owner, string message, string details, string caption)
 		{
 			if (!_dispatcher.CheckAccess())
 			{

@@ -9,17 +9,31 @@ namespace StkCommon.Data.Test.Diagnostics
 	[TestFixture]
 	public class ExceptionHandlerBaseTest
 	{
-		private readonly Exception _expectedException = new Exception("Test");
-		private const string ExpectedErrorMessage = "TestErrorMessage";
-		private ExceptionHandlerTest _target;
-		private IExceptionNotifier _expectedNotifier;
+		private Exception _expectedException;
+		private string _expectedErrorMessage;
+		private ExceptionHandlerBase _target;
+		private Mock<IExceptionNotifier> _notifier;
 		private readonly object _expectedActionResult = new object();
+		private Mock<ISimpleLogger> _logger;
+		private string _expectedErrorId;
 
 		[SetUp]
 		public void SetUp()
 		{
-			_target = new ExceptionHandlerTest();
-			_expectedNotifier = Mock.Of<IExceptionNotifier>();
+			_expectedException = new Exception("Test");
+			_expectedErrorId = "ErrorId";
+			_expectedErrorMessage = "TestErrorMessage";
+
+			_logger = new Mock<ISimpleLogger>();
+			_logger
+				.Setup(p => p.Error(It.IsAny<string>(), It.IsAny<Exception>()))
+				.Returns(_expectedErrorId);
+			_logger
+				.Setup(p => p.Error(It.IsAny<string>()))
+				.Returns(_expectedErrorId);
+
+			_notifier = new Mock<IExceptionNotifier>();
+			_target = new ExceptionHandlerBase(_logger.Object);
 		}
 
 		/// <summary>
@@ -29,12 +43,12 @@ namespace StkCommon.Data.Test.Diagnostics
 		public void ShouldHandleActionSilentRegisterExceptionWhenThrowException()
 		{
 			//Given //When
-			Assert.DoesNotThrow(() => _target.HandleActionSilent(ExceptionAction, ExpectedErrorMessage, _expectedNotifier));
+			Assert.DoesNotThrow(() => _target.HandleActionSilent(ExceptionAction, 
+				_expectedErrorMessage, _notifier.Object));
 
 			//Then
-			_target.RegistredException.Should().Be(_expectedException, "Exception не зарегистрирована");
-			_target.RegistredMessage.Should().Be(ExpectedErrorMessage, "ErrorMessage не зарегистрирована");
-			_target.RegistredExceptionNotifier.Should().Be(_expectedNotifier);
+			_logger.Verify(p => p.Error(_expectedErrorMessage, _expectedException), Times.Once);
+			_notifier.Verify(p => p.Notify(_expectedException, _expectedErrorMessage, _expectedErrorId), Times.Once);
 		}
 
 		/// <summary>
@@ -44,27 +58,26 @@ namespace StkCommon.Data.Test.Diagnostics
 		public void ShouldHandleActionSilentWorkWhenNotThrowException()
 		{
 			//Given //When
-			var actualResult = _target.HandleActionSilent(() => ResultAction(), ExpectedErrorMessage, _expectedNotifier);
+			var actualResult = _target.HandleActionSilent(() => ResultAction(), _expectedErrorMessage, _notifier.Object);
 
 			//Then
 			actualResult.Should().Be(_expectedActionResult, "Возвращаемый результат метода не совпадает");
-			_target.RegistredException.Should().Be(null);
-			_target.RegistredMessage.Should().Be(null);
-			_target.RegistredExceptionNotifier.Should().Be(null);
+			_logger.Verify(p => p.Error(It.IsAny<string>(), It.IsAny<Exception>()), Times.Never);
+			_notifier.Verify(p => p.Notify(It.IsAny<Exception>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
 		}
 
 		/// <summary>
 		/// Должен оборачивать Exception и регистрировать 
 		/// </summary>
 		[Test]
-		public void ShouldWrapAndThrowException()
+		public void ShouldWrapAndThrowExceptionWithRegister()
 		{
 			//Given //When
-			Assert.Throws<WrapException>(() => _target.WrapAndThrow<WrapException>(ExceptionAction, ExpectedErrorMessage));
+			Assert.Throws<WrapException>(() => _target.WrapAndThrow<WrapException>(ExceptionAction, _expectedErrorMessage));
 
 			//Then
-			_target.RegistredException.Should().Be(_expectedException, "Exception не зарегистрирована");
-			_target.RegistredMessage.Should().Be(ExpectedErrorMessage, "ErrorMessage не зарегистрирована");
+			_logger.Verify(p => p.Error(_expectedErrorMessage, _expectedException), Times.Once);
+			_notifier.Verify(p => p.Notify(It.IsAny<Exception>(), It.IsAny<string>(), It.IsAny<string>()), Times.Never);
 		}
 
 		/// <summary>
@@ -78,7 +91,7 @@ namespace StkCommon.Data.Test.Diagnostics
 			var disposable = disposableMock.Object;
 			
 			//When
-			_target.SafelyDispose(ref disposable, ExpectedErrorMessage);
+			_target.SafelyDispose(ref disposable, _expectedErrorMessage);
 			
 			//Then
 			disposableMock.Verify(p => p.Dispose(), Times.Once(), "Метод Dispose не вызван");
@@ -94,14 +107,14 @@ namespace StkCommon.Data.Test.Diagnostics
 			IDisposable disposable = null;
 
 			//When//Then
-			Assert.DoesNotThrow(() => _target.SafelyDispose(ref disposable, ExpectedErrorMessage));
+			Assert.DoesNotThrow(() => _target.SafelyDispose(ref disposable, _expectedErrorMessage));
 		}
 
 		/// <summary>
 		/// Должен подавить исключение в Dispose и зарегистрировать его
 		/// </summary>
 		[Test]
-		public void ShouldRegisterExceptionWhenDisposeThrowExcpetion()
+		public void ShouldRegisterExceptionAndNotifyWhenDisposeThrowExcpetion()
 		{
 			//Given 
 			var disposableMock = new Mock<IDisposable>();
@@ -109,11 +122,39 @@ namespace StkCommon.Data.Test.Diagnostics
 			var disposable = disposableMock.Object;
 
 			//When
-			Assert.DoesNotThrow(() => _target.SafelyDispose(ref disposable, ExpectedErrorMessage));
+			Assert.DoesNotThrow(() => _target.SafelyDispose(ref disposable, _expectedErrorMessage, _notifier.Object));
 
 			//Then
-			_target.RegistredException.Should().Be(_expectedException, "Exception не зарегистрирована");
-			_target.RegistredMessage.Should().Be(ExpectedErrorMessage, "ErrorMessage не зарегистрирована");
+			_logger.Verify(p => p.Error(_expectedErrorMessage, _expectedException), Times.Once);
+			_notifier.Verify(p => p.Notify(_expectedException, _expectedErrorMessage, _expectedErrorId), Times.Once);
+		}
+
+		/// <summary>
+		/// Должен регистрировать ошибку в логере и передавать в нотификатор.
+		/// Если сообщение пустое то в логер записывается сообщение из Exception
+		/// </summary>
+		[Test]
+		public void ShouldRegisterExceptionWriteToLoggerAndNotifyWhenEmptyMessage()
+		{
+			//Given 
+			//When
+			_target.RegisterException(_expectedException, null, _notifier.Object);
+			
+			//Then
+			_logger.Verify(p => p.Error(_expectedException.Message, _expectedException), Times.Once);
+			_notifier.Verify(p => p.Notify(_expectedException, null, _expectedErrorId), Times.Once);
+		}
+
+		[Test]
+		public void ShouldRegisterExceptionWriteOnlyToLoggerWhenNotifierNull()
+		{
+			//Given 
+			//When
+			_target.RegisterException(_expectedErrorMessage);
+
+			//Then
+			_logger.Verify(p => p.Error(_expectedErrorMessage), Times.Once);
+			_notifier.Verify(p => p.Notify(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
 		}
 
 		#region Support methods and classes
@@ -126,43 +167,6 @@ namespace StkCommon.Data.Test.Diagnostics
 		private object ResultAction()
 		{
 			return _expectedActionResult;
-		}
-
-		private class ExceptionHandlerTest : ExceptionHandlerBase
-		{
-			public Exception RegistredException { get; private set; }
-
-			public string RegistredMessage { get; private set; }
-
-			public IExceptionNotifier RegistredExceptionNotifier { get; private set; }
-
-			#region Overrides of ExceptionHandlerBase
-
-			/// <summary>
-			/// Стандартный сценарий регистрации исключения в логе и оповещении.
-			/// </summary>
-			/// <param name="ex">Исключение для регистрации.</param>
-			/// <param name="message">Дополнительное сообщение для логирования в случае падения.</param>
-			/// <param name="exceptionNotifier">Дополнительный информатор для оповещения об исключении.</param>
-			public override void RegisterException(Exception ex, string message = null, IExceptionNotifier exceptionNotifier = null)
-			{
-				RegistredException = ex;
-				RegistredMessage = message;
-				RegistredExceptionNotifier = exceptionNotifier;
-			}
-
-			/// <summary>
-			/// Стандартный сценарий регистрации сообщения об ошибке.
-			/// </summary>
-			/// <param name="message">Сообщение об ошибке.</param>
-			/// <param name="exceptionNotifier">Дополнительный информатор для оповещения об исключении.</param>
-			public override void RegisterException(string message, IExceptionNotifier exceptionNotifier = null)
-			{
-				RegistredMessage = message;
-				RegistredExceptionNotifier = exceptionNotifier;
-			}
-
-			#endregion
 		}
 
 		private class WrapException : Exception

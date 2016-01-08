@@ -8,11 +8,11 @@ namespace StkCommon.UI.Wpf
 	/// </summary>
 	public interface IDispatcher
 	{
-		DispatcherOperation BeginInvoke(Delegate method, params Object[] args);
+		DispatcherOperation BeginInvoke(Delegate method, params object[] args);
 		DispatcherOperation BeginInvoke(Action action);
 		DispatcherOperation BeginInvoke(DispatcherPriority priority, Action action);
 
-		Object Invoke(Delegate method, params Object[] args);
+		object Invoke(Delegate method, params object[] args);
 		void Invoke(Action action);
 		void Invoke(Action action, DispatcherPriority priority);
 

@@ -15,10 +15,14 @@ namespace StkCommon.UI.Wpf.Views.Controls
 		public DragAdorner(DislodgmentListItem data, DataTemplate dataTemplate, UIElement adornedElement, AdornerLayer adornerLayer)
 			: base(adornedElement)
 		{
+			if (data == null) throw new ArgumentNullException("data");
+			if (adornerLayer == null) throw new ArgumentNullException("adornerLayer");
+
 			_adornerLayer = adornerLayer;
-			if (data == null) throw new Exception();
 			_dislodgmentListItem = new DislodgmentListItem { Content = data.Content, Opacity = 0.5, IsSelected = data.IsSelected};
-			if (dataTemplate != null) _dislodgmentListItem.ContentTemplate = dataTemplate;
+			if (dataTemplate != null) 
+				_dislodgmentListItem.ContentTemplate = dataTemplate;
+			
 			_adornerLayer.Add(this);
 		}
 
@@ -44,13 +48,10 @@ namespace StkCommon.UI.Wpf.Views.Controls
 			get { return 1; }
 		}
 
-		public void Show()
-		{
-			// Вааще он сам показывается когда надо, но на всякий случай пускай ее все вызывают
-		}
 		public void Hide()
 		{
-			if (_dislodgmentListItem == null) return;
+			if (_dislodgmentListItem == null) 
+				return;
 			UpdatePosition(-10000, -10000); // Визибилити и опасити элемента не сработали: он не скрывается.
 		}
 
