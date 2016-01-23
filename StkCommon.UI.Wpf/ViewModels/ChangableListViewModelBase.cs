@@ -9,7 +9,6 @@ using StkCommon.Data;
 
 namespace StkCommon.UI.Wpf.ViewModels
 {
-	//TODO: тесты 
 	/// <summary>
 	/// Список изменяемых объектов с поддержкой фильтрации
 	/// </summary>
@@ -36,7 +35,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 			{
 				_itemsCollectionView = value;
 
-				OnCollectionViewChanged();
+				OnCollectionViewInitialized();
 				OnPropertyChanged(() => ItemsCollectionView);
 			}
 		}
@@ -123,11 +122,28 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Вызвать для каждой TVModel из Items метод ResetChanges
+		/// Сбросить изменения для всех элеметов
 		/// </summary>
 		public void ResetChanges()
 		{
-			Items.ResetChanaged();
+			ResetChanaged(Items);
+		}
+
+		/// <summary>
+		/// Сбросить изменения для коллекции
+		/// </summary>
+		/// <typeparam name="TObj"></typeparam>
+		/// <param name="viewModels"></param>
+		public static void ResetChanaged<TObj>(IEnumerable<ChangableViewModelBase<TObj>> viewModels)
+			where TObj : IModelObject<TObj>
+		{
+			if (viewModels == null)
+				return;
+			var changedViewModels = viewModels.ToArray();
+			foreach (var changedViewModel in changedViewModels)
+			{
+				changedViewModel.ResetChanges();
+			}
 		}
 
 		/// <summary>
@@ -180,7 +196,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		/// <summary>
 		/// Устанавливает фильтрующую функцию, если SelectedItem не проходит фильтр то он сбрасывается в null
 		/// </summary>
-		protected virtual void ApplyFilterFuncToCollectionView()
+		protected virtual void ApplyFilterFuncToCollectionView(bool isDeferRefresh = false)
 		{
 			if (SelectedItem != null && !FilterFunction(SelectedItem))
 				SelectedItem = null;
@@ -189,12 +205,15 @@ namespace StkCommon.UI.Wpf.ViewModels
 			{
 				ItemsCollectionView.Filter = FilterFunction;
 			}
+
+			if (!isDeferRefresh)
+				OnCollectionViewItemsChanged();
 		}
 
 		/// <summary>
 		/// Устанавливает сортировку из ItemsSortDescriptions
 		/// </summary>
-		protected virtual void ApplySortToCollectionView()
+		protected virtual void ApplySortToCollectionView(bool isDeferRefresh = false)
 		{
 			if (ItemsCollectionView == null || ItemsSortDescriptions == null)
 				return;
@@ -206,15 +225,25 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Изменилась ItemsCollectionView, выполняются настройки фильтрации и сортировки
+		/// ItemsCollectionView, переинициализирована, выполняет настройки фильтрации и сортировки
 		/// </summary>
-		protected virtual void OnCollectionViewChanged()
+		protected virtual void OnCollectionViewInitialized()
 		{
 			using (ItemsCollectionView.DeferRefresh())
 			{
-				ApplyFilterFuncToCollectionView();
-				ApplySortToCollectionView();
+				ApplyFilterFuncToCollectionView(true);
+				ApplySortToCollectionView(true);
 			}
+
+			OnCollectionViewItemsChanged();
+		}
+
+		/// <summary>
+		/// Изменилось кол-во элементов, так как изменился фильтр
+		/// </summary>
+		protected virtual void OnCollectionViewItemsChanged()
+		{
+			
 		}
 
 		/// <summary>

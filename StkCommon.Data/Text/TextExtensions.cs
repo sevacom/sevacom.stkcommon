@@ -16,27 +16,13 @@ namespace StkCommon.Data.Text
 		/// <param name="count1Name">что подставить если цифра заканчивается на 1 (1 сеанс)</param>
 		/// <param name="countManyName">что подставить если множественное число (25 сеансов)</param>
 		/// <param name="count234Name">что подставить если число заканчивается на 2,3,4 (24 сеанса)</param>
-		/// <returns></returns>
-		public static string NumeralText(int count, string count1Name, string countManyName, string count234Name)
-		{
-			return NumeralTextFormat(count, count1Name, countManyName, count234Name);
-		}
-
-		/// <summary>
-		/// Правильно выбирает вариант текста исходя из числа
-		/// Строковые параметры count поддерживают форматирование '{0}'
-		/// </summary>
-		/// <param name="count">число для которого надо окончание</param>
-		/// <param name="count1Name">что подставить если цифра заканчивается на 1 (1 сеанс)</param>
-		/// <param name="countManyName">что подставить если множественное число (25 сеансов)</param>
-		/// <param name="count234Name">что подставить если число заканчивается на 2,3,4 (24 сеанса)</param>
 		/// <param name="countNothing">Текст если знчение 0, если не задан то используется countManyName</param>
 		/// <returns></returns>
-		public static string NumeralTextFormat(int count, string count1Name,
+		public static string NumeralText(int count, string count1Name,
 			string countManyName, string count234Name, string countNothing = null)
 		{
 			if (count == 0 && !string.IsNullOrEmpty(countNothing))
-				return string.Format(countNothing, count);
+				return countNothing;
 
 			var text = countManyName;
 			var index2 = count % 100;
@@ -60,6 +46,27 @@ namespace StkCommon.Data.Text
 						break;
 				}
 			}
+
+			return text;
+		}
+
+		/// <summary>
+		/// Правильно выбирает вариант текста исходя из числа
+		/// Строковые параметры count поддерживают форматирование '{0}'
+		/// </summary>
+		/// <param name="count">число для которого надо окончание</param>
+		/// <param name="count1Name">что подставить если цифра заканчивается на 1 (1 сеанс)</param>
+		/// <param name="countManyName">что подставить если множественное число (25 сеансов)</param>
+		/// <param name="count234Name">что подставить если число заканчивается на 2,3,4 (24 сеанса)</param>
+		/// <param name="countNothing">Текст если знчение 0, если не задан то используется countManyName</param>
+		/// <returns></returns>
+		public static string NumeralTextFormat(int count, string count1Name,
+			string countManyName, string count234Name, string countNothing = null)
+		{
+			if (count == 0 && !string.IsNullOrEmpty(countNothing))
+				return string.Format(countNothing, count);
+
+			var text = NumeralText(count, count1Name, countManyName, count234Name, countNothing);
 			return !string.IsNullOrEmpty(text) ? string.Format(text, count) : text;
 		}
 

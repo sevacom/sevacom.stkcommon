@@ -62,20 +62,6 @@
     </Compile>
     <Compile Include="DemoViewModel.cs" />
     <Compile Include="DesignMockControlsWindowVm.cs" />
-    <Compile Include="Repository\IServerCommands.cs" />
-    <Compile Include="Repository\Model.cs" />
-    <Compile Include="Repository\ModelRepository.cs" />
-    <Compile Include="Repository\ViewModels\IRepositoryExampleWindowViewModel.cs" />
-    <Compile Include="Repository\ViewModels\ItemViewModel.cs" />
-    <Compile Include="Repository\ViewModels\MockItemViewModel.cs" />
-    <Compile Include="Repository\ViewModels\MockRepositoryExampleWindowViewModel.cs" />
-    <Compile Include="Repository\ViewModels\RepositoryExampleWindowViewModel.cs" />
-    <Compile Include="Repository\Views\ItemPropertiesWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Repository\Views\RepositoryWindow.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="WpfThemeWindow.xaml.cs">
       <DependentUpon>WpfThemeWindow.xaml</DependentUpon>
     </Compile>
@@ -99,14 +85,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Repository\Views\ItemPropertiesWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Repository\Views\RepositoryWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="WpfThemeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -143,10 +121,6 @@
     <ProjectReference Include="..\StkCommon.Data\StkCommon.Data.csproj">
       <Project>{da5588e9-5c49-4378-bf77-d04d95c4327f}</Project>
       <Name>StkCommon.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\StkCommon.UI.Wpf.Repositories\StkCommon.UI.Wpf.Repositories.csproj">
-      <Project>{a8d3db5f-619a-476e-bb7c-262d4dbf7f73}</Project>
-      <Name>StkCommon.UI.Wpf.Repositories</Name>
     </ProjectReference>
     <ProjectReference Include="..\StkCommon.UI.Wpf.Theme\StkCommon.UI.Wpf.Theme.csproj">
       <Project>{53e5c46f-24dc-444b-a0af-6d0ef565d6ef}</Project>

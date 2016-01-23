@@ -7,9 +7,9 @@ namespace StkCommon.Data.Test.Text
 	[TestFixture]
 	public class TextExtensionsTest
     {
-		private const string Count1Name = "Разговор";
-		private const string CountManyName = "Разговоров";
-		private const string Count234Name = "Разговора";
+		private const string Count1Name = "Разговор {0}";
+		private const string CountManyName = "Разговоров {0}";
+		private const string Count234Name = "Разговора {0}";
 
 		/// <summary>
 		/// Должен правильно вычислять числительные
@@ -22,6 +22,22 @@ namespace StkCommon.Data.Test.Text
 		{
 			//Given //When
 			var actualResult = TextExtensions.NumeralText(count, Count1Name, CountManyName, Count234Name);
+
+			//Then
+			actualResult.Should().Be(expectedResult);
+		}
+
+		/// <summary>
+		/// Должен правильно вычислять числительные
+		/// </summary>
+		[TestCase(1, "Разговор 1")]
+		[TestCase(12, "Разговоров 12")]
+		[TestCase(22, "Разговора 22")]
+		[TestCase(10111, "Разговоров 10111")]
+		public void ShouldNumeralTextFormat(int count, string expectedResult)
+		{
+			//Given //When
+			var actualResult = TextExtensions.NumeralTextFormat(count, Count1Name, CountManyName, Count234Name);
 
 			//Then
 			actualResult.Should().Be(expectedResult);

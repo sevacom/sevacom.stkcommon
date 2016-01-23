@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using StkCommon.UI.Wpf.DemoApp.Repository;
-using StkCommon.UI.Wpf.DemoApp.Repository.ViewModels;
 using StkCommon.UI.Wpf.Exceptions;
 using StkCommon.UI.Wpf.Model;
 using StkCommon.UI.Wpf.ViewModels;
@@ -93,15 +91,6 @@ namespace StkCommon.UI.Wpf.DemoApp
 		{
 			var themeWindow = new WpfThemeWindow {Owner = this};
 			themeWindow.ShowDialog();
-		}
-
-		private void ShowViewModelRepositoryExample(object sender, RoutedEventArgs e)
-		{
-			var modelRepository = new ModelRepository();
-			var repositoryExampleViewModel = new RepositoryExampleWindowViewModel(modelRepository,
-				modelRepository, _showDialogAgent, _dispatcher);
-			_showDialogAgent.ShowDialog<RepositoryWindow>(repositoryExampleViewModel);
-
 		}
 
 		private void ShowControlsWindow(object sender, RoutedEventArgs e)

@@ -73,10 +73,6 @@
       <Project>{da5588e9-5c49-4378-bf77-d04d95c4327f}</Project>
       <Name>StkCommon.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\StkCommon.UI.Wpf.Repositories\StkCommon.UI.Wpf.Repositories.csproj">
-      <Project>{a8d3db5f-619a-476e-bb7c-262d4dbf7f73}</Project>
-      <Name>StkCommon.UI.Wpf.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\StkCommon.UI.Wpf\StkCommon.UI.Wpf.csproj">
       <Project>{1742f56b-f8a4-4fe4-9be6-5a732359cfb3}</Project>
       <Name>StkCommon.UI.Wpf</Name>

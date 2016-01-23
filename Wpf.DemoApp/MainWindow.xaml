@@ -39,7 +39,7 @@
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="6">
             <Button Content="Примеры StkCommon.UI.Wpf.Theme" Margin="4" Padding="3" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ShowStkCommonUiWpfTheme"/>
-            <Button Content="Вьюмодельный репозиторий SourceSynchronizedViewModelCollection" Margin="4" Padding="3" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ShowViewModelRepositoryExample"/>
+       
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="6">
             <Button Content="Примеры StkCommon.UI.Wpf.View.Controls" Margin="4" Padding="3" HorizontalAlignment="Left" VerticalAlignment="Top" Click="ShowControlsWindow"/>

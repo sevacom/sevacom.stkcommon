@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkCommon.UI.Wpf", "StkCommon.UI.Wpf\StkCommon.UI.Wpf.csproj", "{1742F56B-F8A4-4FE4-9BE6-5A732359CFB3}"
 EndProject
@@ -44,49 +44,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{856706
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkCommon.UI.Wpf.Repositories", "StkCommon.UI.Wpf.Repositories\StkCommon.UI.Wpf.Repositories.csproj", "{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StkCommon.UI.Wpf.Repositories.Test", "StkCommon.UI.Wpf.Repositories.Test\StkCommon.UI.Wpf.Repositories.Test.csproj", "{B0ED1019-71F6-4313-8C36-F2BD19113284}"
-EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://signatectfs:8080/tfs/collection2
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = StkCommon.UI.Wpf\\StkCommon.UI.Wpf.csproj
-		SccProjectTopLevelParentUniqueName1 = StkCommon.sln
-		SccProjectName1 = StkCommon.UI.Wpf
-		SccLocalPath1 = StkCommon.UI.Wpf
-		SccProjectUniqueName2 = StkCommon.UI.Wpf.Theme\\StkCommon.UI.Wpf.Theme.csproj
-		SccProjectTopLevelParentUniqueName2 = StkCommon.sln
-		SccProjectName2 = StkCommon.UI.Wpf.Theme
-		SccLocalPath2 = StkCommon.UI.Wpf.Theme
-		SccProjectUniqueName3 = Wpf.DemoApp\\Wpf.DemoApp.csproj
-		SccProjectTopLevelParentUniqueName3 = StkCommon.sln
-		SccProjectName3 = Wpf.DemoApp
-		SccLocalPath3 = Wpf.DemoApp
-		SccProjectUniqueName4 = StkCommon.UI.Wpf.Test\\StkCommon.UI.Wpf.Test.csproj
-		SccProjectTopLevelParentUniqueName4 = StkCommon.sln
-		SccProjectName4 = StkCommon.UI.Wpf.Test
-		SccLocalPath4 = StkCommon.UI.Wpf.Test
-		SccProjectUniqueName5 = StkCommon.Data\\StkCommon.Data.csproj
-		SccProjectTopLevelParentUniqueName5 = StkCommon.sln
-		SccProjectName5 = StkCommon.Data
-		SccLocalPath5 = StkCommon.Data
-		SccProjectUniqueName6 = StkCommon.Data.Test\\StkCommon.Data.Test.csproj
-		SccProjectTopLevelParentUniqueName6 = StkCommon.sln
-		SccProjectName6 = StkCommon.Data.Test
-		SccLocalPath6 = StkCommon.Data.Test
-		SccProjectUniqueName7 = StkCommon.UI.Wpf.Repositories\\StkCommon.UI.Wpf.Repositories.csproj
-		SccProjectTopLevelParentUniqueName7 = StkCommon.sln
-		SccProjectName7 = StkCommon.UI.Wpf.Repositories
-		SccLocalPath7 = StkCommon.UI.Wpf.Repositories
-		SccProjectUniqueName8 = StkCommon.UI.Wpf.Repositories.Test\\StkCommon.UI.Wpf.Repositories.Test.csproj
-		SccProjectTopLevelParentUniqueName8 = StkCommon.sln
-		SccProjectName8 = StkCommon.UI.Wpf.Repositories.Test
-		SccLocalPath8 = StkCommon.UI.Wpf.Repositories.Test
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -116,14 +74,6 @@ Global
 		{38687D33-5120-4B2E-B2D2-E515CDDF088A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{38687D33-5120-4B2E-B2D2-E515CDDF088A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{38687D33-5120-4B2E-B2D2-E515CDDF088A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B0ED1019-71F6-4313-8C36-F2BD19113284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B0ED1019-71F6-4313-8C36-F2BD19113284}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B0ED1019-71F6-4313-8C36-F2BD19113284}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B0ED1019-71F6-4313-8C36-F2BD19113284}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -139,7 +89,5 @@ Global
 		{BE00034D-AB18-436F-9BE1-B6DA5EF2D8AD} = {3C7D0999-353D-43A3-9DCF-788F3D2BD65F}
 		{EFF15D13-1577-41BD-A267-5F079CB2CBFD} = {4E3C6C39-8C17-49E2-B30F-D7F8A588D7FF}
 		{38687D33-5120-4B2E-B2D2-E515CDDF088A} = {EFF15D13-1577-41BD-A267-5F079CB2CBFD}
-		{A8D3DB5F-619A-476E-BB7C-262D4DBF7F73} = {9D312DBC-0131-4261-9D78-0D64EA3057AD}
-		{B0ED1019-71F6-4313-8C36-F2BD19113284} = {EFF15D13-1577-41BD-A267-5F079CB2CBFD}
 	EndGlobalSection
 EndGlobal
