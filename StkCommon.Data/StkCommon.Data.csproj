@@ -56,14 +56,6 @@
     <Compile Include="NotifyPropertyChangedBase.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="PropertyName.cs" />
-    <Compile Include="Repositories\ChangedElement.cs" />
-    <Compile Include="Repositories\ChangedElementType.cs" />
-    <Compile Include="Repositories\ElementRepositoryBase.cs" />
-    <Compile Include="Repositories\ElementRepositoryChangedArg.cs" />
-    <Compile Include="Repositories\IElementRepositoryChangedArg.cs" />
-    <Compile Include="Repositories\IModelReadOnlyWrapper.cs" />
-    <Compile Include="Repositories\SimpleWeakEvent.cs" />
-    <Compile Include="Repositories\IElementRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Text\TextExtensions.cs" />
     <Compile Include="Utils\DisposeHelper.cs" />
