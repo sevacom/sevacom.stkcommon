@@ -19,9 +19,9 @@ namespace StkCommon.UI.Wpf.Test.Converters
 
 		[TestCase(12.0, GridUnitType.Pixel, true, 12.0)]
 		[TestCase(15.0, GridUnitType.Star, true, 15.0)]
-		[TestCase("123", GridUnitType.Pixel, false)]
-		[TestCase("123", GridUnitType.Star, false)]
-		[TestCase(12, GridUnitType.Pixel, false)]
+		[TestCase("123", GridUnitType.Pixel, false, null)]
+		[TestCase("123", GridUnitType.Star, false, null)]
+		[TestCase(12, GridUnitType.Pixel, false, null)]
 		public void ShouldConvert(object value, GridUnitType unitType, 
 			bool isConverted, double? expectedDouble = null)
 		{
