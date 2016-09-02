@@ -213,3 +213,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+/StkCommon.sln.DotSettings
+/packages/FluentAssertions.3.3.0
+/packages/Moq.4.2.1502.0911
+/packages/NUnit.2.6.4
