@@ -16,6 +16,7 @@
 		MinWidth="350" 
 		ResizeMode="NoResize"
 		ShowInTaskbar="True"
+		AutomationProperties.AutomationId="AuthorizationWindow"
 		attached:WindowProperties.DialogResult="{Binding DialogResult, Mode=TwoWay}"
 		d:DataContext="{d:DesignInstance Type=designTime:DesignMockAuthorizationViewModel, IsDesignTimeCreatable=True}" 
 		Closing="AuthorizationWindowClosing">

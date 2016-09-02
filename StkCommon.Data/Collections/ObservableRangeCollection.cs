@@ -13,10 +13,11 @@ namespace StkCommon.Data.Collections
 	/// <typeparam name="T"></typeparam>
 	public class ObservableRangeCollection<T> : ObservableCollection<T>
 	{
-		private int _maxCountRiseAddEvent = 10;
+		private int _maxCountRiseAddEvent;
 
 		/// <summary>
-		/// Максимальное кол-во элементов при котором отправляется событие Add при AddRange
+		/// Максимальное кол-во элементов при котором НЕ отправляется событие Reset при большом кол-ве изменений
+		/// Если 0 то Reset не отправляется никогда 
 		/// </summary>
 		public int MaxCountRiseAddEvent
 		{
@@ -61,17 +62,7 @@ namespace StkCommon.Data.Collections
 
 			CheckReentrancy();
 
-			var list = collection.ToList();
-			var args = list.Count > MaxCountRiseAddEvent
-							? new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset) :
-							new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, list);
-		
-			foreach (var i in list) 
-				Items.Add(i);
-
-			OnCollectionChanged(args);
-			OnPropertyChanged(new PropertyChangedEventArgs("Count"));
-			OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+			AddRangeInternal(collection);
 		}
 
 		/// <summary> 
@@ -84,16 +75,77 @@ namespace StkCommon.Data.Collections
 			CheckReentrancy();
 
 			var list = collection.ToList();
-			var args = list.Count > MaxCountRiseAddEvent
-							? new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset) :
-							new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, list);
+			var args = IsDramaticalChange(list.Count) ? 
+				new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset) :
+				new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Remove, list);
 
-			foreach (var i in list) 
-				Items.Remove(i);
+			foreach (var item in list) 
+				Items.Remove(item);
 
+			RiseNotifyCollectionChangedEventArgs(args);
+		}
+
+		/// <summary>
+		///     Clears the current collection and replaces it with the specified item.
+		/// </summary>
+		public void Replace(T oldItem, T newItem)
+		{
+			if (newItem == null) throw new ArgumentNullException("newItem");
+
+			if (oldItem == null) throw new ArgumentNullException("oldItem");
+			
+			CheckReentrancy();
+
+			var index = Items.IndexOf(oldItem);
+
+			if (index == -1)
+				throw new ArgumentException("Попытка замены элемента не содержащегося в коллекции!", "oldItem");
+
+			Items[index] = newItem;
+
+			var args = new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Replace, 
+				newItem, oldItem, index);
+			OnCollectionChanged(args);
+		}
+
+		/// <summary>
+		///     Clears the current collection and replaces it with the specified collection.
+		/// </summary>
+		public void ReplaceAll(IEnumerable<T> collection)
+		{
+			if (collection == null) throw new ArgumentNullException("collection");
+
+			CheckReentrancy();
+
+			Items.Clear();
+			AddRangeInternal(collection, true);
+		}
+
+		protected void RiseNotifyCollectionChangedEventArgs(NotifyCollectionChangedEventArgs args)
+		{
 			OnCollectionChanged(args);
 			OnPropertyChanged(new PropertyChangedEventArgs("Count"));
 			OnPropertyChanged(new PropertyChangedEventArgs("Item[]"));
+		}
+
+		protected virtual bool IsDramaticalChange(int changedCount)
+		{
+			if (changedCount <= 0)
+				return false;
+			return changedCount > MaxCountRiseAddEvent;
+		}
+
+		private void AddRangeInternal(IEnumerable<T> collection, bool isReset = false)
+		{
+			var list = collection.ToList();
+			var args = isReset || IsDramaticalChange(list.Count) ?
+				new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset) :
+				new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Add, list);
+
+			foreach (var item in list)
+				Items.Add(item);
+
+			RiseNotifyCollectionChangedEventArgs(args);
 		}
 	}
 }

@@ -16,38 +16,44 @@ namespace StkCommon.Data.Text
 		/// <param name="count1Name">что подставить если цифра заканчивается на 1 (1 сеанс)</param>
 		/// <param name="countManyName">что подставить если множественное число (25 сеансов)</param>
 		/// <param name="count234Name">что подставить если число заканчивается на 2,3,4 (24 сеанса)</param>
-		/// <param name="countNothing">Текст если знчение 0, если не задан то используется countManyName</param>
 		/// <returns></returns>
-		public static string NumeralText(int count, string count1Name,
-			string countManyName, string count234Name, string countNothing = null)
+		public static string NumeralText(int count, string count1Name, string countManyName, string count234Name)
 		{
-			if (count == 0 && !string.IsNullOrEmpty(countNothing))
-				return countNothing;
+			return NumeralTextEx(count, count1Name, countManyName, count234Name);
+		}
 
-			var text = countManyName;
-			var index2 = count % 100;
+		/// <summary>
+		/// Правильно выбирает вариант текста исходя из числа
+		/// </summary>
+		/// <param name="count">число для которого надо окончание</param>
+		/// <param name="count1Name">что подставить если цифра заканчивается на 1 (1 сеанс)</param>
+		/// <param name="countManyName">что подставить если множественное число (25 сеансов)</param>
+		/// <param name="count234Name">что подставить если число заканчивается на 2,3,4 (24 сеанса)</param>
+		/// <param name="countZero">Текст если знчение 0, если не задан то используется countManyName</param>
+		/// <returns></returns>
+		public static string NumeralTextEx(int count, string count1Name, string countManyName,
+			string count234Name, string countZero = null)
+		{
+			if (count == 0 && !string.IsNullOrEmpty(countZero))
+				return countZero;
+		
+			var significantValue = count % 100;
+			if (significantValue >= 10 && significantValue <= 20)
+				return countManyName;
 
-			if (index2 < 11 || index2 > 14)
+			var lastDigit = count % 10;
+
+			switch (lastDigit)
 			{
-				var index = count % 10;
-
-				switch (index)
-				{
-					case 1:
-						text = count1Name;
-						break;
-					case 2:
-					case 3:
-					case 4:
-						text = count234Name;
-						break;
-					default:
-						text = countManyName;
-						break;
-				}
+				case 1:
+					return count1Name;
+				case 2:
+				case 3:
+				case 4:
+					return count234Name;
+				default:
+					return countManyName;
 			}
-
-			return text;
 		}
 
 		/// <summary>
@@ -58,15 +64,12 @@ namespace StkCommon.Data.Text
 		/// <param name="count1Name">что подставить если цифра заканчивается на 1 (1 сеанс)</param>
 		/// <param name="countManyName">что подставить если множественное число (25 сеансов)</param>
 		/// <param name="count234Name">что подставить если число заканчивается на 2,3,4 (24 сеанса)</param>
-		/// <param name="countNothing">Текст если знчение 0, если не задан то используется countManyName</param>
+		/// <param name="countZero">Текст если знчение 0, если не задан то используется countManyName</param>
 		/// <returns></returns>
 		public static string NumeralTextFormat(int count, string count1Name,
-			string countManyName, string count234Name, string countNothing = null)
+			string countManyName, string count234Name, string countZero = null)
 		{
-			if (count == 0 && !string.IsNullOrEmpty(countNothing))
-				return string.Format(countNothing, count);
-
-			var text = NumeralText(count, count1Name, countManyName, count234Name, countNothing);
+			var text = NumeralTextEx(count, count1Name, countManyName, count234Name, countZero);
 			return !string.IsNullOrEmpty(text) ? string.Format(text, count) : text;
 		}
 

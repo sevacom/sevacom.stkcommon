@@ -31,11 +31,11 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\..\..\Bin\StkCommon\1.1\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\..\..\..\Bin\StkCommon\1.1\StkCommon.UI.Wpf.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\StkCommon.UI.Wpf.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -50,9 +50,16 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\AddDoubleValueConverter.cs" />
+    <Compile Include="Converters\ColorConverter.cs" />
+    <Compile Include="Converters\DoubleToGridLengthConverter.cs" />
+    <Compile Include="Converters\JoinStringsWithSeparatorConverter.cs" />
     <Compile Include="Converters\NumeralConverter.cs" />
+    <Compile Include="Converters\ReadableColorConverter.cs" />
+    <Compile Include="Converters\SwitchConverter.cs" />
     <Compile Include="Exceptions\MessageBoxExceptionNotifierWithDetails.cs" />
     <Compile Include="Helpers\ContextMenuHelper.cs" />
+    <Compile Include="Common\IUiTimer.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Commands\ExceptionHandlerCommand.cs" />
     <Compile Include="Commands\ICommandExceptionRegistrator.cs" />
@@ -66,10 +73,12 @@
     <Compile Include="Model\AuthorizationMode.cs" />
     <Compile Include="Model\ShortCut.cs" />
     <Compile Include="Model\ThreadSafeObservableCollection.cs" />
+    <Compile Include="Repositories\ChangableListViewModelNotifier.cs" />
     <Compile Include="ViewModels\ChangableListViewModelBase.cs" />
     <Compile Include="ViewModels\ChangableViewModelBase.cs" />
     <Compile Include="ViewModels\DesignTime\DesignMockAuthorizationViewModel.cs" />
     <Compile Include="ViewModels\DesignTime\DesignMockErrorMessageViewModel.cs" />
+    <Compile Include="ViewModels\DesignTime\DesignMockShowDialogAgent.cs" />
     <Compile Include="ViewModels\ErrorMessageViewModel.cs" />
     <Compile Include="Views\Attached\PasswordBoxHelper.cs" />
     <Compile Include="Events\EventManagerEx.cs" />
@@ -177,6 +186,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="StkCommon.UI.Wpf.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Views\Resources\AppIcon.ico" />

@@ -11,6 +11,7 @@
                           mc:Ignorable="d"  
                           WindowStartupLocation="CenterOwner"
 		                  Title="{Binding Caption}"
+						  AutomationProperties.AutomationId="ErrorMessageWindowWithDetails"
                           attached:WindowProperties.DialogResult="{Binding FinishResult}"
                           SizeToContent="WidthAndHeight"
 						  MaxWidth="550" MaxHeight="800"
@@ -34,18 +35,18 @@
                         <ControlTemplate TargetType="{x:Type ScrollBar}">
                             <Grid x:Name="Bg" Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
                                 <Track x:Name="PART_Track" IsDirectionReversed="true" IsEnabled="{TemplateBinding IsMouseOver}" Orientation="Vertical" >
-                                    <Track.Resources>
-                                        <!-- Set the Thumb's minimum height to 50.
+									<Track.Resources>
+										<!-- Set the Thumb's minimum height to 50.
 								The Thumb's minimum height is half the
 								value of VerticalScrollBarButtonHeightKey. -->
-                                        <system:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">
-                                            40
-                                        </system:Double>
-                                        <system:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}">
-                                            40
-                                        </system:Double>
-                                    </Track.Resources>
-                                    <Track.DecreaseRepeatButton>
+										<system:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">
+											40
+										</system:Double>
+										<system:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}">
+											40
+										</system:Double>
+									</Track.Resources>
+									<Track.DecreaseRepeatButton>
                                         <RepeatButton Command="{x:Static ScrollBar.PageUpCommand}" IsTabStop="false" Focusable="False" Opacity="0" />
                                     </Track.DecreaseRepeatButton>
                                     <Track.IncreaseRepeatButton>
@@ -147,7 +148,7 @@
 					<Setter Property="Background" Value="Transparent"/>
 				</Style>
 			</ScrollViewer.Resources>
-			<TextBox Text="{Binding Details}" IsReadOnly="True" IsReadOnlyCaretVisible="True"
+			<TextBox Text="{Binding Details, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" IsReadOnlyCaretVisible="True"
 					 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
 					 TextWrapping="Wrap" BorderThickness="0" BorderBrush="Transparent"
 					 AutomationProperties.AutomationId="textErrorDetails"

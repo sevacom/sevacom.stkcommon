@@ -7,37 +7,18 @@ namespace StkCommon.Data.Test.Text
 	[TestFixture]
 	public class TextExtensionsTest
     {
-		private const string Count1Name = "Разговор {0}";
-		private const string CountManyName = "Разговоров {0}";
-		private const string Count234Name = "Разговора {0}";
-
 		/// <summary>
 		/// Должен правильно вычислять числительные
 		/// </summary>
-		[TestCase(1, Count1Name)]
-		[TestCase(12, CountManyName)]
-		[TestCase(22, Count234Name)]
-		[TestCase(10111, CountManyName)]
-		public void ShouldNumeralText(int count, string expectedResult)
+		[TestCase(1, "Разговор", "Разговоров", "Разговора", "Разговор")]
+		[TestCase(12, "Разговор", "Разговоров", "Разговора", "Разговоров")]
+		[TestCase(22, "Разговор", "Разговоров", "Разговора", "Разговора")]
+		[TestCase(10111, "Разговор", "Разговоров", "Разговора", "Разговоров")]
+		[TestCase(1, "Разговор {0}{1}", "Разговоров {0}", "Разговора {0}", "Разговор {0}{1}")]
+		public void ShouldNumeralText(int count, string count1Name, string countManyName, string count234Name, string expectedResult)
 		{
 			//Given //When
-			var actualResult = TextExtensions.NumeralText(count, Count1Name, CountManyName, Count234Name);
-
-			//Then
-			actualResult.Should().Be(expectedResult);
-		}
-
-		/// <summary>
-		/// Должен правильно вычислять числительные
-		/// </summary>
-		[TestCase(1, "Разговор 1")]
-		[TestCase(12, "Разговоров 12")]
-		[TestCase(22, "Разговора 22")]
-		[TestCase(10111, "Разговоров 10111")]
-		public void ShouldNumeralTextFormat(int count, string expectedResult)
-		{
-			//Given //When
-			var actualResult = TextExtensions.NumeralTextFormat(count, Count1Name, CountManyName, Count234Name);
+			var actualResult = TextExtensions.NumeralText(count, count1Name, countManyName, count234Name);
 
 			//Then
 			actualResult.Should().Be(expectedResult);

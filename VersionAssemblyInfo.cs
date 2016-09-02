@@ -3,15 +3,8 @@ using System.Reflection;
 [assembly: AssemblyProduct("StkCommon")]
 [assembly: AssemblyCompany("Stk")]
 [assembly: AssemblyCopyright("Stk © 2014")]
-[assembly: AssemblyVersion(Versions.MainVersion + "0.0")]
-[assembly: AssemblyFileVersion(Versions.MainVersion + Versions.InstallerBuild + "." + Versions.BuildNumber)]
 
-internal static class Versions
-{
-	public const string MainVersion = "1.3.";
-	public const string InstallerBuild = "0"; 
-	public const string BuildNumber = "0";
-}
+
 
 
 

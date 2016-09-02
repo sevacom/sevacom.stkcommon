@@ -72,13 +72,16 @@
     <Compile Include="Commands\SimpleDelegateCommandTest.cs" />
     <Compile Include="Converters\BoolConverterBaseTest.cs" />
     <Compile Include="Converters\ByteArrayToBitmapImageConverterTest.cs" />
+    <Compile Include="Converters\DoubleToGridLengthConverterTest.cs" />
     <Compile Include="Converters\ExceptionHandlerCommandConverterBaseTest.cs" />
     <Compile Include="Converters\FormatStringMultiConverterTest.cs" />
+    <Compile Include="Converters\JoinStringsWithSeparatorConverterTest.cs" />
     <Compile Include="Converters\MultiLogicalAndConverterTest.cs" />
     <Compile Include="Converters\EmptyStringConverterBaseTest.cs" />
     <Compile Include="Converters\EqualToParameterConverterTest.cs" />
     <Compile Include="Converters\NullConverterBaseTest.cs" />
     <Compile Include="Converters\NumeralConverterTest.cs" />
+    <Compile Include="Converters\ReadableColorConverterTest.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -87,6 +90,8 @@
     <Compile Include="SampleUnitTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\AuthorizationViewModelBaseTest.cs" />
+    <Compile Include="ViewModels\ChangableListViewModelBaseTest.cs" />
+    <Compile Include="ViewModels\ChangableViewModelBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StkCommon.Data\StkCommon.Data.csproj">

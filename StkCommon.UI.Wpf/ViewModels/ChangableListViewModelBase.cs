@@ -9,20 +9,45 @@ using StkCommon.Data;
 
 namespace StkCommon.UI.Wpf.ViewModels
 {
+	public interface IChangableListViewModel<in TModel>
+	{
+		/// <summary>
+		/// Индикатор выполнения длительной операции
+		/// </summary>
+		bool IsLoading { get; set; }
+
+		/// <summary>
+		/// Заполнить вьюмодель начальными данными
+		/// </summary>
+		/// <param name="models">коллекция моделей, если models == null - происходит очистка коллекции</param>
+		void Fill(IEnumerable<TModel> models);
+
+		/// <summary>
+		/// Удалить элемент по переданной модели
+		/// </summary>
+		void Delete(TModel model);
+
+		/// <summary>
+		/// Обновить элемент на основании переданной модели, если такой модели ещё нет в коллекции, она будет добавлена
+		/// </summary>
+		void Update(TModel model);
+	}
+
 	/// <summary>
 	/// Список изменяемых объектов с поддержкой фильтрации
 	/// </summary>
-	public abstract class ChangableListViewModelBase<TModel, TVModel> : ViewModelBase
-		where TModel : IModelObject<TModel>
+	public abstract class ChangableListViewModelBase<TModel, TVModel> : ViewModelBase, IChangableListViewModel<TModel> where TModel : IModelObject<TModel>
 		where TVModel : ChangableViewModelBase<TModel>
 	{
 		private ObservableCollection<TVModel> _items;
 		private ListCollectionView _itemsCollectionView;
 		private TVModel _selectedItem;
+		private bool _isLoading;
 
 		protected ChangableListViewModelBase()
 		{
 			_items = new ObservableCollection<TVModel>();
+			_itemsCollectionView = GetCollectionViewInternal(_items);
 		}
 
 		/// <summary>
@@ -34,9 +59,10 @@ namespace StkCommon.UI.Wpf.ViewModels
 			private set
 			{
 				_itemsCollectionView = value;
-
+                /*если делать вызывов OnPropertyChanged последним 
+                 * - то сортировки и группировки НЕ работают*/
+                OnPropertyChanged(() => ItemsCollectionView); 
 				OnCollectionViewInitialized();
-				OnPropertyChanged(() => ItemsCollectionView);
 			}
 		}
 
@@ -64,6 +90,14 @@ namespace StkCommon.UI.Wpf.ViewModels
 			}
 		}
 
+		protected virtual GroupDescription[] ItemsGroupDescriptions
+		{
+			get
+			{
+				return null;
+			}
+		}
+
 		/// <summary>
 		/// Выбранный элемент
 		/// </summary>
@@ -82,8 +116,24 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Заполнить
+		/// Индикатор выполнения длительной операции
 		/// </summary>
+		public virtual bool IsLoading
+		{
+			get { return _isLoading; }
+			set
+			{
+				if (value == _isLoading) 
+					return;
+				_isLoading = value;
+				OnPropertyChanged(() => IsLoading);
+			}
+		}
+
+		/// <summary>
+		/// Заполнить вьюмодель начальными данными
+		/// </summary>
+		/// <param name="models">коллекция моделей, если models == null - происходит очистка коллекции</param>
 		public virtual void Fill(IEnumerable<TModel> models)
 		{
 			models = models ?? new TModel[0];
@@ -91,7 +141,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Удалить 
+		/// Удалить элемент по переданной модели
 		/// </summary>
 		public virtual void Delete(TModel model)
 		{
@@ -104,7 +154,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Изменить или добавить 
+		/// Обновить элемент на основании переданной модели, если такой модели ещё нет в коллекции, она будет добавлена
 		/// </summary>
 		public virtual void Update(TModel model)
 		{
@@ -122,28 +172,11 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Сбросить изменения для всех элеметов
+		/// Вызвать для каждой TVModel из Items метод ResetChanges
 		/// </summary>
 		public void ResetChanges()
 		{
-			ResetChanaged(Items);
-		}
-
-		/// <summary>
-		/// Сбросить изменения для коллекции
-		/// </summary>
-		/// <typeparam name="TObj"></typeparam>
-		/// <param name="viewModels"></param>
-		public static void ResetChanaged<TObj>(IEnumerable<ChangableViewModelBase<TObj>> viewModels)
-			where TObj : IModelObject<TObj>
-		{
-			if (viewModels == null)
-				return;
-			var changedViewModels = viewModels.ToArray();
-			foreach (var changedViewModel in changedViewModels)
-			{
-				changedViewModel.ResetChanges();
-			}
+			Items.ResetChanaged();
 		}
 
 		/// <summary>
@@ -196,7 +229,8 @@ namespace StkCommon.UI.Wpf.ViewModels
 		/// <summary>
 		/// Устанавливает фильтрующую функцию, если SelectedItem не проходит фильтр то он сбрасывается в null
 		/// </summary>
-		protected virtual void ApplyFilterFuncToCollectionView(bool isDeferRefresh = false)
+		/// <param name="isDeferRefresh">true - выполняется внутри DeferRefresh отложенные изменения, false - нет</param>
+		protected virtual void ApplyFilterToCollectionView(bool isDeferRefresh = false)
 		{
 			if (SelectedItem != null && !FilterFunction(SelectedItem))
 				SelectedItem = null;
@@ -205,9 +239,6 @@ namespace StkCommon.UI.Wpf.ViewModels
 			{
 				ItemsCollectionView.Filter = FilterFunction;
 			}
-
-			if (!isDeferRefresh)
-				OnCollectionViewItemsChanged();
 		}
 
 		/// <summary>
@@ -218,32 +249,38 @@ namespace StkCommon.UI.Wpf.ViewModels
 			if (ItemsCollectionView == null || ItemsSortDescriptions == null)
 				return;
 
+			ItemsCollectionView.SortDescriptions.Clear();
 			foreach (var sortDescription in ItemsSortDescriptions)
 			{
 				ItemsCollectionView.SortDescriptions.Add(sortDescription);
 			}
 		}
 
+		protected virtual void ApplyGroupToCollectionView(bool isDeferRefresh = false)
+		{
+			if (ItemsCollectionView == null 
+				|| ItemsGroupDescriptions == null 
+				|| ItemsCollectionView.GroupDescriptions == null)
+				return;
+
+			ItemsCollectionView.GroupDescriptions.Clear();
+			foreach (var groupDescription in ItemsGroupDescriptions)
+			{
+				ItemsCollectionView.GroupDescriptions.Add(groupDescription);
+			}
+		}
+
 		/// <summary>
-		/// ItemsCollectionView, переинициализирована, выполняет настройки фильтрации и сортировки
+		/// Изменилась ItemsCollectionView, задана новая, выполняются настройки фильтрации и сортировки
 		/// </summary>
 		protected virtual void OnCollectionViewInitialized()
 		{
 			using (ItemsCollectionView.DeferRefresh())
 			{
-				ApplyFilterFuncToCollectionView(true);
+				ApplyFilterToCollectionView(true);
 				ApplySortToCollectionView(true);
+				ApplyGroupToCollectionView(true);
 			}
-
-			OnCollectionViewItemsChanged();
-		}
-
-		/// <summary>
-		/// Изменилось кол-во элементов, так как изменился фильтр
-		/// </summary>
-		protected virtual void OnCollectionViewItemsChanged()
-		{
-			
 		}
 
 		/// <summary>
@@ -257,6 +294,11 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		protected virtual ListCollectionView GetCollectionView(IEnumerable collection)
+		{
+			return GetCollectionViewInternal(collection);
+		}
+
+		protected ListCollectionView GetCollectionViewInternal(IEnumerable collection)
 		{
 			var listCollectionView = CollectionViewSource.GetDefaultView(collection) as ListCollectionView;
 

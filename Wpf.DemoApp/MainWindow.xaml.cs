@@ -17,13 +17,13 @@ namespace StkCommon.UI.Wpf.DemoApp
 	{
 		private IWindow _splashScreenWindow;
 		private readonly IShowDialogAgent _showDialogAgent;
-		private DispatcherAdapter _dispatcher;
 
 		public MainWindow()
 		{
 			InitializeComponent();
-			_dispatcher = new DispatcherAdapter(Dispatcher);
-			_showDialogAgent = new ShowDialogAgent(_dispatcher);
+			var dispatcher = new DispatcherAdapter(Dispatcher);
+			_showDialogAgent = new ShowDialogAgent(dispatcher);
+			DataContext = new MainWindowViewModel();
 		}
 
 		private void ShowAboutWindowClick(object sender, RoutedEventArgs e)

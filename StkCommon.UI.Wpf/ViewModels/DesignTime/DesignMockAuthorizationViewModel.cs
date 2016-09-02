@@ -7,7 +7,7 @@ namespace StkCommon.UI.Wpf.ViewModels.DesignTime
 {
 	internal class DesignMockAuthorizationViewModel : AuthorizationViewModelBase
 	{
-		public DesignMockAuthorizationViewModel() : base(AuthorizationMode.ServerDatabase, null)
+		public DesignMockAuthorizationViewModel() : base(AuthorizationMode.ServerDatabase, new DesignMockShowDialogAgent())
 		{
 			ApplicationName = "Новое приложение";
 			ApplicationIcon =

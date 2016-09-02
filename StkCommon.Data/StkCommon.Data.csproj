@@ -28,14 +28,15 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\..\..\..\Bin\StkCommon\1.1\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>..\..\..\..\..\Bin\StkCommon\1.1\StkCommon.Data.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\StkCommon.Data.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -44,6 +45,7 @@
     </Compile>
     <Compile Include="Collections\ObservableKeyedCollection.cs" />
     <Compile Include="Collections\ObservableRangeCollection.cs" />
+    <Compile Include="Extensions\DescriptionExtensions.cs" />
     <Compile Include="Diagnostics\ErrorMessageFormater.cs" />
     <Compile Include="Diagnostics\ExceptionHandlerBase.cs" />
     <Compile Include="Diagnostics\IDiagnosticContainer.cs" />
@@ -51,16 +53,45 @@
     <Compile Include="Diagnostics\IExceptionNotifier.cs" />
     <Compile Include="Diagnostics\ISimpleLogger.cs" />
     <Compile Include="Diagnostics\TraceFailExceptionNotifier.cs" />
+    <Compile Include="EqutableByKey.cs" />
+    <Compile Include="Extensions\CustomAttributeProviderExtensions.cs" />
+    <Compile Include="Extensions\DictionaryExtensions.cs" />
+    <Compile Include="Extensions\EnumExtensions.cs" />
+    <Compile Include="Extensions\NullableRangeExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\StreamExtensions.cs" />
     <Compile Include="FunctionalComparer.cs" />
+    <Compile Include="IKeyModelObject.cs" />
     <Compile Include="IModelObject.cs" />
+    <Compile Include="Primitives\Range.cs" />
     <Compile Include="NotifyPropertyChangedBase.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="PropertyName.cs" />
+    <Compile Include="Repositories\AsyncRepositorySubscriberBase.cs" />
+    <Compile Include="Repositories\ChangedElement.cs" />
+    <Compile Include="Repositories\ChangedElementType.cs" />
+    <Compile Include="Repositories\ElementRepositoryBase.cs" />
+    <Compile Include="Repositories\ElementRepositoryChangedArg.cs" />
+    <Compile Include="Repositories\IObservableRepository.cs" />
+    <Compile Include="Repositories\IElementRepositoryChangedArg.cs" />
+    <Compile Include="Repositories\IModelReadOnlyWrapper.cs" />
+    <Compile Include="Repositories\ListChangeItem.cs" />
+    <Compile Include="Repositories\SimpleWeakEvent.cs" />
+    <Compile Include="Repositories\IElementRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\IAppSettingsProvider.cs" />
+    <Compile Include="System\Impersonator.cs" />
+    <Compile Include="System\IProcessShell.cs" />
+    <Compile Include="System\IShellProcess.cs" />
     <Compile Include="Text\TextExtensions.cs" />
     <Compile Include="Utils\DisposeHelper.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="StkCommon.Data.nuspec" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -60,7 +60,7 @@
     <Compile Include="ControlsWindow.xaml.cs">
       <DependentUpon>ControlsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DemoViewModel.cs" />
+    <Compile Include="MainWindowViewModel.cs" />
     <Compile Include="DesignMockControlsWindowVm.cs" />
     <Compile Include="WpfThemeWindow.xaml.cs">
       <DependentUpon>WpfThemeWindow.xaml</DependentUpon>

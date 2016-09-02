@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using StkCommon.Data;
 
 namespace StkCommon.UI.Wpf.ViewModels
@@ -73,6 +75,21 @@ namespace StkCommon.UI.Wpf.ViewModels
 		/// </summary>
 		protected virtual void UpdateInternal()
 		{
+		}
+	}
+
+	public static class ChangableViewModelBaseExtensions
+	{
+		public static void ResetChanaged<TObj>(this IEnumerable<ChangableViewModelBase<TObj>> viewModels) 
+			where TObj : IModelObject<TObj>
+		{
+			if (viewModels == null)
+				return;
+			var changedViewModels = viewModels.ToArray();
+			foreach (var changedViewModel in changedViewModels)
+			{
+				changedViewModel.ResetChanges();
+			}
 		}
 	}
 }
