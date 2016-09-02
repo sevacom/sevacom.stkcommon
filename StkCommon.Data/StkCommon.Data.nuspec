@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>Signatec</authors>
+		<owners>Signatec</owners>
+		<description>Общая библиотека для работы с данными</description>
+		<releaseNotes />
+		<copyright>Copyright 2016</copyright>
+	</metadata>
+	<files>
+		<file src="bin\Release\StkCommon.Data.dll" target="lib\net40\StkCommon.Data.dll" />
+		<file src="bin\Release\StkCommon.Data.xml" target="lib\net40\StkCommon.Data.xml" />
+	</files>
+</package>
