@@ -91,7 +91,6 @@ namespace StkCommon.Data.Collections
 		public void Replace(T oldItem, T newItem)
 		{
 			if (newItem == null) throw new ArgumentNullException("newItem");
-
 			if (oldItem == null) throw new ArgumentNullException("oldItem");
 			
 			CheckReentrancy();

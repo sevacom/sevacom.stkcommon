@@ -72,7 +72,7 @@ namespace StkCommon.Data
 					args = new PropertyChangedEventArgs(propertyName);
 				}
 
-				handler(this, args);
+				OnPropertyChanged(args);
 			}
 		}
 

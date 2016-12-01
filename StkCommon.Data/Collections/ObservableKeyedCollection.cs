@@ -80,9 +80,8 @@ namespace StkCommon.Data.Collections
 		{
 			if (_deferNotifyCollectionChanged)
 				return;
-
-			if (CollectionChanged != null)
-				CollectionChanged(this, e);
+			var handler = CollectionChanged;
+			if (handler != null) handler(this, e);
 		}
 
 		/// <summary>

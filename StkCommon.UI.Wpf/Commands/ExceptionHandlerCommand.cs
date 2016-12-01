@@ -26,6 +26,7 @@ namespace StkCommon.UI.Wpf.Commands
 			_delegateCommand = command as IDelegateCommand;
 		}
 
+
 		/// <summary>
 		/// Регистрирует все ошибки при выполнении команды, используя регистратор ошибок от команд
 		/// </summary>
@@ -61,6 +62,22 @@ namespace StkCommon.UI.Wpf.Commands
 			_registerException = registerException;
 		}
 
+		public override event PropertyChangedEventHandler PropertyChanged
+		{
+			add
+			{
+				base.PropertyChanged += value;
+				if (_delegateCommand != null)
+					_delegateCommand.PropertyChanged += value;
+			}
+			remove
+			{
+				base.PropertyChanged -= value;
+				if (_delegateCommand != null)
+					_delegateCommand.PropertyChanged -= value;
+			}
+		}
+
 		public event EventHandler CanExecuteChanged
 		{
 			add
@@ -73,19 +90,6 @@ namespace StkCommon.UI.Wpf.Commands
 			}
 		}
 
-		public override event PropertyChangedEventHandler PropertyChanged
-		{
-			add
-			{
-				if (_delegateCommand != null)
-					_delegateCommand.PropertyChanged += value;
-			}
-			remove
-			{
-				if (_delegateCommand != null)
-					_delegateCommand.PropertyChanged -= value;
-			}
-		}
 
 		public virtual void Execute(object parameter)
 		{

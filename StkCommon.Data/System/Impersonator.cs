@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Security.Principal;
+using StkCommon.Data.Utils;
 
 namespace StkCommon.Data.System
 {
@@ -64,6 +65,7 @@ namespace StkCommon.Data.System
 		public void Dispose()
 		{
 			UndoImpersonation();
+			DisposeHelper.SafeDispose(ref _wic);
 		}
 
 		/// <summary>
@@ -110,8 +112,8 @@ namespace StkCommon.Data.System
 						Win32NativeMethods.DuplicateToken(logonToken, (int)ImpersonationLevel.SecurityImpersonation,
 							ref logonTokenDuplicate) != 0)
 					{
-						var wi = new WindowsIdentity(logonTokenDuplicate);
-						wi.Impersonate(); // discard the returned identity context (which is the context of the application pool)
+						using(var wi = new WindowsIdentity(logonTokenDuplicate))
+							wi.Impersonate(); // discard the returned identity context (which is the context of the application pool)
 					}
 					else
 						throw new Win32Exception(Marshal.GetLastWin32Error());
