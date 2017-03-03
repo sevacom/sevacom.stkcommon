@@ -1,4 +1,4 @@
-## StkCommon  [![Build status](https://ci.appveyor.com/api/projects/status/7inl5sw7rvqf4rcb/branch/master?svg=true)](https://ci.appveyor.com/project/sevacom/stkcommon/branch/master)
+## StkCommon  [![Build status](https://ci.appveyor.com/api/projects/status/7inl5sw7rvqf4rcb/branch/master?svg=true)](https://ci.appveyor.com/project/sevacom/stkcommon/branch/master) 
 
 A collection of reusable code and components for regular .NET projects (.NET 4.0)
 
