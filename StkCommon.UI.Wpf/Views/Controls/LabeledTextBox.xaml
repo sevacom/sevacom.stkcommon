@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="StkCommon.UI.Wpf.Views.Controls.LabeledTextBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:StkCommon.UI.Wpf.Converters"
+             mc:Ignorable="d"
+             x:Name="LabeledTextBoxControl"
+             d:DesignWidth="200"
+             d:DesignHeight="23">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <converters:BoolToVisibilityConverter x:Key="InvertedBoolToVisibilityConverter" True="Collapsed" False="Visible"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <TextBox x:Name="TextBox1" Text="{Binding ElementName=LabeledTextBoxControl, Path=Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                 MaxLength="{Binding ElementName=LabeledTextBoxControl, Path=MaxLength}" TextChanged="TextBox_TextChanged" 
+                 Style="{Binding ElementName=LabeledTextBoxControl, Path=TextBoxStyle}" 
+                 IsReadOnly="{Binding ElementName=LabeledTextBoxControl, Path=IsReadOnly, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Text="{Binding ElementName=LabeledTextBoxControl, Path=LabelText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                   Margin="5,0,5,0" VerticalAlignment="Center" Opacity="0.6" FontStyle="Italic" IsHitTestVisible="False"
+                   Visibility="{Binding ElementName=LabeledTextBoxControl, Path=HasText, Converter={StaticResource InvertedBoolToVisibilityConverter}}"/>
+    </Grid>
+</UserControl>

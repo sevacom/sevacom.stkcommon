@@ -1,10 +1,10 @@
-using System;
+п»їusing System;
 using System.Windows;
 
 namespace StkCommon.UI.Wpf.Converters
 {
 	/// <summary>
-	/// Конвертация double в GridLength, GridUnitType задаётся через свойство, по умолчанию GridUnitType.Pixel
+	/// РљРѕРЅРІРµСЂС‚Р°С†РёСЏ double РІ GridLength, GridUnitType Р·Р°РґР°С‘С‚СЃСЏ С‡РµСЂРµР· СЃРІРѕР№СЃС‚РІРѕ, РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ GridUnitType.Pixel
 	/// </summary>
 	public class DoubleToGridLengthConverter : ValueConverterBase
 	{

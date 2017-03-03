@@ -31,7 +31,7 @@ namespace StkCommon.Data.Utils
 		{
 			var t = comObject;
 			comObject = default(T);
-			if (null != t)
+			if (null != t && Marshal.IsComObject(t))
 			{
 				Debug.Assert(Marshal.IsComObject(t));
 				Marshal.FinalReleaseComObject(t);

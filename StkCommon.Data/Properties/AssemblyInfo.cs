@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("StkCommon.Data")]
-[assembly: AssemblyDescription("Библиотека данных для StkCommon")]
+[assembly: AssemblyDescription("Общая библиотека для работы с данными")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

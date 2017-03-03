@@ -45,6 +45,7 @@
     </Compile>
     <Compile Include="Collections\ObservableKeyedCollection.cs" />
     <Compile Include="Collections\ObservableRangeCollection.cs" />
+    <Compile Include="Extensions\DateTimeEx.cs" />
     <Compile Include="Extensions\DescriptionExtensions.cs" />
     <Compile Include="Diagnostics\ErrorMessageFormater.cs" />
     <Compile Include="Diagnostics\ExceptionHandlerBase.cs" />
@@ -60,9 +61,11 @@
     <Compile Include="Extensions\NullableRangeExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StreamExtensions.cs" />
+    <Compile Include="Extensions\ThreadTaskExtensions.cs" />
     <Compile Include="FunctionalComparer.cs" />
     <Compile Include="IKeyModelObject.cs" />
     <Compile Include="IModelObject.cs" />
+    <Compile Include="Media\SampleFormat.cs" />
     <Compile Include="Primitives\Range.cs" />
     <Compile Include="NotifyPropertyChangedBase.cs" />
     <Compile Include="Properties\Annotations.cs" />

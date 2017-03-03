@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Globalization;
 using System.Windows.Data;
 using System.Windows.Media;
@@ -6,13 +6,13 @@ using System.Windows.Media;
 namespace StkCommon.UI.Wpf.Converters
 {
 	/// <summary>
-	/// Получить цвет, который будет видно на фоне переданного
-	/// Поддерживается цвет int, Color, SolidColorBrush
+	/// РџРѕР»СѓС‡РёС‚СЊ С†РІРµС‚, РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РІРёРґРЅРѕ РЅР° С„РѕРЅРµ РїРµСЂРµРґР°РЅРЅРѕРіРѕ
+	/// РџРѕРґРґРµСЂР¶РёРІР°РµС‚СЃСЏ С†РІРµС‚ int, Color, SolidColorBrush
 	/// </summary>
 	public class ReadableColorConverter : ValueConverterBase
 	{
 		/// <summary>
-		/// Получить цвет, который будет видно на фоне backColor
+		/// РџРѕР»СѓС‡РёС‚СЊ С†РІРµС‚, РєРѕС‚РѕСЂС‹Р№ Р±СѓРґРµС‚ РІРёРґРЅРѕ РЅР° С„РѕРЅРµ backColor
 		/// </summary>
 		public static Color GetReadableForeColor(Color backColor)
 		{

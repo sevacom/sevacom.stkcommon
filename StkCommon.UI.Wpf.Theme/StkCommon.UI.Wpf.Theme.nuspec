@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <description>$description$</description>
+    <projectUrl>https://github.com/sevacom/sevacom.stkcommon</projectUrl>
+    <releaseNotes />
+    <copyright>$copyright$</copyright>
+  </metadata>
+	<files>
+		<file src="bin\$configuration$\*.xaml" target="content\Themes\StkCommon\" />
+	</files>
+</package>

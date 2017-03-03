@@ -80,9 +80,10 @@ namespace StkCommon.Data.Collections
 		{
 			if (_deferNotifyCollectionChanged)
 				return;
-			var handler = CollectionChanged;
-			if (handler != null) handler(this, e);
-		}
+
+            var handler = CollectionChanged;
+            if (handler != null) handler(this, e);
+        }
 
 		/// <summary>
 		///     Clears the current collection and replaces it with the specified item.

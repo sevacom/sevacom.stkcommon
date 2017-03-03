@@ -60,6 +60,13 @@
     <Compile Include="Exceptions\MessageBoxExceptionNotifierWithDetails.cs" />
     <Compile Include="Helpers\ContextMenuHelper.cs" />
     <Compile Include="Common\IUiTimer.cs" />
+    <Compile Include="Hotkeys\DefaultHotkeyCommandManager.cs" />
+    <Compile Include="Hotkeys\HotkeyCommand.cs" />
+    <Compile Include="Hotkeys\HotkeyCommandInfo.cs" />
+    <Compile Include="Hotkeys\HotkeyCommandManager.cs" />
+    <Compile Include="Hotkeys\IHotkeyCommand.cs" />
+    <Compile Include="Hotkeys\IHotkeyCommandManager.cs" />
+    <Compile Include="Hotkeys\IHotkeyCommandRegistration.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Commands\ExceptionHandlerCommand.cs" />
     <Compile Include="Commands\ICommandExceptionRegistrator.cs" />
@@ -99,6 +106,12 @@
     <Compile Include="Views\Controls\DislodgmentList.cs" />
     <Compile Include="Views\Controls\DislodgmentListItem.cs" />
     <Compile Include="Views\Controls\DragAdorner.cs" />
+    <Compile Include="Views\Controls\LabeledComboBox.xaml.cs">
+      <DependentUpon>LabeledComboBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\LabeledTextBox.xaml.cs">
+      <DependentUpon>LabeledTextBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\SearchComboBox.xaml.cs">
       <DependentUpon>SearchComboBox.xaml</DependentUpon>
     </Compile>
@@ -141,6 +154,14 @@
     <Page Include="Views\Controls\BusyIndicator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\LabeledComboBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\LabeledTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\SearchComboBox.xaml">
       <Generator>MSBuild:Compile</Generator>

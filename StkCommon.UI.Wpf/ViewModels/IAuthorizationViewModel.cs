@@ -1,66 +1,66 @@
-using System.Collections.Generic;
+п»їusing System.Collections.Generic;
 using System.Windows.Media;
 using StkCommon.UI.Wpf.Model;
 
 namespace StkCommon.UI.Wpf.ViewModels
 {
 	/// <summary>
-	/// Интерфейс вьюмодели окна авторизации пользователя
+	/// РРЅС‚РµСЂС„РµР№СЃ РІСЊСЋРјРѕРґРµР»Рё РѕРєРЅР° Р°РІС‚РѕСЂРёР·Р°С†РёРё РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 	/// </summary>
 	public interface IAuthorizationViewModel
 	{
 		/// <summary>
-		/// Масштаб окна, по умолчанию 1.0
+		/// РњР°СЃС€С‚Р°Р± РѕРєРЅР°, РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ 1.0
 		/// </summary>
 		double UiScale { get; set; }
 
 		/// <summary>
-		/// Логин пользователя
+		/// Р›РѕРіРёРЅ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 		/// </summary>
 		string UserName { get; set; }
 
 		/// <summary>
-		/// Пароль пользователя
+		/// РџР°СЂРѕР»СЊ РїРѕР»СЊР·РѕРІР°С‚РµР»СЏ
 		/// </summary>
 		string Password { get; set; }
 
 		/// <summary>
-		/// Выбранный сервер
+		/// Р’С‹Р±СЂР°РЅРЅС‹Р№ СЃРµСЂРІРµСЂ
 		/// </summary>
 		string Server { get; set; }
 
 		/// <summary>
-		/// Выбранная база данных
+		/// Р’С‹Р±СЂР°РЅРЅР°СЏ Р±Р°Р·Р° РґР°РЅРЅС‹С…
 		/// </summary>
 		string Database { get; set; }
 		
 		/// <summary>
-		/// Иконка приложения
+		/// РРєРѕРЅРєР° РїСЂРёР»РѕР¶РµРЅРёСЏ
 		/// </summary>
 		ImageSource ApplicationIcon { get; set; }
 
 		/// <summary>
-		/// Название приложения
+		/// РќР°Р·РІР°РЅРёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ
 		/// </summary>
 		string ApplicationName { get; set; }
 
 		/// <summary>
-		/// Признак управления закрытием окна в случае успешной авторизации 
+		/// РџСЂРёР·РЅР°Рє СѓРїСЂР°РІР»РµРЅРёСЏ Р·Р°РєСЂС‹С‚РёРµРј РѕРєРЅР° РІ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС€РЅРѕР№ Р°РІС‚РѕСЂРёР·Р°С†РёРё 
 		/// </summary>
 		bool? DialogResult { get; set; }
 
 		/// <summary>
-		/// Режим работы окна авторизации
+		/// Р РµР¶РёРј СЂР°Р±РѕС‚С‹ РѕРєРЅР° Р°РІС‚РѕСЂРёР·Р°С†РёРё
 		/// </summary>
 		AuthorizationMode Mode { get; }
 
 		/// <summary>
-		/// Список серверов
+		/// РЎРїРёСЃРѕРє СЃРµСЂРІРµСЂРѕРІ
 		/// </summary>
 		IEnumerable<object> Servers { get; set; }
 
 		/// <summary>
-		/// Список баз данных
+		/// РЎРїРёСЃРѕРє Р±Р°Р· РґР°РЅРЅС‹С…
 		/// </summary>
 		IEnumerable<object> Databases { get; set; } 
 

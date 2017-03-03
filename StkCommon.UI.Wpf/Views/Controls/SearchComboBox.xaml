@@ -118,6 +118,14 @@
                                 <Trigger Property="IsEnabled" Value="false">
                                     <Setter Property="Fill" TargetName="LoupePath"  Value="#999999"/>
                                 </Trigger>
+								<MultiDataTrigger>
+									<MultiDataTrigger.Conditions>
+										<!-- Ширина 20, чтобы работала только когда он свернут в списке сеансов -->
+										<Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+										<Condition Binding="{Binding Path=Width, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" Value="20"/>
+									</MultiDataTrigger.Conditions>
+									<Setter Property="Fill" Value="#FF6b83ac" TargetName="LoupePath"/>
+								</MultiDataTrigger>
                             </ControlTemplate.Triggers>
                         </ControlTemplate>
                     </Setter.Value>
@@ -284,34 +292,10 @@
 
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border UseLayoutRounding="True" SnapsToDevicePixels="True">
-        <Border.Style>
-            <Style TargetType="Border">
-                <Setter Property="BorderThickness" Value="1"/>
-                <Setter Property="BorderBrush" Value="#66000000"/>
-                <Setter Property="Background" Value="#fafafa"/>
-                <Setter Property="CornerRadius" Value="3"/>
-                <Style.Triggers>
-                    <Trigger Property="Border.IsMouseOver" Value="true">
-                        <Setter Property="BorderBrush" Value="#7F000000"/>
-                        <Setter Property="Background" Value="#ffffff"/>
-                    </Trigger>
-                    <Trigger Property="Border.IsEnabled" Value="false">
-                        <Setter Property="BorderBrush" Value="#19000000"/>
-                        <Setter Property="Background" Value="#f7f7f7"/>
-                    </Trigger>
-                    <DataTrigger Binding="{Binding ElementName=SearchTextBox, Path=IsKeyboardFocused}" Value="True">
-                        <Setter Property="Background" Value="#ffffff"/>
-                        <Setter Property="BorderBrush" Value="#7F003399"/>
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding ElementName=ItemsComboBox, Path=IsDropDownOpen}" Value="True">
-                        <Setter Property="Background" Value="#ffffff"/>
-                        <Setter Property="BorderBrush" Value="#7F003399"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-        </Border.Style>
-        <Grid>
+	<Border UseLayoutRounding="True" SnapsToDevicePixels="True" 
+			Background="White" BorderThickness="1" CornerRadius="2"
+			BorderBrush="{Binding ElementName=UserControl, Path=BorderBrush, TargetNullValue='#FFADADAD'}">
+		<Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>

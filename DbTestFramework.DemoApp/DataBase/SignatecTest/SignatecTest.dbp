@@ -1,0 +1,134 @@
+DBProject: SignatecTest
+Database: SignatecTest
+ProjectGUID: a4e0a76e-adc6-4176-8093-7ec4f0774b31
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<B1StorageInfo>
+  <metadata_info>
+    <ProjectType>MSSQL_Database</ProjectType>
+    <database_name>SignatecTest</database_name>
+    <meta_info_struct_version>9</meta_info_struct_version>
+    <project_guid>a4e0a76e-adc6-4176-8093-7ec4f0774b31</project_guid>
+    <database_options>
+      <database_connection_properties>SET QUOTED_IDENTIFIER ON&#xD;
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE&#xD;
+SET NUMERIC_ROUNDABORT OFF&#xD;
+SET CONCAT_NULL_YIELDS_NULL ON&#xD;
+SET ANSI_NULLS ON&#xD;
+SET ANSI_PADDING ON&#xD;
+SET ANSI_WARNINGS ON&#xD;
+</database_connection_properties>
+    </database_options>
+    <ignorable_objects>
+      <IgnorableObject>
+        <name>[builtin\administrators]</name>
+        <objtype>DB_LOGIN</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[nt authority\system]</name>
+        <objtype>DB_LOGIN</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[sa]</name>
+        <objtype>DB_LOGIN</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[dbo]</name>
+        <objtype>DB_USER</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_accessadmin]</name>
+        <objtype>DB_ROLE</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_backupoperator]</name>
+        <objtype>DB_ROLE</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_datareader]</name>
+        <objtype>DB_ROLE</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_datawriter]</name>
+        <objtype>DB_ROLE</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_ddladmin]</name>
+        <objtype>DB_ROLE</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_denydatareader]</name>
+        <objtype>DB_ROLE</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_denydatawriter]</name>
+        <objtype>DB_ROLE</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_owner]</name>
+        <objtype>DB_ROLE</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_securityadmin]</name>
+        <objtype>DB_ROLE</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[public]</name>
+        <objtype>DB_ROLE</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_accessadmin]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_backupoperator]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_datareader]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_datawriter]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_ddladmin]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_denydatareader]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_denydatawriter]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_owner]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[db_securityadmin]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[dbo]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[guest]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[information_schema]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+      <IgnorableObject>
+        <name>[sys]</name>
+        <objtype>DB_SCHEMA</objtype>
+      </IgnorableObject>
+    </ignorable_objects>
+    <command_args />
+  </metadata_info>
+</B1StorageInfo>

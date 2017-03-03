@@ -1,0 +1,57 @@
+CREATE PROCEDURE [dbo].[usp_UpdateStock]
+  @productId INT,
+  @amount int
+AS 
+ 
+  DECLARE @idTable TABLE(Id INT)
+  MERGE dt_Stock t
+  USING (SELECT @productId prid, @amount amnt) s
+    ON s.prid = t.ProductId
+  WHEN MATCHED THEN
+    UPDATE SET t.Amount = s.amnt
+  WHEN NOT MATCHED BY TARGET THEN
+      INSERT (ProductId,Amount) VALUES (s.prid,s.amnt)
+OUTPUT INSERTED.Id INTO @idTable;
+ 
+DECLARE @stockId INT 
+  SELECT @stockId =  t.Id
+  FROM @idTable t
+  
+  EXEC dbo.usp_SelectStockAcmounts @stockId
+GO
+
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<SrlClassTypes>
+  <types>
+    <string>MSSQLCommon.ProcIt</string>
+  </types>
+</SrlClassTypes>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<ProcIt objtype="Proc" f_name="usp_UpdateStock" f_owner="dbo">
+  <f_transactional>true</f_transactional>
+  <description />
+  <B1ItComment />
+  <StorageStatus>add</StorageStatus>
+  <body_pattern_text>%well_formated_caption&#xD;
+  @productId INT,&#xD;
+  @amount int&#xD;
+AS &#xD;
+ &#xD;
+  DECLARE @idTable TABLE(Id INT)&#xD;
+  MERGE dt_Stock t&#xD;
+  USING (SELECT @productId prid, @amount amnt) s&#xD;
+    ON s.prid = t.ProductId&#xD;
+  WHEN MATCHED THEN&#xD;
+    UPDATE SET t.Amount = s.amnt&#xD;
+  WHEN NOT MATCHED BY TARGET THEN&#xD;
+      INSERT (ProductId,Amount) VALUES (s.prid,s.amnt)&#xD;
+OUTPUT INSERTED.Id INTO @idTable;&#xD;
+ &#xD;
+DECLARE @stockId INT &#xD;
+  SELECT @stockId =  t.Id&#xD;
+  FROM @idTable t&#xD;
+  &#xD;
+  EXEC dbo.usp_SelectStockAcmounts @stockId</body_pattern_text>
+</ProcIt>

@@ -1,7 +1,7 @@
-namespace StkCommon.Data
+п»їnamespace StkCommon.Data
 {
 	/// <summary>
-	/// Базовый интерфейс для объектов с ключом
+	/// Р‘Р°Р·РѕРІС‹Р№ РёРЅС‚РµСЂС„РµР№СЃ РґР»СЏ РѕР±СЉРµРєС‚РѕРІ СЃ РєР»СЋС‡РѕРј
 	/// </summary>
 	/// <typeparam name="TKey"></typeparam>
 	public interface IKeyModelObject<out TKey>

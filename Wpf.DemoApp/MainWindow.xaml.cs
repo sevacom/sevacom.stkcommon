@@ -30,11 +30,11 @@ namespace StkCommon.UI.Wpf.DemoApp
 		{
 			var aboutViewModel = new AboutViewModel
 				{
-					ApplicationName = "Журнал сеансов",
+					ApplicationName = "ЖС",
 					ApplicationVersion = "1.2.0",
 					ApplicationIcon = new BitmapImage(new Uri("pack://application:,,,/Wpf.DemoApp;component/Resources/AppIcon.ico", UriKind.Absolute)),
 					AdditionalInfo = "Версия ядра 1.2",
-					Copyright = "2014 Сигнатек",
+					Copyright = "2014 Stk",
 					Telephone = "+7 (888) 333-88-99",
 					Fax = "+7 (888) 222-88-99 доб. 111",
 					SiteUrl = @"http://www.site.com",
@@ -50,10 +50,10 @@ namespace StkCommon.UI.Wpf.DemoApp
 
 			var splashViewModel = new SplashScreenViewModel
 				{
-				ApplicationName = "Журнал сеансов",
+				ApplicationName = "ЖС",
 				ApplicationVersion = "Версия 1.2.0.235",
 				ApplicationIcon = new BitmapImage(new Uri("pack://application:,,,/Wpf.DemoApp;component/Resources/AppIcon.ico", UriKind.Absolute)),
-				Copyright = "2014 Сигнатек",
+				Copyright = "2014 Stk",
 				ApkVersion = "Версия ядра 15.0",
 				CurrentLoadingModuleName = "Инициализация приложения..."
 			};

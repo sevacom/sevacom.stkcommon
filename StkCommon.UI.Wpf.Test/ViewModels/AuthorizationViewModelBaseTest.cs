@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Windows;
 using FluentAssertions;
 using Moq;
@@ -25,8 +25,8 @@ namespace StkCommon.UI.Wpf.Test.ViewModels
 		}
 
 		/// <summary>
-		/// Должен вызывать метод Authorize при задании режима, заполнении соответствующих полей 
-		/// и нажатии на кнопку OK.
+		/// Р”РѕР»Р¶РµРЅ РІС‹Р·С‹РІР°С‚СЊ РјРµС‚РѕРґ Authorize РїСЂРё Р·Р°РґР°РЅРёРё СЂРµР¶РёРјР°, Р·Р°РїРѕР»РЅРµРЅРёРё СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓСЋС‰РёС… РїРѕР»РµР№ 
+		/// Рё РЅР°Р¶Р°С‚РёРё РЅР° РєРЅРѕРїРєСѓ OK.
 		/// </summary>
 		[TestCase("1", "2", null, null, AuthorizationMode.LoginPassword, 1)]
 		[TestCase("1", "2", "3", null, AuthorizationMode.Server, 1)]
@@ -46,12 +46,12 @@ namespace StkCommon.UI.Wpf.Test.ViewModels
 			_target.OkCommand.Execute(null);
 
 			//Then
-			_target.AuthorizeRiseCount.Should().Be(expectedRiseCount, "Метод Authorize не вызвался");
+			_target.AuthorizeRiseCount.Should().Be(expectedRiseCount, "РњРµС‚РѕРґ Authorize РЅРµ РІС‹Р·РІР°Р»СЃСЏ");
 		}
 		
 		/// <summary>
-		/// В случае пользовательского исключения должен подняться диалог с сообщением о пользовательской ошибке, при этом
-		/// окно авторизации не закрывается (DialoResult = null) 
+		/// Р’ СЃР»СѓС‡Р°Рµ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРіРѕ РёСЃРєР»СЋС‡РµРЅРёСЏ РґРѕР»Р¶РµРЅ РїРѕРґРЅСЏС‚СЊСЃСЏ РґРёР°Р»РѕРі СЃ СЃРѕРѕР±С‰РµРЅРёРµРј Рѕ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕР№ РѕС€РёР±РєРµ, РїСЂРё СЌС‚РѕРј
+		/// РѕРєРЅРѕ Р°РІС‚РѕСЂРёР·Р°С†РёРё РЅРµ Р·Р°РєСЂС‹РІР°РµС‚СЃСЏ (DialoResult = null) 
 		/// </summary>
 		[Test]
 		public void ShouldShowDialogWhenRaiseUserExceptionInExecuteOkCommand()
@@ -59,7 +59,7 @@ namespace StkCommon.UI.Wpf.Test.ViewModels
 			//Given
 			_target.UserName = "user";
 			_target.Password = "123";
-			var exception = new UserMessageException("Неправильно введен пароль.");
+			var exception = new UserMessageException("РќРµРїСЂР°РІРёР»СЊРЅРѕ РІРІРµРґРµРЅ РїР°СЂРѕР»СЊ.");
 			_target.SetRaiseException(exception);
 			
 			//When
@@ -67,14 +67,14 @@ namespace StkCommon.UI.Wpf.Test.ViewModels
 			
 			//Then
 			_agentMock.Verify(a => a.ShowMessageDialog(exception.Message, It.IsAny<string>(), 
-				MessageBoxButton.OK, MessageBoxImage.Error), Times.Once(), "Диалог вызвался c непользовательской ошибкой" );
+				MessageBoxButton.OK, MessageBoxImage.Error), Times.Once(), "Р”РёР°Р»РѕРі РІС‹Р·РІР°Р»СЃСЏ c РЅРµРїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕР№ РѕС€РёР±РєРѕР№" );
 			
-			Assert.IsNull(_target.DialogResult, "DialogResult не равен null");
+			Assert.IsNull(_target.DialogResult, "DialogResult РЅРµ СЂР°РІРµРЅ null");
 		}
 
 		/// <summary>
-		/// В случае непредвиденного исключения должен подняться диалог с сообщением о необработанной ошибке, при этом
-		/// окно авторизации закрывается (DialoResult = false) 
+		/// Р’ СЃР»СѓС‡Р°Рµ РЅРµРїСЂРµРґРІРёРґРµРЅРЅРѕРіРѕ РёСЃРєР»СЋС‡РµРЅРёСЏ РґРѕР»Р¶РµРЅ РїРѕРґРЅСЏС‚СЊСЃСЏ РґРёР°Р»РѕРі СЃ СЃРѕРѕР±С‰РµРЅРёРµРј Рѕ РЅРµРѕР±СЂР°Р±РѕС‚Р°РЅРЅРѕР№ РѕС€РёР±РєРµ, РїСЂРё СЌС‚РѕРј
+		/// РѕРєРЅРѕ Р°РІС‚РѕСЂРёР·Р°С†РёРё Р·Р°РєСЂС‹РІР°РµС‚СЃСЏ (DialoResult = false) 
 		/// </summary>
 		[Test]
 		public void ShouldShowDialogWhenRaiseExceptionInExecuteOkCommand()
@@ -82,7 +82,7 @@ namespace StkCommon.UI.Wpf.Test.ViewModels
 			//Given	
 			_target.UserName = "user";
 			_target.Password = "123";
-			var exception = new Exception("Не связи с системой.");
+			var exception = new Exception("РќРµ СЃРІСЏР·Рё СЃ СЃРёСЃС‚РµРјРѕР№.");
 			_target.SetRaiseException(exception);
 			
 			//When
@@ -90,13 +90,13 @@ namespace StkCommon.UI.Wpf.Test.ViewModels
 
 			//Then
 			_agentMock.Verify(a => a.ShowMessageDialog(Resources.AuthorizationWindow_FaultExceptionMessage + "\r\n" + exception.Message,
-                It.IsAny<string>(), MessageBoxButton.OK, MessageBoxImage.Error), Times.Once(), "Диалог вызвался c обработанной ошибкой");
+                It.IsAny<string>(), MessageBoxButton.OK, MessageBoxImage.Error), Times.Once(), "Р”РёР°Р»РѕРі РІС‹Р·РІР°Р»СЃСЏ c РѕР±СЂР°Р±РѕС‚Р°РЅРЅРѕР№ РѕС€РёР±РєРѕР№");
 
-			_target.DialogResult.Should().BeFalse("DialogResult должен быть равен false");
+			_target.DialogResult.Should().BeFalse("DialogResult РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂР°РІРµРЅ false");
 		}
 
 		/// <summary>
-		/// Должен тихо закрыть диалог авторизации с результатом DialogResult false, если метод Authorize вернул false
+		/// Р”РѕР»Р¶РµРЅ С‚РёС…Рѕ Р·Р°РєСЂС‹С‚СЊ РґРёР°Р»РѕРі Р°РІС‚РѕСЂРёР·Р°С†РёРё СЃ СЂРµР·СѓР»СЊС‚Р°С‚РѕРј DialogResult false, РµСЃР»Рё РјРµС‚РѕРґ Authorize РІРµСЂРЅСѓР» false
 		/// </summary>
 		[Test]
 		public void ShouldSilentCloseDialogWhenAuthorizationReturnFalse()
@@ -111,13 +111,13 @@ namespace StkCommon.UI.Wpf.Test.ViewModels
 			_target.OkCommand.Execute(null);
 
 			//Then
-			_target.DialogResult.Should().BeFalse("DialogResult должен быть равен false");
+			_target.DialogResult.Should().BeFalse("DialogResult РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ СЂР°РІРµРЅ false");
 			_agentMock.Verify(p => p.ShowMessageDialog(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), It.IsAny<MessageBoxImage>()), 
-				Times.Never(), "Диалоги не должны показываться");
+				Times.Never(), "Р”РёР°Р»РѕРіРё РЅРµ РґРѕР»Р¶РЅС‹ РїРѕРєР°Р·С‹РІР°С‚СЊСЃСЏ");
 		}
 
 		/// <summary>
-		/// Должен вызвать метод OnServersDropDownChanged когда поменялся IsServersDropDownOpen
+		/// Р”РѕР»Р¶РµРЅ РІС‹Р·РІР°С‚СЊ РјРµС‚РѕРґ OnServersDropDownChanged РєРѕРіРґР° РїРѕРјРµРЅСЏР»СЃСЏ IsServersDropDownOpen
 		/// </summary>
 		[Test]
 		public void ShouldCallOnServersDropDownChangedWhenIsServersDropDownOpenChanged()
@@ -126,11 +126,11 @@ namespace StkCommon.UI.Wpf.Test.ViewModels
 			_target.IsServersDropDownOpen = true;
 
 			//Then
-			_target.OnServersDropDownChangedRiseCount.Should().Be(1, "Метод OnServersDropDownChanged не сработал при изменении IsServersDropDownOpen");
+			_target.OnServersDropDownChangedRiseCount.Should().Be(1, "РњРµС‚РѕРґ OnServersDropDownChanged РЅРµ СЃСЂР°Р±РѕС‚Р°Р» РїСЂРё РёР·РјРµРЅРµРЅРёРё IsServersDropDownOpen");
 		}
 
 		/// <summary>
-		/// Должен вызвать метод OnDataBasesDropDownChanged когда поменялся IsDataBaseDropDownOpen
+		/// Р”РѕР»Р¶РµРЅ РІС‹Р·РІР°С‚СЊ РјРµС‚РѕРґ OnDataBasesDropDownChanged РєРѕРіРґР° РїРѕРјРµРЅСЏР»СЃСЏ IsDataBaseDropDownOpen
 		/// </summary>
 		[Test]
 		public void ShouldCallOnDataBasesDropDownChangedWhenIsDataBaseDropDownOpenChanged()
@@ -139,12 +139,12 @@ namespace StkCommon.UI.Wpf.Test.ViewModels
 			_target.IsDataBaseDropDownOpen = true;
 
 			//Then
-			_target.OnDataBasesDropDownChangedRiseCount.Should().Be(1, "Метод OnDataBasesDropDownChanged не сработал при изменении IsServersDropDownOpen");
+			_target.OnDataBasesDropDownChangedRiseCount.Should().Be(1, "РњРµС‚РѕРґ OnDataBasesDropDownChanged РЅРµ СЃСЂР°Р±РѕС‚Р°Р» РїСЂРё РёР·РјРµРЅРµРЅРёРё IsServersDropDownOpen");
 		}
 
 		private class TestAuthorizationViewModel : AuthorizationViewModelBase
 		{
-			private Exception _exсeption;
+			private Exception _exСЃeption;
 
 			public int AuthorizeRiseCount { get; private set; }
 
@@ -155,7 +155,7 @@ namespace StkCommon.UI.Wpf.Test.ViewModels
 			public bool ExpectedAuthorizeMethodReturnValue { get; set; }
 
 			public TestAuthorizationViewModel(AuthorizationMode mode, IShowDialogAgent agent)
-				: base(mode, agent)
+				: base(mode, agent, false)
 			{
 				ExpectedAuthorizeMethodReturnValue = true;
 			}
@@ -167,22 +167,18 @@ namespace StkCommon.UI.Wpf.Test.ViewModels
 
 			public void SetRaiseException(Exception exception)
 			{
-				_exсeption = exception;
+				_exСЃeption = exception;
 			}
 
 			protected override bool Authorize()
 			{
-				if (_exсeption != null)
+				if (_exСЃeption != null)
 				{
-					throw _exсeption;
+					throw _exСЃeption;
 				}
 					
 				AuthorizeRiseCount++;
 				return ExpectedAuthorizeMethodReturnValue;
-			}
-
-			protected override void InitializeLanguage()
-			{				
 			}
 
 			protected override void OnServersDropDownChanged(bool isDropDown)

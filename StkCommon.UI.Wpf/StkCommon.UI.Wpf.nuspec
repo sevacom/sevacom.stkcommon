@@ -4,17 +4,17 @@
 		<id>$id$</id>
 		<version>$version$</version>
 		<title>$title$</title>
-		<authors>Signatec</authors>
-		<owners>Signatec</owners>
-		<description>Общая библиотека для работы с WPF</description>
+		<authors>$author$</authors>
+		<description>$description$</description>
+    <projectUrl>https://github.com/sevacom/sevacom.stkcommon</projectUrl>
 		<releaseNotes />
-		<copyright>Copyright 2016</copyright>
+		<copyright>$copyright$</copyright>
 		<dependencies>
 			<dependency id="StkCommon.Data"/>
 		</dependencies>
 	</metadata>
 	<files>
-		<file src="bin\Release\StkCommon.UI.Wpf.dll" target="lib\net40\StkCommon.UI.Wpf.dll" />
-		<file src="bin\Release\StkCommon.UI.Wpf.xml" target="lib\net40\StkCommon.UI.Wpf.xml" />
+		<file src="bin\$configuration$\$id$.dll" target="lib\net40\" />
+		<file src="bin\$configuration$\$id$.xml" target="lib\net40\" />
 	</files>
 </package>

@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,31 +12,32 @@ namespace StkCommon.UI.Wpf.ViewModels
 	public interface IChangableListViewModel<in TModel>
 	{
 		/// <summary>
-		/// Индикатор выполнения длительной операции
+		/// РРЅРґРёРєР°С‚РѕСЂ РІС‹РїРѕР»РЅРµРЅРёСЏ РґР»РёС‚РµР»СЊРЅРѕР№ РѕРїРµСЂР°С†РёРё
 		/// </summary>
 		bool IsLoading { get; set; }
 
 		/// <summary>
-		/// Заполнить вьюмодель начальными данными
+		/// Р—Р°РїРѕР»РЅРёС‚СЊ РІСЊСЋРјРѕРґРµР»СЊ РЅР°С‡Р°Р»СЊРЅС‹РјРё РґР°РЅРЅС‹РјРё
 		/// </summary>
-		/// <param name="models">коллекция моделей, если models == null - происходит очистка коллекции</param>
+		/// <param name="models">РєРѕР»Р»РµРєС†РёСЏ РјРѕРґРµР»РµР№, РµСЃР»Рё models == null - РїСЂРѕРёСЃС…РѕРґРёС‚ РѕС‡РёСЃС‚РєР° РєРѕР»Р»РµРєС†РёРё</param>
 		void Fill(IEnumerable<TModel> models);
 
 		/// <summary>
-		/// Удалить элемент по переданной модели
+		/// РЈРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚ РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ РјРѕРґРµР»Рё
 		/// </summary>
 		void Delete(TModel model);
 
 		/// <summary>
-		/// Обновить элемент на основании переданной модели, если такой модели ещё нет в коллекции, она будет добавлена
+		/// РћР±РЅРѕРІРёС‚СЊ СЌР»РµРјРµРЅС‚ РЅР° РѕСЃРЅРѕРІР°РЅРёРё РїРµСЂРµРґР°РЅРЅРѕР№ РјРѕРґРµР»Рё, РµСЃР»Рё С‚Р°РєРѕР№ РјРѕРґРµР»Рё РµС‰С‘ РЅРµС‚ РІ РєРѕР»Р»РµРєС†РёРё, РѕРЅР° Р±СѓРґРµС‚ РґРѕР±Р°РІР»РµРЅР°
 		/// </summary>
 		void Update(TModel model);
 	}
 
 	/// <summary>
-	/// Список изменяемых объектов с поддержкой фильтрации
+	/// РЎРїРёСЃРѕРє РёР·РјРµРЅСЏРµРјС‹С… РѕР±СЉРµРєС‚РѕРІ СЃ РїРѕРґРґРµСЂР¶РєРѕР№ С„РёР»СЊС‚СЂР°С†РёРё
 	/// </summary>
-	public abstract class ChangableListViewModelBase<TModel, TVModel> : ViewModelBase, IChangableListViewModel<TModel> where TModel : IModelObject<TModel>
+	public abstract class ChangableListViewModelBase<TModel, TVModel> : ViewModelBase, IChangableListViewModel<TModel>
+		where TModel : IModelObject<TModel>
 		where TVModel : ChangableViewModelBase<TModel>
 	{
 		private ObservableCollection<TVModel> _items;
@@ -51,7 +52,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Представление списка заданий для фильтрации, сортировки и т.д.
+		/// РџСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ СЃРїРёСЃРєР° Р·Р°РґР°РЅРёР№ РґР»СЏ С„РёР»СЊС‚СЂР°С†РёРё, СЃРѕСЂС‚РёСЂРѕРІРєРё Рё С‚.Рґ.
 		/// </summary>
 		public virtual ListCollectionView ItemsCollectionView
 		{
@@ -59,15 +60,15 @@ namespace StkCommon.UI.Wpf.ViewModels
 			private set
 			{
 				_itemsCollectionView = value;
-                /*если делать вызывов OnPropertyChanged последним 
-                 * - то сортировки и группировки НЕ работают*/
-                OnPropertyChanged(() => ItemsCollectionView); 
+				/*РµСЃР»Рё РґРµР»Р°С‚СЊ РІС‹Р·С‹РІРѕРІ OnPropertyChanged РїРѕСЃР»РµРґРЅРёРј 
+				 * - С‚Рѕ СЃРѕСЂС‚РёСЂРѕРІРєРё Рё РіСЂСѓРїРїРёСЂРѕРІРєРё РќР• СЂР°Р±РѕС‚Р°СЋС‚*/
+				OnPropertyChanged(() => ItemsCollectionView);
 				OnCollectionViewInitialized();
 			}
 		}
 
 		/// <summary>
-		/// Список TVModel на основе которого строится ItemsCollectionView
+		/// РЎРїРёСЃРѕРє TVModel РЅР° РѕСЃРЅРѕРІРµ РєРѕС‚РѕСЂРѕРіРѕ СЃС‚СЂРѕРёС‚СЃСЏ ItemsCollectionView
 		/// </summary>
 		protected virtual ObservableCollection<TVModel> Items
 		{
@@ -99,7 +100,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Выбранный элемент
+		/// Р’С‹Р±СЂР°РЅРЅС‹Р№ СЌР»РµРјРµРЅС‚
 		/// </summary>
 		public virtual TVModel SelectedItem
 		{
@@ -116,14 +117,14 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Индикатор выполнения длительной операции
+		/// РРЅРґРёРєР°С‚РѕСЂ РІС‹РїРѕР»РЅРµРЅРёСЏ РґР»РёС‚РµР»СЊРЅРѕР№ РѕРїРµСЂР°С†РёРё
 		/// </summary>
 		public virtual bool IsLoading
 		{
 			get { return _isLoading; }
 			set
 			{
-				if (value == _isLoading) 
+				if (value == _isLoading)
 					return;
 				_isLoading = value;
 				OnPropertyChanged(() => IsLoading);
@@ -131,9 +132,9 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Заполнить вьюмодель начальными данными
+		/// Р—Р°РїРѕР»РЅРёС‚СЊ РІСЊСЋРјРѕРґРµР»СЊ РЅР°С‡Р°Р»СЊРЅС‹РјРё РґР°РЅРЅС‹РјРё
 		/// </summary>
-		/// <param name="models">коллекция моделей, если models == null - происходит очистка коллекции</param>
+		/// <param name="models">РєРѕР»Р»РµРєС†РёСЏ РјРѕРґРµР»РµР№, РµСЃР»Рё models == null - РїСЂРѕРёСЃС…РѕРґРёС‚ РѕС‡РёСЃС‚РєР° РєРѕР»Р»РµРєС†РёРё</param>
 		public virtual void Fill(IEnumerable<TModel> models)
 		{
 			models = models ?? new TModel[0];
@@ -141,7 +142,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Удалить элемент по переданной модели
+		/// РЈРґР°Р»РёС‚СЊ СЌР»РµРјРµРЅС‚ РїРѕ РїРµСЂРµРґР°РЅРЅРѕР№ РјРѕРґРµР»Рё
 		/// </summary>
 		public virtual void Delete(TModel model)
 		{
@@ -154,7 +155,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Обновить элемент на основании переданной модели, если такой модели ещё нет в коллекции, она будет добавлена
+		/// РћР±РЅРѕРІРёС‚СЊ СЌР»РµРјРµРЅС‚ РЅР° РѕСЃРЅРѕРІР°РЅРёРё РїРµСЂРµРґР°РЅРЅРѕР№ РјРѕРґРµР»Рё, РµСЃР»Рё С‚Р°РєРѕР№ РјРѕРґРµР»Рё РµС‰С‘ РЅРµС‚ РІ РєРѕР»Р»РµРєС†РёРё, РѕРЅР° Р±СѓРґРµС‚ РґРѕР±Р°РІР»РµРЅР°
 		/// </summary>
 		public virtual void Update(TModel model)
 		{
@@ -172,7 +173,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Вызвать для каждой TVModel из Items метод ResetChanges
+		/// Р’С‹Р·РІР°С‚СЊ РґР»СЏ РєР°Р¶РґРѕР№ TVModel РёР· Items РјРµС‚РѕРґ ResetChanges
 		/// </summary>
 		public void ResetChanges()
 		{
@@ -180,20 +181,20 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Создание TVModel из TModel
+		/// РЎРѕР·РґР°РЅРёРµ TVModel РёР· TModel
 		/// </summary>
 		/// <param name="model"></param>
-		/// <param name="isAdd">true - добавление к существующим, false - первоначальное наполнение</param>
+		/// <param name="isAdd">true - РґРѕР±Р°РІР»РµРЅРёРµ Рє СЃСѓС‰РµСЃС‚РІСѓСЋС‰РёРј, false - РїРµСЂРІРѕРЅР°С‡Р°Р»СЊРЅРѕРµ РЅР°РїРѕР»РЅРµРЅРёРµ</param>
 		/// <returns></returns>
 		protected abstract TVModel CreateViewModel(TModel model, bool isAdd);
-		
+
 		protected virtual IEnumerable<TVModel> CreateViewModels(IEnumerable<TModel> models, bool isAdd)
 		{
 			return models.Select(p => CreateViewModel(p, isAdd));
 		}
 
 		/// <summary>
-		/// Добавление нового элемента
+		/// Р”РѕР±Р°РІР»РµРЅРёРµ РЅРѕРІРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 		/// </summary>
 		protected virtual void OnAddViewModel(TModel model)
 		{
@@ -202,7 +203,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Обновление существующей ViewModel
+		/// РћР±РЅРѕРІР»РµРЅРёРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµР№ ViewModel
 		/// </summary>
 		/// <param name="existViewModel"></param>
 		/// <param name="model"></param>
@@ -213,7 +214,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Удаление существующей ViewModel
+		/// РЈРґР°Р»РµРЅРёРµ СЃСѓС‰РµСЃС‚РІСѓСЋС‰РµР№ ViewModel
 		/// </summary>
 		/// <param name="delViewModel"></param>
 		protected virtual void OnDeleteViewModel(TVModel delViewModel)
@@ -227,13 +228,13 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Устанавливает фильтрующую функцию, если SelectedItem не проходит фильтр то он сбрасывается в null
+		/// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ С„РёР»СЊС‚СЂСѓСЋС‰СѓСЋ С„СѓРЅРєС†РёСЋ, РµСЃР»Рё SelectedItem РЅРµ РїСЂРѕС…РѕРґРёС‚ С„РёР»СЊС‚СЂ С‚Рѕ РѕРЅ СЃР±СЂР°СЃС‹РІР°РµС‚СЃСЏ РІ null
 		/// </summary>
-		/// <param name="isDeferRefresh">true - выполняется внутри DeferRefresh отложенные изменения, false - нет</param>
+		/// <param name="isDeferRefresh">true - РІС‹РїРѕР»РЅСЏРµС‚СЃСЏ РІРЅСѓС‚СЂРё DeferRefresh РѕС‚Р»РѕР¶РµРЅРЅС‹Рµ РёР·РјРµРЅРµРЅРёСЏ, false - РЅРµС‚</param>
 		protected virtual void ApplyFilterToCollectionView(bool isDeferRefresh = false)
 		{
-			if (SelectedItem != null && !FilterFunction(SelectedItem))
-				SelectedItem = null;
+			if (!isDeferRefresh)
+				UpdateSelectedItemByFilter();
 
 			if (ItemsCollectionView != null)
 			{
@@ -242,7 +243,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Устанавливает сортировку из ItemsSortDescriptions
+		/// РЈСЃС‚Р°РЅР°РІР»РёРІР°РµС‚ СЃРѕСЂС‚РёСЂРѕРІРєСѓ РёР· ItemsSortDescriptions
 		/// </summary>
 		protected virtual void ApplySortToCollectionView(bool isDeferRefresh = false)
 		{
@@ -258,8 +259,8 @@ namespace StkCommon.UI.Wpf.ViewModels
 
 		protected virtual void ApplyGroupToCollectionView(bool isDeferRefresh = false)
 		{
-			if (ItemsCollectionView == null 
-				|| ItemsGroupDescriptions == null 
+			if (ItemsCollectionView == null
+				|| ItemsGroupDescriptions == null
 				|| ItemsCollectionView.GroupDescriptions == null)
 				return;
 
@@ -271,7 +272,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 		}
 
 		/// <summary>
-		/// Изменилась ItemsCollectionView, задана новая, выполняются настройки фильтрации и сортировки
+		/// РР·РјРµРЅРёР»Р°СЃСЊ ItemsCollectionView, Р·Р°РґР°РЅР° РЅРѕРІР°СЏ, РІС‹РїРѕР»РЅСЏСЋС‚СЃСЏ РЅР°СЃС‚СЂРѕР№РєРё С„РёР»СЊС‚СЂР°С†РёРё Рё СЃРѕСЂС‚РёСЂРѕРІРєРё
 		/// </summary>
 		protected virtual void OnCollectionViewInitialized()
 		{
@@ -281,10 +282,12 @@ namespace StkCommon.UI.Wpf.ViewModels
 				ApplySortToCollectionView(true);
 				ApplyGroupToCollectionView(true);
 			}
+
+			UpdateSelectedItemByFilter();
 		}
 
 		/// <summary>
-		/// Фильтрация TVModel
+		/// Р¤РёР»СЊС‚СЂР°С†РёСЏ TVModel
 		/// </summary>
 		/// <param name="viewModel"></param>
 		/// <returns></returns>
@@ -303,7 +306,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 			var listCollectionView = CollectionViewSource.GetDefaultView(collection) as ListCollectionView;
 
 			if (listCollectionView == null)
-				throw new NotSupportedException("Список не поддерживает ListCollectionView");
+				throw new NotSupportedException("РЎРїРёСЃРѕРє РЅРµ РїРѕРґРґРµСЂР¶РёРІР°РµС‚ ListCollectionView");
 
 			return listCollectionView;
 		}
@@ -315,6 +318,12 @@ namespace StkCommon.UI.Wpf.ViewModels
 				ItemsCollectionView.EditItem(item);
 				ItemsCollectionView.CommitEdit();
 			}
+		}
+
+		private void UpdateSelectedItemByFilter()
+		{
+			if (SelectedItem != null && !FilterFunction(SelectedItem))
+				SelectedItem = null;
 		}
 
 		private bool FilterFunction(object o)

@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Windows;
 using Microsoft.Win32;
 using StkCommon.UI.Wpf.ViewModels;
@@ -7,115 +7,115 @@ using StkCommon.UI.Wpf.Views.Windows;
 namespace StkCommon.UI.Wpf.Views
 {
 	/// <summary>
-	/// Интерфейс агента, поднимающего диалоги.
+	/// РРЅС‚РµСЂС„РµР№СЃ Р°РіРµРЅС‚Р°, РїРѕРґРЅРёРјР°СЋС‰РµРіРѕ РґРёР°Р»РѕРіРё.
 	/// </summary>
 	public interface IShowDialogAgent
 	{
 		/// <summary>
-		/// Заголовок окна по умолчанию для отображения в ShowMessageDialog, если не удалось получить активное окно
+		/// Р—Р°РіРѕР»РѕРІРѕРє РѕРєРЅР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ ShowMessageDialog, РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ Р°РєС‚РёРІРЅРѕРµ РѕРєРЅРѕ
 		/// </summary>
 		string DefaultWindowTitle { get; set; }
 
 		/// <summary>
-		/// Показать диалог.
+		/// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі.
 		/// </summary>
-		/// <param name="dialogViewModel">ViewModel диалога.</param>		
-		/// <typeparam name="T">Тип View диалога.</typeparam>
+		/// <param name="dialogViewModel">ViewModel РґРёР°Р»РѕРіР°.</param>		
+		/// <typeparam name="T">РўРёРї View РґРёР°Р»РѕРіР°.</typeparam>
 		/// <returns>
-		/// Возвращаемое значение такое же как у System.Windows.Window.ShowDialog().
+		/// Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ С‚Р°РєРѕРµ Р¶Рµ РєР°Рє Сѓ System.Windows.Window.ShowDialog().
 		/// </returns>
 		bool? ShowDialog<T>(object dialogViewModel) where T : Window, new();
 
 		/// <summary>
-		/// Показать диалог.
+		/// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі.
 		/// </summary>
-		/// <param name="dialogViewModel">ViewModel диалога.</param>
-		/// <param name="owner">Владелец создаваемого окна, возможно null</param>
-		/// <typeparam name="T">Тип View диалога.</typeparam>
+		/// <param name="dialogViewModel">ViewModel РґРёР°Р»РѕРіР°.</param>
+		/// <param name="owner">Р’Р»Р°РґРµР»РµС† СЃРѕР·РґР°РІР°РµРјРѕРіРѕ РѕРєРЅР°, РІРѕР·РјРѕР¶РЅРѕ null</param>
+		/// <typeparam name="T">РўРёРї View РґРёР°Р»РѕРіР°.</typeparam>
 		/// <returns>
-		/// Возвращаемое значение такое же как у System.Windows.Window.ShowDialog().
+		/// Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ С‚Р°РєРѕРµ Р¶Рµ РєР°Рє Сѓ System.Windows.Window.ShowDialog().
 		/// </returns>
 		bool? ShowDialog<T>(object dialogViewModel, IWindow owner) where T : Window, new();
 
 		/// <summary>
-		/// Показать окно в немодальном режиме, owner у окна указывается текущее активное окно
+		/// РџРѕРєР°Р·Р°С‚СЊ РѕРєРЅРѕ РІ РЅРµРјРѕРґР°Р»СЊРЅРѕРј СЂРµР¶РёРјРµ, owner Сѓ РѕРєРЅР° СѓРєР°Р·С‹РІР°РµС‚СЃСЏ С‚РµРєСѓС‰РµРµ Р°РєС‚РёРІРЅРѕРµ РѕРєРЅРѕ
 		/// </summary>
-		/// <param name="viewModel">ViewModel окна.</param>
-		/// <returns>Интерфейс окна для управления закрытием</returns>
+		/// <param name="viewModel">ViewModel РѕРєРЅР°.</param>
+		/// <returns>РРЅС‚РµСЂС„РµР№СЃ РѕРєРЅР° РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ Р·Р°РєСЂС‹С‚РёРµРј</returns>
 		IWindow Show<T>(object viewModel)
 			where T : Window, IWindow, new();
 
 		/// <summary>
-		/// Показать окно в немодальном режиме
+		/// РџРѕРєР°Р·Р°С‚СЊ РѕРєРЅРѕ РІ РЅРµРјРѕРґР°Р»СЊРЅРѕРј СЂРµР¶РёРјРµ
 		/// </summary>
-		/// <typeparam name="T">Тип View для окна.</typeparam>
-		/// <param name="viewModel">ViewModel окна.</param>
-		/// <param name="owner">Владелец создаваемого окна</param>
-		/// <returns>Интерфейс окна для управления закрытием</returns>
+		/// <typeparam name="T">РўРёРї View РґР»СЏ РѕРєРЅР°.</typeparam>
+		/// <param name="viewModel">ViewModel РѕРєРЅР°.</param>
+		/// <param name="owner">Р’Р»Р°РґРµР»РµС† СЃРѕР·РґР°РІР°РµРјРѕРіРѕ РѕРєРЅР°</param>
+		/// <returns>РРЅС‚РµСЂС„РµР№СЃ РѕРєРЅР° РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ Р·Р°РєСЂС‹С‚РёРµРј</returns>
 		IWindow Show<T>(object viewModel, IWindow owner)
 			where T : Window, IWindow, new();
 
         /// <summary>
-        /// Показать MessageBox.
+        /// РџРѕРєР°Р·Р°С‚СЊ MessageBox.
         /// </summary>
-        /// <param name="message">Текст для отображения.</param>
-        /// <param name="caption">Заголовок. если пустой то берётся заголовок активного окна</param>
+        /// <param name="message">РўРµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
+        /// <param name="caption">Р—Р°РіРѕР»РѕРІРѕРє. РµСЃР»Рё РїСѓСЃС‚РѕР№ С‚Рѕ Р±РµСЂС‘С‚СЃСЏ Р·Р°РіРѕР»РѕРІРѕРє Р°РєС‚РёРІРЅРѕРіРѕ РѕРєРЅР°</param>
         /// <param name="button">
-        /// Параметр, определяющий какие кнопки должен содержать MessageBox.
+        /// РџР°СЂР°РјРµС‚СЂ, РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєРёРµ РєРЅРѕРїРєРё РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ MessageBox.
         /// </param>
-        /// <param name="icon">Иконка для отображения.</param>
+        /// <param name="icon">РРєРѕРЅРєР° РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
         /// <returns>
-        /// MessageBoxResult определяет какую кнопку нажал пользователь.
+        /// MessageBoxResult РѕРїСЂРµРґРµР»СЏРµС‚ РєР°РєСѓСЋ РєРЅРѕРїРєСѓ РЅР°Р¶Р°Р» РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ.
         /// </returns>
         MessageBoxResult ShowMessageDialog(string message, string caption,
             MessageBoxButton button = MessageBoxButton.OK, MessageBoxImage icon = MessageBoxImage.Information);
 
 		/// <summary>
-		/// Показать MessageBox. с установкой Caption из текущего активного окна
+		/// РџРѕРєР°Р·Р°С‚СЊ MessageBox. СЃ СѓСЃС‚Р°РЅРѕРІРєРѕР№ Caption РёР· С‚РµРєСѓС‰РµРіРѕ Р°РєС‚РёРІРЅРѕРіРѕ РѕРєРЅР°
 		/// </summary>
-		/// <param name="message">Текст для отображения.</param>
+		/// <param name="message">РўРµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
 		/// <param name="button">
-		/// Параметр, определяющий какие кнопки должен содержать MessageBox.
+		/// РџР°СЂР°РјРµС‚СЂ, РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєРёРµ РєРЅРѕРїРєРё РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ MessageBox.
 		/// </param>
-		/// <param name="icon">Иконка для отображения.</param>
+		/// <param name="icon">РРєРѕРЅРєР° РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
 		/// <returns>
-		/// MessageBoxResult определяет какую кнопку нажал пользователь.
+		/// MessageBoxResult РѕРїСЂРµРґРµР»СЏРµС‚ РєР°РєСѓСЋ РєРЅРѕРїРєСѓ РЅР°Р¶Р°Р» РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ.
 		/// </returns>
 		MessageBoxResult ShowMessageDialog(string message, MessageBoxButton button = MessageBoxButton.OK,
 			MessageBoxImage icon = MessageBoxImage.Information);
 
         /// <summary>
-        /// Показать MessageBox.
+        /// РџРѕРєР°Р·Р°С‚СЊ MessageBox.
         /// </summary>
-        /// <param name="message">Текст для отображения.</param>
-        /// <param name="caption">Заголовок. если пустой то берётся заголовок активного окна</param>
+        /// <param name="message">РўРµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
+        /// <param name="caption">Р—Р°РіРѕР»РѕРІРѕРє. РµСЃР»Рё РїСѓСЃС‚РѕР№ С‚Рѕ Р±РµСЂС‘С‚СЃСЏ Р·Р°РіРѕР»РѕРІРѕРє Р°РєС‚РёРІРЅРѕРіРѕ РѕРєРЅР°</param>
         /// <param name="button">
-        /// Параметр, определяющий какие кнопки должен содержать MessageBox.
+        /// РџР°СЂР°РјРµС‚СЂ, РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєРёРµ РєРЅРѕРїРєРё РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ MessageBox.
         /// </param>
-        /// <param name="icon">Иконка для отображения.</param>
-        /// <param name="defaultButton">Параметр определяющий какая кнопка будет выбрана по умолчанию</param>
+        /// <param name="icon">РРєРѕРЅРєР° РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
+        /// <param name="defaultButton">РџР°СЂР°РјРµС‚СЂ РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєР°СЏ РєРЅРѕРїРєР° Р±СѓРґРµС‚ РІС‹Р±СЂР°РЅР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ</param>
         /// <param name="options">Specifies special display options for a message box.</param>
         /// <returns>
-        /// MessageBoxResult определяет какую кнопку нажал пользователь.
+        /// MessageBoxResult РѕРїСЂРµРґРµР»СЏРµС‚ РєР°РєСѓСЋ РєРЅРѕРїРєСѓ РЅР°Р¶Р°Р» РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ.
         /// </returns>
         MessageBoxResult ShowMessageDialog(string message, string caption,
             MessageBoxButton button, MessageBoxImage icon,
             MessageBoxResult defaultButton, MessageBoxOptions options);
 
 		/// <summary>
-		/// Показать MessageBox.
+		/// РџРѕРєР°Р·Р°С‚СЊ MessageBox.
 		/// </summary>
-		/// <param name="owner">Владелец окна, возможно null</param>
-		/// <param name="message">Текст для отображения.</param>
-		/// <param name="caption">Заголовок. если пустой то берётся заголовок активного окна</param>
+		/// <param name="owner">Р’Р»Р°РґРµР»РµС† РѕРєРЅР°, РІРѕР·РјРѕР¶РЅРѕ null</param>
+		/// <param name="message">РўРµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
+		/// <param name="caption">Р—Р°РіРѕР»РѕРІРѕРє. РµСЃР»Рё РїСѓСЃС‚РѕР№ С‚Рѕ Р±РµСЂС‘С‚СЃСЏ Р·Р°РіРѕР»РѕРІРѕРє Р°РєС‚РёРІРЅРѕРіРѕ РѕРєРЅР°</param>
 		/// <param name="button">
-		/// Параметр, определяющий какие кнопки должен содержать MessageBox.
+		/// РџР°СЂР°РјРµС‚СЂ, РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєРёРµ РєРЅРѕРїРєРё РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ MessageBox.
 		/// </param>
-		/// <param name="icon">Иконка для отображения.</param>
-		/// <param name="defaultButton">Параметр определяющий какая кнопка будет выбрана по умолчанию</param>
+		/// <param name="icon">РРєРѕРЅРєР° РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
+		/// <param name="defaultButton">РџР°СЂР°РјРµС‚СЂ РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєР°СЏ РєРЅРѕРїРєР° Р±СѓРґРµС‚ РІС‹Р±СЂР°РЅР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ</param>
 		/// <param name="options">Specifies special display options for a message box.</param>
 		/// <returns>
-		/// MessageBoxResult определяет какую кнопку нажал пользователь.
+		/// MessageBoxResult РѕРїСЂРµРґРµР»СЏРµС‚ РєР°РєСѓСЋ РєРЅРѕРїРєСѓ РЅР°Р¶Р°Р» РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ.
 		/// </returns>
 		MessageBoxResult ShowMessageDialog(
 			IWindow owner, 
@@ -127,37 +127,37 @@ namespace StkCommon.UI.Wpf.Views
 			MessageBoxOptions options = MessageBoxOptions.None);
 
 		/// <summary>
-		/// Показать диалог с сообщением об ошибке для активного окна.
+		/// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі СЃ СЃРѕРѕР±С‰РµРЅРёРµРј РѕР± РѕС€РёР±РєРµ РґР»СЏ Р°РєС‚РёРІРЅРѕРіРѕ РѕРєРЅР°.
 		/// </summary>
 		void ShowErrorMessageDialog(string message, string details, string caption = null);
 
 		/// <summary>
-		/// Показать диалог с сообщением об ошибке с указанием owner.
+		/// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі СЃ СЃРѕРѕР±С‰РµРЅРёРµРј РѕР± РѕС€РёР±РєРµ СЃ СѓРєР°Р·Р°РЅРёРµРј owner.
 		/// </summary>
 		void ShowErrorMessageDialog(IWindow owner, string message, string details, string caption = null);
 
 		/// <summary>
-		/// Показать диалог открытия файла
+		/// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
 		/// </summary>
 		/// <param name="filter"></param>
 		/// <param name="fileName"></param>
-		/// <param name="owner">Владелец создаваемого окна</param>
+		/// <param name="owner">Р’Р»Р°РґРµР»РµС† СЃРѕР·РґР°РІР°РµРјРѕРіРѕ РѕРєРЅР°</param>
 		/// <returns></returns>
 		bool? ShowOpenFileDialog(string filter, out string fileName, IWindow owner = null);
 
 		/// <summary>
-		/// Показать диалог сохранения файла
+		/// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі СЃРѕС…СЂР°РЅРµРЅРёСЏ С„Р°Р№Р»Р°
 		/// </summary>
 		/// <param name="filter"></param>
 		/// <param name="defFileName"></param>
 		/// <param name="fileName"></param>
-		/// <param name="owner">Владелец создаваемого окна</param>
+		/// <param name="owner">Р’Р»Р°РґРµР»РµС† СЃРѕР·РґР°РІР°РµРјРѕРіРѕ РѕРєРЅР°</param>
 		/// <returns></returns>
 		bool? ShowSaveFileDialog(string filter, string defFileName, out string fileName, IWindow owner = null);
 	}
 
 	/// <summary>
-	/// Реализация поднятия диалогов
+	/// Р РµР°Р»РёР·Р°С†РёСЏ РїРѕРґРЅСЏС‚РёСЏ РґРёР°Р»РѕРіРѕРІ
 	/// </summary>
 	public class ShowDialogAgent : IShowDialogAgent
 	{
@@ -165,7 +165,7 @@ namespace StkCommon.UI.Wpf.Views
 		private Window _theActiveWindow;
 
 		/// <summary>
-		/// Конструктор
+		/// РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 		/// </summary>
 		/// <param name="dispatcher"></param>
 		/// <exception cref="ArgumentNullException"></exception>
@@ -179,12 +179,12 @@ namespace StkCommon.UI.Wpf.Views
 		#region Properties
 
 		/// <summary>
-		/// Заголовок окна по умолчанию для отображения в ShowMessageDialog если не удалось получить активное окно
+		/// Р—Р°РіРѕР»РѕРІРѕРє РѕРєРЅР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РІ ShowMessageDialog РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ Р°РєС‚РёРІРЅРѕРµ РѕРєРЅРѕ
 		/// </summary>
 		public string DefaultWindowTitle { get; set; }
 
 		/// <summary>
-		/// Главное окно приложения
+		/// Р“Р»Р°РІРЅРѕРµ РѕРєРЅРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ
 		/// </summary>
 		private Window MainWindow
 		{
@@ -199,8 +199,8 @@ namespace StkCommon.UI.Wpf.Views
 		}
 
 		/// <summary>
-		/// Текущее активное окно исходя из открытых через этот интерфейс. 
-		/// Если нет открытых то MainWindow
+		/// РўРµРєСѓС‰РµРµ Р°РєС‚РёРІРЅРѕРµ РѕРєРЅРѕ РёСЃС…РѕРґСЏ РёР· РѕС‚РєСЂС‹С‚С‹С… С‡РµСЂРµР· СЌС‚РѕС‚ РёРЅС‚РµСЂС„РµР№СЃ. 
+		/// Р•СЃР»Рё РЅРµС‚ РѕС‚РєСЂС‹С‚С‹С… С‚Рѕ MainWindow
 		/// </summary>
 		protected virtual Window ActiveWindow
 		{
@@ -213,12 +213,12 @@ namespace StkCommon.UI.Wpf.Views
 		#region Public methods
 
 		/// <summary>
-		/// Показать диалог.
+		/// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі.
 		/// </summary>
-		/// <param name="dialogViewModel">ViewModel диалога.</param>		
-		/// <typeparam name="T">Тип View диалога.</typeparam>
+		/// <param name="dialogViewModel">ViewModel РґРёР°Р»РѕРіР°.</param>		
+		/// <typeparam name="T">РўРёРї View РґРёР°Р»РѕРіР°.</typeparam>
 		/// <returns>
-		/// Возвращаемое значение такое же как у System.Windows.Window.ShowDialog().
+		/// Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ С‚Р°РєРѕРµ Р¶Рµ РєР°Рє Сѓ System.Windows.Window.ShowDialog().
 		/// </returns>
 		public bool? ShowDialog<T>(object dialogViewModel) where T : Window, new()
 		{
@@ -226,13 +226,13 @@ namespace StkCommon.UI.Wpf.Views
 		}
 
 		/// <summary>
-		/// Показать диалог.
+		/// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі.
 		/// </summary>
-		/// <param name="dialogViewModel">ViewModel диалога.</param>
-		/// <param name="owner">Владелец создаваемого окна</param>
-		/// <typeparam name="T">Тип View диалога.</typeparam>
+		/// <param name="dialogViewModel">ViewModel РґРёР°Р»РѕРіР°.</param>
+		/// <param name="owner">Р’Р»Р°РґРµР»РµС† СЃРѕР·РґР°РІР°РµРјРѕРіРѕ РѕРєРЅР°</param>
+		/// <typeparam name="T">РўРёРї View РґРёР°Р»РѕРіР°.</typeparam>
 		/// <returns>
-		/// Возвращаемое значение такое же как у System.Windows.Window.ShowDialog().
+		/// Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ С‚Р°РєРѕРµ Р¶Рµ РєР°Рє Сѓ System.Windows.Window.ShowDialog().
 		/// </returns>
 		public bool? ShowDialog<T>(object dialogViewModel, IWindow owner) where T : Window, new()
 		{
@@ -242,10 +242,10 @@ namespace StkCommon.UI.Wpf.Views
 		}
 
 		/// <summary>
-		/// Показать окно в немодальном режиме, owner у окна указывается текущее активное окно
+		/// РџРѕРєР°Р·Р°С‚СЊ РѕРєРЅРѕ РІ РЅРµРјРѕРґР°Р»СЊРЅРѕРј СЂРµР¶РёРјРµ, owner Сѓ РѕРєРЅР° СѓРєР°Р·С‹РІР°РµС‚СЃСЏ С‚РµРєСѓС‰РµРµ Р°РєС‚РёРІРЅРѕРµ РѕРєРЅРѕ
 		/// </summary>
-		/// <param name="viewModel">ViewModel окна.</param>
-		/// <returns>Интерфейс окна для управления закрытием</returns>
+		/// <param name="viewModel">ViewModel РѕРєРЅР°.</param>
+		/// <returns>РРЅС‚РµСЂС„РµР№СЃ РѕРєРЅР° РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ Р·Р°РєСЂС‹С‚РёРµРј</returns>
 		public IWindow Show<T>(object viewModel)
 			where T : Window, IWindow, new()
 		{
@@ -253,11 +253,11 @@ namespace StkCommon.UI.Wpf.Views
 		}
 		
 		/// <summary>
-		/// Показать окно в немодальном режиме
+		/// РџРѕРєР°Р·Р°С‚СЊ РѕРєРЅРѕ РІ РЅРµРјРѕРґР°Р»СЊРЅРѕРј СЂРµР¶РёРјРµ
 		/// </summary>
-		/// <param name="viewModel">ViewModel окна.</param>
-		/// <param name="owner">Владелец создаваемого окна</param>
-		/// <returns>Интерфейс окна для управления закрытием</returns>
+		/// <param name="viewModel">ViewModel РѕРєРЅР°.</param>
+		/// <param name="owner">Р’Р»Р°РґРµР»РµС† СЃРѕР·РґР°РІР°РµРјРѕРіРѕ РѕРєРЅР°</param>
+		/// <returns>РРЅС‚РµСЂС„РµР№СЃ РѕРєРЅР° РґР»СЏ СѓРїСЂР°РІР»РµРЅРёСЏ Р·Р°РєСЂС‹С‚РёРµРј</returns>
 		public IWindow Show<T>(object viewModel, IWindow owner)
 			where T : Window, IWindow, new()
 		{
@@ -267,15 +267,15 @@ namespace StkCommon.UI.Wpf.Views
 		}
 
 	    /// <summary>
-	    /// Показать MessageBox. с установкой Caption из текущего активного окна
+	    /// РџРѕРєР°Р·Р°С‚СЊ MessageBox. СЃ СѓСЃС‚Р°РЅРѕРІРєРѕР№ Caption РёР· С‚РµРєСѓС‰РµРіРѕ Р°РєС‚РёРІРЅРѕРіРѕ РѕРєРЅР°
 	    /// </summary>
-	    /// <param name="message">Текст для отображения.</param>
+	    /// <param name="message">РўРµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
 	    /// <param name="button">
-	    /// Параметр, определяющий какие кнопки должен содержать MessageBox.
+	    /// РџР°СЂР°РјРµС‚СЂ, РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєРёРµ РєРЅРѕРїРєРё РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ MessageBox.
 	    /// </param>
-	    /// <param name="icon">Иконка для отображения.</param>
+	    /// <param name="icon">РРєРѕРЅРєР° РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
 	    /// <returns>
-	    /// MessageBoxResult определяет какую кнопку нажал пользователь.
+	    /// MessageBoxResult РѕРїСЂРµРґРµР»СЏРµС‚ РєР°РєСѓСЋ РєРЅРѕРїРєСѓ РЅР°Р¶Р°Р» РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ.
 	    /// </returns>
 	    public MessageBoxResult ShowMessageDialog(
 			string message, 
@@ -287,16 +287,16 @@ namespace StkCommon.UI.Wpf.Views
 		}
 
 	    /// <summary>
-	    /// Показать MessageBox.
+	    /// РџРѕРєР°Р·Р°С‚СЊ MessageBox.
 	    /// </summary>
-	    /// <param name="message">Текст для отображения.</param>
-	    /// <param name="caption">Заголовок. если пустой то берётся заголовок активного окна</param>
+	    /// <param name="message">РўРµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
+	    /// <param name="caption">Р—Р°РіРѕР»РѕРІРѕРє. РµСЃР»Рё РїСѓСЃС‚РѕР№ С‚Рѕ Р±РµСЂС‘С‚СЃСЏ Р·Р°РіРѕР»РѕРІРѕРє Р°РєС‚РёРІРЅРѕРіРѕ РѕРєРЅР°</param>
 	    /// <param name="button">
-	    /// Параметр, определяющий какие кнопки должен содержать MessageBox.
+	    /// РџР°СЂР°РјРµС‚СЂ, РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєРёРµ РєРЅРѕРїРєРё РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ MessageBox.
 	    /// </param>
-	    /// <param name="icon">Иконка для отображения.</param>
+	    /// <param name="icon">РРєРѕРЅРєР° РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
 	    /// <returns>
-	    /// MessageBoxResult определяет какую кнопку нажал пользователь.
+	    /// MessageBoxResult РѕРїСЂРµРґРµР»СЏРµС‚ РєР°РєСѓСЋ РєРЅРѕРїРєСѓ РЅР°Р¶Р°Р» РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ.
 	    /// </returns>
 	    public MessageBoxResult ShowMessageDialog(
 			string message, 
@@ -309,18 +309,18 @@ namespace StkCommon.UI.Wpf.Views
 		}
 
 		/// <summary>
-	    /// Показать MessageBox.
+	    /// РџРѕРєР°Р·Р°С‚СЊ MessageBox.
 	    /// </summary>
-	    /// <param name="message">Текст для отображения.</param>
-	    /// <param name="caption">Заголовок. если пустой то берётся заголовок активного окна</param>
+	    /// <param name="message">РўРµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
+	    /// <param name="caption">Р—Р°РіРѕР»РѕРІРѕРє. РµСЃР»Рё РїСѓСЃС‚РѕР№ С‚Рѕ Р±РµСЂС‘С‚СЃСЏ Р·Р°РіРѕР»РѕРІРѕРє Р°РєС‚РёРІРЅРѕРіРѕ РѕРєРЅР°</param>
 	    /// <param name="button">
-	    /// Параметр, определяющий какие кнопки должен содержать MessageBox.
+	    /// РџР°СЂР°РјРµС‚СЂ, РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєРёРµ РєРЅРѕРїРєРё РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ MessageBox.
 	    /// </param>
-	    /// <param name="icon">Иконка для отображения.</param>
-	    /// <param name="defaultButton">Параметр определяющий какая кнопка будет выбрана по умолчанию</param>
+	    /// <param name="icon">РРєРѕРЅРєР° РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
+	    /// <param name="defaultButton">РџР°СЂР°РјРµС‚СЂ РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєР°СЏ РєРЅРѕРїРєР° Р±СѓРґРµС‚ РІС‹Р±СЂР°РЅР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ</param>
 	    /// <param name="options">Specifies special display options for a message box.</param>
 	    /// <returns>
-	    /// MessageBoxResult определяет какую кнопку нажал пользователь.
+	    /// MessageBoxResult РѕРїСЂРµРґРµР»СЏРµС‚ РєР°РєСѓСЋ РєРЅРѕРїРєСѓ РЅР°Р¶Р°Р» РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ.
 	    /// </returns>
 	    public MessageBoxResult ShowMessageDialog(
 	        string message,
@@ -335,19 +335,19 @@ namespace StkCommon.UI.Wpf.Views
 	    }
 
 		/// <summary>
-		/// Показать MessageBox.
+		/// РџРѕРєР°Р·Р°С‚СЊ MessageBox.
 		/// </summary>
-		/// <param name="owner">Владелец окна, допускает передачу null</param>
-		/// <param name="message">Текст для отображения.</param>
-		/// <param name="caption">Заголовок. если пустой то берётся заголовок активного окна</param>
+		/// <param name="owner">Р’Р»Р°РґРµР»РµС† РѕРєРЅР°, РґРѕРїСѓСЃРєР°РµС‚ РїРµСЂРµРґР°С‡Сѓ null</param>
+		/// <param name="message">РўРµРєСЃС‚ РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
+		/// <param name="caption">Р—Р°РіРѕР»РѕРІРѕРє. РµСЃР»Рё РїСѓСЃС‚РѕР№ С‚Рѕ Р±РµСЂС‘С‚СЃСЏ Р·Р°РіРѕР»РѕРІРѕРє Р°РєС‚РёРІРЅРѕРіРѕ РѕРєРЅР°</param>
 		/// <param name="button">
-		/// Параметр, определяющий какие кнопки должен содержать MessageBox.
+		/// РџР°СЂР°РјРµС‚СЂ, РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєРёРµ РєРЅРѕРїРєРё РґРѕР»Р¶РµРЅ СЃРѕРґРµСЂР¶Р°С‚СЊ MessageBox.
 		/// </param>
-		/// <param name="icon">Иконка для отображения.</param>
-		/// <param name="defaultButton">Параметр определяющий какая кнопка будет выбрана по умолчанию</param>
+		/// <param name="icon">РРєРѕРЅРєР° РґР»СЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ.</param>
+		/// <param name="defaultButton">РџР°СЂР°РјРµС‚СЂ РѕРїСЂРµРґРµР»СЏСЋС‰РёР№ РєР°РєР°СЏ РєРЅРѕРїРєР° Р±СѓРґРµС‚ РІС‹Р±СЂР°РЅР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ</param>
 		/// <param name="options">Specifies special display options for a message box.</param>
 		/// <returns>
-		/// MessageBoxResult определяет какую кнопку нажал пользователь.
+		/// MessageBoxResult РѕРїСЂРµРґРµР»СЏРµС‚ РєР°РєСѓСЋ РєРЅРѕРїРєСѓ РЅР°Р¶Р°Р» РїРѕР»СЊР·РѕРІР°С‚РµР»СЊ.
 		/// </returns>
 		public MessageBoxResult ShowMessageDialog(
 			IWindow owner, 
@@ -364,7 +364,7 @@ namespace StkCommon.UI.Wpf.Views
 		}
 
 		/// <summary>
-		/// Показать диалог с сообщением об ошибке.
+		/// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі СЃ СЃРѕРѕР±С‰РµРЅРёРµРј РѕР± РѕС€РёР±РєРµ.
 		/// </summary>
 		public void ShowErrorMessageDialog(string message, string details, string caption = null)
 		{
@@ -378,11 +378,11 @@ namespace StkCommon.UI.Wpf.Views
 		}
 
 		/// <summary>
-		/// Показать диалог открытия файла
+		/// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі РѕС‚РєСЂС‹С‚РёСЏ С„Р°Р№Р»Р°
 		/// </summary>
-		/// <param name="filter">Фильтр для фильтрации файлов по типам</param>
-		/// <param name="fileName">Имя файла</param>
-		/// <param name="owner">Владелец создаваемого окна</param>
+		/// <param name="filter">Р¤РёР»СЊС‚СЂ РґР»СЏ С„РёР»СЊС‚СЂР°С†РёРё С„Р°Р№Р»РѕРІ РїРѕ С‚РёРїР°Рј</param>
+		/// <param name="fileName">РРјСЏ С„Р°Р№Р»Р°</param>
+		/// <param name="owner">Р’Р»Р°РґРµР»РµС† СЃРѕР·РґР°РІР°РµРјРѕРіРѕ РѕРєРЅР°</param>
 		/// <returns></returns>
 		public virtual bool? ShowOpenFileDialog(string filter, out string fileName, IWindow owner = null)
 		{
@@ -404,12 +404,12 @@ namespace StkCommon.UI.Wpf.Views
 		}
 
 		/// <summary>
-		/// Показать диалог сохранения файла
+		/// РџРѕРєР°Р·Р°С‚СЊ РґРёР°Р»РѕРі СЃРѕС…СЂР°РЅРµРЅРёСЏ С„Р°Р№Р»Р°
 		/// </summary>
-		/// <param name="filter">Фильтр для фильтрации файлов по типам</param>
-		/// <param name="defFileName">Первоначальное имя файла</param>
-		/// <param name="fileName">Имя файла после закрытия диалога</param>
-		/// <param name="owner">Владелец создаваемого окна</param>
+		/// <param name="filter">Р¤РёР»СЊС‚СЂ РґР»СЏ С„РёР»СЊС‚СЂР°С†РёРё С„Р°Р№Р»РѕРІ РїРѕ С‚РёРїР°Рј</param>
+		/// <param name="defFileName">РџРµСЂРІРѕРЅР°С‡Р°Р»СЊРЅРѕРµ РёРјСЏ С„Р°Р№Р»Р°</param>
+		/// <param name="fileName">РРјСЏ С„Р°Р№Р»Р° РїРѕСЃР»Рµ Р·Р°РєСЂС‹С‚РёСЏ РґРёР°Р»РѕРіР°</param>
+		/// <param name="owner">Р’Р»Р°РґРµР»РµС† СЃРѕР·РґР°РІР°РµРјРѕРіРѕ РѕРєРЅР°</param>
 		/// <returns></returns>
 		public virtual bool? ShowSaveFileDialog(string filter, string defFileName, out string fileName, IWindow owner = null) 
 		{
@@ -491,16 +491,26 @@ namespace StkCommon.UI.Wpf.Views
 				return;
 			}
 
-			var messageCaption = GetMessageDialogCaption(owner, caption);
-			ShowDialogInternal<ErrorMessageWindow>(new ErrorMessageViewModel(messageCaption, message, details), owner);
+			var messageCaption = caption;
+			try
+			{
+				messageCaption = GetMessageDialogCaption(owner, caption);
+				ShowDialogInternal<ErrorMessageWindow>(new ErrorMessageViewModel(messageCaption, message, details), owner);
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine(@"РћС€РёР±РєР° РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ РѕРєРЅР° РѕР± РѕС€РёР±РєРµ: " + ex);
+				MessageBox.Show(message + Environment.NewLine + Environment.NewLine + details, messageCaption, 
+					MessageBoxButton.OK, MessageBoxImage.Error);
+			}
 		}
 
 		/// <summary>
-		/// Реализация отображения Message диалога
+		/// Р РµР°Р»РёР·Р°С†РёСЏ РѕС‚РѕР±СЂР°Р¶РµРЅРёСЏ Message РґРёР°Р»РѕРіР°
 		/// </summary>
 		/// <param name="owner"></param>
 		/// <param name="messageBoxText"></param>
-		/// <param name="caption">может быть пустым</param>
+		/// <param name="caption">РјРѕР¶РµС‚ Р±С‹С‚СЊ РїСѓСЃС‚С‹Рј</param>
 		/// <param name="button"></param>
 		/// <param name="icon"></param>
         /// <param name="options"></param>
@@ -535,8 +545,8 @@ namespace StkCommon.UI.Wpf.Views
 		}
 
 		/// <summary>
-		/// Реализация получения Caption для Message диалога.
-		/// Если передали пустой, то возвращает Title текущего активного окна
+		/// Р РµР°Р»РёР·Р°С†РёСЏ РїРѕР»СѓС‡РµРЅРёСЏ Caption РґР»СЏ Message РґРёР°Р»РѕРіР°.
+		/// Р•СЃР»Рё РїРµСЂРµРґР°Р»Рё РїСѓСЃС‚РѕР№, С‚Рѕ РІРѕР·РІСЂР°С‰Р°РµС‚ Title С‚РµРєСѓС‰РµРіРѕ Р°РєС‚РёРІРЅРѕРіРѕ РѕРєРЅР°
 		/// </summary>
 		/// <param name="owner"></param>
 		/// <param name="caption"></param>
@@ -566,7 +576,7 @@ namespace StkCommon.UI.Wpf.Views
 		private static void ThrowArgumentExceptionInNotWindow(IWindow owner)
 		{
 			if (owner != null && !(owner is Window))
-				throw new ArgumentException("owner должен быть наследником класса Window", "owner");
+				throw new ArgumentException("owner РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅР°СЃР»РµРґРЅРёРєРѕРј РєР»Р°СЃСЃР° Window", "owner");
 		}
 	}
 }

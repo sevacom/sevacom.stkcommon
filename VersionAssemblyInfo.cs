@@ -1,8 +1,8 @@
-using System.Reflection;
+﻿using System.Reflection;
 
 [assembly: AssemblyProduct("StkCommon")]
-[assembly: AssemblyCompany("Stk")]
-[assembly: AssemblyCopyright("Stk © 2014")]
+[assembly: AssemblyCompany("sevacom")]
+[assembly: AssemblyCopyright("Stk © 2017")]
 
 
 

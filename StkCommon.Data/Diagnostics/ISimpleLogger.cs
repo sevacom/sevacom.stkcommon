@@ -1,9 +1,9 @@
-using System;
+п»їusing System;
 
 namespace StkCommon.Data.Diagnostics
 {
 	/// <summary>
-	/// Логирование, базовый интерфейс
+	/// Р›РѕРіРёСЂРѕРІР°РЅРёРµ, Р±Р°Р·РѕРІС‹Р№ РёРЅС‚РµСЂС„РµР№СЃ
 	/// </summary>
 	public interface ISimpleLogger
 	{
@@ -13,15 +13,15 @@ namespace StkCommon.Data.Diagnostics
 		void Fatal(string message, Exception ex);
 
 		/// <summary>
-		/// Ошибка
+		/// РћС€РёР±РєР°
 		/// </summary>
-		/// <returns>идентификатор ошибки</returns>
+		/// <returns>РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РѕС€РёР±РєРё</returns>
 		string Error(string message);
 
 		/// <summary>
-		/// Ошибка
+		/// РћС€РёР±РєР°
 		/// </summary>
-		/// <returns>идентификатор ошибки</returns>
+		/// <returns>РёРґРµРЅС‚РёС„РёРєР°С‚РѕСЂ РѕС€РёР±РєРё</returns>
 		string Error(string message, Exception ex);
 
 		void Debug(string message);

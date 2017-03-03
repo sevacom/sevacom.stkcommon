@@ -10,11 +10,13 @@ namespace StkCommon.UI.Wpf.DemoApp
 		private readonly ObservableCollection<string> _collection = new ObservableCollection<string>();
 		private string _selectedItem;
 		private string _searchText;
+	    private string _editableText;
 
-		public DesignMockControlsWindowVm()
+	    public DesignMockControlsWindowVm()
 		{
 			_collection.Add("Первый");
 			_collection.Add("Второй");
+            _collection.Add("");
 
 			SearchCommand = new DelegateCommand(SearchCommandHandler);
 		}
@@ -52,7 +54,20 @@ namespace StkCommon.UI.Wpf.DemoApp
 			}
 		}
 
-		private void SearchCommandHandler(object obj)
+	    public string EditableText
+	    {
+	        get { return _editableText; }
+	        set
+	        {
+	            if (_editableText == value)
+                    return;
+
+	            _editableText = value;
+	            OnPropertyChanged(() => EditableText);
+	        }
+	    }
+
+	    private void SearchCommandHandler(object obj)
 		{
 
 		}

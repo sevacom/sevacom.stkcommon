@@ -42,16 +42,15 @@ namespace StkCommon.Data.Test.Diagnostics
 		[Test]
 		public void ShouldHandleActionSilentRegisterExceptionWhenThrowException()
 		{
-			//Given //When
+		    //Given //When
 			Assert.DoesNotThrow(() => _target.HandleActionSilent(ExceptionAction, 
 				_expectedErrorMessage, _notifier.Object));
 
-			//Then
-			_logger.Verify(p => p.Error(_expectedErrorMessage, _expectedException), Times.Once);
-			_notifier.Verify(p => p.Notify(_expectedException, _expectedErrorMessage, _expectedErrorId), Times.Once);
+            //Then
+            VerifyWriteAndNotifyExpectedError();
 		}
 
-		/// <summary>
+	    /// <summary>
 		/// Метод возвращающий результат должен отрабатывать
 		/// </summary>
 		[Test]
@@ -124,9 +123,8 @@ namespace StkCommon.Data.Test.Diagnostics
 			//When
 			Assert.DoesNotThrow(() => _target.SafelyDispose(ref disposable, _expectedErrorMessage, _notifier.Object));
 
-			//Then
-			_logger.Verify(p => p.Error(_expectedErrorMessage, _expectedException), Times.Once);
-			_notifier.Verify(p => p.Notify(_expectedException, _expectedErrorMessage, _expectedErrorId), Times.Once);
+            //Then
+            VerifyWriteAndNotifyExpectedError();
 		}
 
 		/// <summary>
@@ -157,9 +155,13 @@ namespace StkCommon.Data.Test.Diagnostics
 			_notifier.Verify(p => p.Notify(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
 		}
 
-		#region Support methods and classes
+        private void VerifyWriteAndNotifyExpectedError()
+        {
+            _logger.Verify(p => p.Error(_expectedErrorMessage, _expectedException), Times.Once);
+            _notifier.Verify(p => p.Notify(_expectedException, _expectedErrorMessage, _expectedErrorId), Times.Once);
+        }
 
-		private void ExceptionAction()
+        private void ExceptionAction()
 		{
 			throw _expectedException;
 		}
@@ -169,6 +171,7 @@ namespace StkCommon.Data.Test.Diagnostics
 			return _expectedActionResult;
 		}
 
+
 		private class WrapException : Exception
 		{
 			public WrapException(string message, Exception ex)
@@ -177,9 +180,6 @@ namespace StkCommon.Data.Test.Diagnostics
 
 			}
 		}
-
-		#endregion
-
 	}
 
 }

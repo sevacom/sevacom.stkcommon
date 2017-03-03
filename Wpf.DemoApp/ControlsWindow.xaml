@@ -6,7 +6,7 @@
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:demoApp="clr-namespace:StkCommon.UI.Wpf.DemoApp"
-		FocusManager.FocusedElement="{Binding ElementName=searchComboBox}"
+		FocusManager.FocusedElement="{Binding ElementName=SearchComboBox1}"
         Title="MainWindow" 
 		Height="350" 
 		Width="525"
@@ -22,16 +22,17 @@
 				<RowDefinition Height="Auto"></RowDefinition>
 				<RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
 			</Grid.RowDefinitions>
 
-			<controls:SearchComboBox 
-                x:Name="searchComboBox"
+			<controls:SearchComboBox
+                x:Name="SearchComboBox1"
                 Grid.Row="0"
 				ShowLabelTextOnFocus="True"
                 BorderThickness="1"
                 VerticalAlignment="Center" 
                 Width="200" 
-
                 Margin="0,0,0,4"
                 LabelText="Простой текст" 
                 SearchEventTimeDelay="00:00:3"
@@ -67,9 +68,54 @@
 					</DataTemplate>
 				</controls:SearchComboBox.ItemTemplate>
 			</controls:SearchComboBox>
-			<Button Grid.Row="2" Content="Focus" Click="Button_Click"></Button>
 
-            <controls:DislodgmentList x:Name="List" Grid.Row="3" Height="30" />
+            <controls:LabeledTextBox 
+                Grid.Row="2" 
+                LabelText="Введите текст..." 
+                Text="{Binding EditableText, Mode=TwoWay}" 
+                Height="25" 
+                Margin="0,0,0,4"
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center" 
+                Width="250" 
+                MaxLength="50"
+                IsReadOnly="false">
+                <controls:LabeledTextBox.TextBoxStyle>
+                    <Style TargetType="TextBox">
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    </Style>
+                </controls:LabeledTextBox.TextBoxStyle>
+            </controls:LabeledTextBox>
+            
+            <controls:LabeledComboBox
+                Grid.Row="3"
+                IsEnabled="True"
+                IsEditable="True"
+                LabelText="Введите текст..."
+                ItemsSource="{Binding Collection}"
+                Text="{Binding SelectedItem}"
+                ShowLabelWhenSelectedItemIs=""
+                VerticalAlignment="Center" 
+                HorizontalAlignment="Center"
+                Width="250"
+                Height="25"
+                Margin="0,0,0,4"
+                MaxLength="100">
+                <controls:LabeledComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}"></TextBlock>
+                    </DataTemplate>
+                </controls:LabeledComboBox.ItemTemplate>
+                <controls:LabeledComboBox.ItemContainerStyle>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Background" Value="White"/>
+                    </Style>
+                </controls:LabeledComboBox.ItemContainerStyle>
+            </controls:LabeledComboBox>
+
+            <Button Grid.Row="4" Content="Focus" Click="Button_Click"></Button>
+
+            <controls:DislodgmentList x:Name="List" Grid.Row="5" Height="30" />
         </Grid>
 
 	</Grid>

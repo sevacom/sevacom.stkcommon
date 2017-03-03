@@ -37,7 +37,7 @@ namespace StkCommon.UI.Wpf.Model
 			// Be nice - use BlockReentrancy like MSDN said
 			using (BlockReentrancy())
 			{
-				var eventHandler = CollectionChanged;
+				var eventHandler = CollectionChanged; //-V3119
 				if (eventHandler == null)
 					return;
 
