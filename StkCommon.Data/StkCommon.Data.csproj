@@ -38,6 +38,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\VersionAssemblyInfo.cs">
@@ -45,6 +47,7 @@
     </Compile>
     <Compile Include="Collections\ObservableKeyedCollection.cs" />
     <Compile Include="Collections\ObservableRangeCollection.cs" />
+    <Compile Include="Extensions\DateTimeEx.cs" />
     <Compile Include="Extensions\DescriptionExtensions.cs" />
     <Compile Include="Diagnostics\ErrorMessageFormater.cs" />
     <Compile Include="Diagnostics\ExceptionHandlerBase.cs" />
@@ -53,16 +56,21 @@
     <Compile Include="Diagnostics\IExceptionNotifier.cs" />
     <Compile Include="Diagnostics\ISimpleLogger.cs" />
     <Compile Include="Diagnostics\TraceFailExceptionNotifier.cs" />
-    <Compile Include="EqutableByKey.cs" />
+    <Compile Include="EquatableByKey.cs" />
     <Compile Include="Extensions\CustomAttributeProviderExtensions.cs" />
     <Compile Include="Extensions\DictionaryExtensions.cs" />
     <Compile Include="Extensions\EnumExtensions.cs" />
     <Compile Include="Extensions\NullableRangeExtensions.cs" />
     <Compile Include="Extensions\ObjectExtensions.cs" />
     <Compile Include="Extensions\StreamExtensions.cs" />
+    <Compile Include="Extensions\ThreadTaskExtensions.cs" />
     <Compile Include="FunctionalComparer.cs" />
     <Compile Include="IKeyModelObject.cs" />
     <Compile Include="IModelObject.cs" />
+    <Compile Include="Mapper\DataReaderStream.cs" />
+    <Compile Include="Mapper\DataReaderToObjectMapper.cs" />
+    <Compile Include="Mapper\StreamSourceDataReader.cs" />
+    <Compile Include="Media\SampleFormat.cs" />
     <Compile Include="Primitives\Range.cs" />
     <Compile Include="NotifyPropertyChangedBase.cs" />
     <Compile Include="Properties\Annotations.cs" />
@@ -89,9 +97,7 @@
   <ItemGroup>
     <None Include="StkCommon.Data.nuspec" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

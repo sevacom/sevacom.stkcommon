@@ -52,7 +52,7 @@ namespace StkCommon.Data
 			}
 #endif
 
-			var handler = PropertyChanged;
+			var handler = PropertyChanged; //-V3119
 			if (handler != null)
 			{
 				var args = EmptyArgs;
@@ -72,7 +72,7 @@ namespace StkCommon.Data
 					args = new PropertyChangedEventArgs(propertyName);
 				}
 
-				OnPropertyChanged(args);
+                OnPropertyChanged(args);
 			}
 		}
 

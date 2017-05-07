@@ -6,7 +6,7 @@ namespace StkCommon.UI.Wpf.DemoApp
 	/// <summary>
 	/// Interaction logic for ControlsWindow.xaml
 	/// </summary>
-	public partial class ControlsWindow : Window
+	public partial class ControlsWindow
 	{
 		public ControlsWindow()
 		{
@@ -18,7 +18,7 @@ namespace StkCommon.UI.Wpf.DemoApp
 
 		private void Button_Click(object sender, RoutedEventArgs e)
 		{
-			searchComboBox.FocusTextBox();
+			SearchComboBox1.FocusTextBox();
 		}
 	}
 }

@@ -16,9 +16,7 @@ namespace StkCommon.UI.Wpf.ViewModels
 	/// </summary>
 	public abstract class AuthorizationViewModelBase : ViewModelBase, IAuthorizationViewModel
 	{
-		#region Fields
-
-		private string _userName;
+	    private string _userName;
 		private string _password;
 		private IEnumerable<object> _servers;
 		private IEnumerable<object> _databases; 
@@ -31,30 +29,30 @@ namespace StkCommon.UI.Wpf.ViewModels
 		private bool _isServersDropDownOpen;
 		private bool _isDataBaseDropDownOpen;
 
-		#endregion
+	    public AuthorizationViewModelBase(AuthorizationMode mode, IShowDialogAgent agent)
+	        : this(mode, agent, true)
+	    {
+	        
+	    }
 
-		#region Constructors
+        protected AuthorizationViewModelBase(AuthorizationMode mode, IShowDialogAgent agent,
+            bool isTrackLanguageChanged)
+        {
+            if (agent == null) throw new ArgumentNullException("agent");
+            _agent = agent;
+            Mode = mode;
+            UiScale = 1.0;
 
-		public AuthorizationViewModelBase(AuthorizationMode mode, IShowDialogAgent agent)
-		{
-			if (agent == null) throw new ArgumentNullException("agent");
-			_agent = agent;
-			Mode = mode;
-			UiScale = 1.0;
+            if (isTrackLanguageChanged)
+                InitializeLanguage();
 
-			InitializeLanguage();
+            OkCommand = new DelegateCommand(OkCommandHandler, CanOkCommandHandler);
+        }
 
-			OkCommand = new DelegateCommand(OkCommandHandler, CanOkCommandHandler);
-		}
-
-		#endregion
-
-		#region Properties
-
-		/// <summary>
-		/// Логин пользователя
-		/// </summary>
-		public string UserName
+	    /// <summary>
+        /// Логин пользователя
+        /// </summary>
+        public string UserName
 		{
 			get { return _userName; }
 			set
@@ -265,17 +263,9 @@ namespace StkCommon.UI.Wpf.ViewModels
 			}
 		}
 
-		#endregion
+	    public ICommand OkCommand { get; private set; }
 
-		#region Commands
-
-		public ICommand OkCommand { get; private set; }
-
-		#endregion
-
-		#region Сommand Handlers
-
-		private bool CanOkCommandHandler(object obj)
+	    private bool CanOkCommandHandler(object obj)
 		{
 			if (string.IsNullOrWhiteSpace(UserName))
 				return false;
@@ -310,28 +300,13 @@ namespace StkCommon.UI.Wpf.ViewModels
 
 		}
 
-		#endregion
-
-		#region Protected Methods
-
-		/// <summary>
+	    /// <summary>
 		/// Выполнить авторизацию (аутентификацию)
 		/// Всё что завёрнуто в UserMessageException обрабатывается, оторажается сообщение с текстом Message, закрытие окна авторизации отменяется 
 		/// Остальные Exception тоже обрабатываются, окно авторизации закрывается
 		/// </summary>
 		/// <returns>true - авторизация прошла успешно, false - закрыть оконо авторизации с DialogResult = false</returns>
 		protected abstract bool Authorize();
-
-		/// <summary>
-		/// Инициализация языка
-		/// </summary>
-		protected virtual void InitializeLanguage()
-		{
-			_languageManager = InputLanguageManager.Current;
-			_languageManager.InputLanguageChanged += InputLanguageChanged;
-
-			InputLanguageChanged(this, null);
-		}
 
 		/// <summary>
 		/// Открытие/закрытие выпадающего списока серверов
@@ -351,11 +326,18 @@ namespace StkCommon.UI.Wpf.ViewModels
 
 		}
 
-		#endregion
+        /// <summary>
+		/// Инициализация языка
+		/// </summary>
+		private void InitializeLanguage()
+        {
+            _languageManager = InputLanguageManager.Current;
+            _languageManager.InputLanguageChanged += InputLanguageChanged;
 
-		#region Private Methods
+            InputLanguageChanged(this, null);
+        }
 
-		private void InputLanguageChanged(object sender, InputLanguageEventArgs e)
+        private void InputLanguageChanged(object sender, InputLanguageEventArgs e)
 		{
 			InputLanguage = _languageManager.CurrentInputLanguage.TwoLetterISOLanguageName.ToUpper();
 		}
@@ -365,8 +347,5 @@ namespace StkCommon.UI.Wpf.ViewModels
 			if (_languageManager != null)
 				_languageManager.InputLanguageChanged -= InputLanguageChanged;
 		}
-
-		#endregion
-
 	}
 }

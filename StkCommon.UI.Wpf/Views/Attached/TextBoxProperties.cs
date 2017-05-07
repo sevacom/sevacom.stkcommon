@@ -1,4 +1,4 @@
-using System.Windows;
+п»їusing System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using StkCommon.UI.Wpf.Helpers;
@@ -6,7 +6,7 @@ using StkCommon.UI.Wpf.Helpers;
 namespace StkCommon.UI.Wpf.Views.Attached
 {
 	/// <summary>
-	/// Attached property 'SelectAllTextWhenGotFocus' для TextBox, выделяет текст при получении фокуса  
+	/// Attached property 'SelectAllTextWhenGotFocus' РґР»СЏ TextBox, РІС‹РґРµР»СЏРµС‚ С‚РµРєСЃС‚ РїСЂРё РїРѕР»СѓС‡РµРЅРёРё С„РѕРєСѓСЃР°  
 	/// </summary>
     public static class TextBoxProperties
     {

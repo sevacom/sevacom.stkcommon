@@ -7,11 +7,19 @@ namespace StkCommon.Data
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
 	/// <typeparam name="TKey"></typeparam>
-	public abstract class EqutableByKey<T, TKey> : NotifyPropertyChangedBase, IEquatable<T>, IKeyModelObject<TKey>
+	public abstract class EquatableByKey<T, TKey> : NotifyPropertyChangedBase, IEquatable<T>, IKeyModelObject<TKey>
 		where T : class, IKeyModelObject<TKey>
-		where TKey : struct, IEquatable<TKey>
+		where TKey : IEquatable<TKey>
 	{
-		public TKey Key { get; set; }
+	    protected EquatableByKey(TKey key)
+	    {
+            if(!typeof(TKey).IsValueType && ReferenceEquals(key, null))
+                throw new ArgumentNullException(nameof(key));
+
+	        Key = key;
+	    }
+
+        public TKey Key { get; }
 
 		public override bool Equals(object obj)
 		{
@@ -22,8 +30,8 @@ namespace StkCommon.Data
 
 		public override int GetHashCode()
 		{
-			return Key.GetHashCode();
-		}
+            return Key.GetHashCode();
+        }
 
 		public bool Equals(T other)
 		{

@@ -1,0 +1,15 @@
+EXEC sp_addextendedproperty 'DBProjector_Version', '1.0.0.0'
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<SrlClassTypes>
+  <types>
+    <string>MSSQLCommon.ExtPropLevel0</string>
+  </types>
+</SrlClassTypes>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<ExtPropLevel0 objtype="EXT_PROP_LEVEL0" f_name="DBProjector_Version" f_owner="">
+  <f_transactional>true</f_transactional>
+  <description />
+  <value>1.0.0.0</value>
+</ExtPropLevel0>

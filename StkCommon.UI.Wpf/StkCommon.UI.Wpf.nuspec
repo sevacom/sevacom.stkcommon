@@ -4,17 +4,20 @@
 		<id>$id$</id>
 		<version>$version$</version>
 		<title>$title$</title>
-		<authors>Signatec</authors>
-		<owners>Signatec</owners>
-		<description>Общая библиотека для работы с WPF</description>
+    <authors>Sergey Sivolovskiy</authors>
+    <owners>$author$</owners>
+		<description>$description$</description>
+    <projectUrl>https://github.com/sevacom/sevacom.stkcommon</projectUrl>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
 		<releaseNotes />
-		<copyright>Copyright 2016</copyright>
+		<copyright>$copyright$</copyright>
 		<dependencies>
-			<dependency id="StkCommon.Data"/>
+			<dependency id="StkCommon.Data" version="1.3.0"/>
 		</dependencies>
+    <tags>common WPF UI viewmodel controls</tags>
 	</metadata>
 	<files>
-		<file src="bin\Release\StkCommon.UI.Wpf.dll" target="lib\net40\StkCommon.UI.Wpf.dll" />
-		<file src="bin\Release\StkCommon.UI.Wpf.xml" target="lib\net40\StkCommon.UI.Wpf.xml" />
+		<file src="bin\$configuration$\$id$.dll" target="lib\net40\" />
+		<file src="bin\$configuration$\$id$.xml" target="lib\net40\" />
 	</files>
 </package>

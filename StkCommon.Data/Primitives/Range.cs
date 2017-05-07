@@ -31,22 +31,19 @@ namespace StkCommon.Data.Primitives
 		/// <summary>
 		/// 
 		/// </summary>
-		public T Min { get; set; }
+		public T Min { get; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public T Max { get; set; }
+		public T Max { get; }
 
 		/// <summary>
 		/// 
 		/// </summary>
-		public bool IsValid
-		{
-			get { return Min.CompareTo(Max) <= 0; }
-		}
+		public bool IsValid => Min.CompareTo(Max) <= 0;
 
-		public bool Equals(Range<T> other)
+	    public bool Equals(Range<T> other)
 		{
 			if (ReferenceEquals(null, other)) return false;
 			if (ReferenceEquals(this, other)) return true;
@@ -106,27 +103,21 @@ namespace StkCommon.Data.Primitives
 		/// <summary>
 		///     Inclusive lower boundary value of this range.
 		/// </summary>
-		public T? Min { get; set; }
+		public T? Min { get; }
 
 		/// <summary>
 		///     Inclusive upper boundary value of this range.
 		/// </summary>
-		public T? Max { get; set; }
+		public T? Max { get; }
 
 		/// <summary>
 		///     Returns <value>true</value> if this range have valid boundary values, otherwise <value>false</value>.
 		/// </summary>
-		public bool IsValid
-		{
-			get
-			{
-				return !Min.HasValue ||
-					   !Max.HasValue ||
-					   Min.Value.CompareTo(Max.Value) <= 0;
-			}
-		}
+		public bool IsValid => !Min.HasValue ||
+		                       !Max.HasValue ||
+		                       Min.Value.CompareTo(Max.Value) <= 0;
 
-		public bool Equals(NullableRange<T> other)
+	    public bool Equals(NullableRange<T> other)
 		{
 			if (ReferenceEquals(null, other)) return false;
 			if (ReferenceEquals(this, other)) return true;
@@ -154,7 +145,7 @@ namespace StkCommon.Data.Primitives
 		{
 			unchecked
 			{
-				return ((Min.HasValue ? Min.Value.GetHashCode() : 0) * 397) ^ (Max.HasValue ? Max.Value.GetHashCode() : 0);
+				return ((Min?.GetHashCode() ?? 0) * 397) ^ (Max?.GetHashCode() ?? 0);
 			}
 		}
 	}

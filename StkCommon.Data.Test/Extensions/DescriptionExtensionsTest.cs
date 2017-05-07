@@ -1,4 +1,4 @@
-using System.Linq;
+п»їusing System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using StkCommon.Data.Common;
@@ -24,9 +24,9 @@ namespace StkCommon.Data.Test.Extensions
 			var res3 = firstField.GetCustomAttribute<DescriptionAttribute>().Description;
 
 			//Then
-			res1.Should().ContainSingle(p => p.Description == "Создание ОТМ");
-			res2.Should().Be("Создание ОТМ");
-			res3.Should().Be("Создание ОТМ");
+			res1.Should().ContainSingle(p => p.Description == "РЎРѕР·РґР°РЅРёРµ РћРўРњ");
+			res2.Should().Be("РЎРѕР·РґР°РЅРёРµ РћРўРњ");
+			res3.Should().Be("РЎРѕР·РґР°РЅРёРµ РћРўРњ");
 
 		}
 	}
@@ -36,13 +36,13 @@ namespace StkCommon.Data.Test.Extensions
 		public static class VideoControl
 		{
 			/// <summary>
-			/// Создание ОТМ
+			/// РЎРѕР·РґР°РЅРёРµ РћРўРњ
 			/// </summary>
-			[Description("Создание ОТМ")]
+			[Description("РЎРѕР·РґР°РЅРёРµ РћРўРњ")]
 			public static int CreateTask = 1901;
 
 			/// <summary>
-			/// Обновление ОТМ
+			/// РћР±РЅРѕРІР»РµРЅРёРµ РћРўРњ
 			/// </summary>
 			public static int UpdateTask = 1902;
 

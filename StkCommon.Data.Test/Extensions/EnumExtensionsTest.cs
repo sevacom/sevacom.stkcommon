@@ -1,4 +1,4 @@
-using FluentAssertions;
+п»їusing FluentAssertions;
 using NUnit.Framework;
 using StkCommon.Data.Extensions;
 using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
@@ -31,7 +31,7 @@ namespace StkCommon.Data.Test.Extensions
 		}
 
 		/// <summary>
-		/// Тестовое перечисление без атрибута описания
+		/// РўРµСЃС‚РѕРІРѕРµ РїРµСЂРµС‡РёСЃР»РµРЅРёРµ Р±РµР· Р°С‚СЂРёР±СѓС‚Р° РѕРїРёСЃР°РЅРёСЏ
 		/// </summary>
 		public enum TestEnum
 		{

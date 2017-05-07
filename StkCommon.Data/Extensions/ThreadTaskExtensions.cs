@@ -2,10 +2,14 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace StkCommon.Data.Common
+namespace StkCommon.Data.Extensions
 {
-	public static class ThreadTaskExtension
+	public static class ThreadTaskExtensions
 	{
+		/// <summary>
+		/// True - все Task созданные при помощи этого расширения запускаются синхронно.
+		/// По умолчанию False
+		/// </summary>
 		public static bool IsSyncRun { get; set; }
 
 		/// <summary>
@@ -21,7 +25,7 @@ namespace StkCommon.Data.Common
 		/// </summary>
 		public static Task<TResult> Run<TResult>(Func<TResult> action, CancellationToken cancellationToken, bool? isSyncRun = null)
 		{
-			return IsSync(isSyncRun) ? Task.FromResult(action()) : Task.Run(action, cancellationToken);
+			return IsSync(isSyncRun) ? FromResult(action()) : Task.Factory.StartNew(action, cancellationToken);
 		}
 
 		/// <summary>
@@ -40,30 +44,34 @@ namespace StkCommon.Data.Common
 			if (IsSync(isSyncRun))
 			{
 				action();
-				return Task.FromResult<object>(null);
+				return FromResult<object>(null);
 			}
 
-			return Task.Run(action, cancellationToken);
+			return Task.Factory.StartNew(action, cancellationToken);
 		}
 
 		/// <summary>
-		/// Проверяет с задержкой исполняется ли задание или нет
+		/// Выполнить задачу через Task и забыть.
+		/// Если action кидает Exception, то он проглатывается, поэтому если хотите знать что за ошибка произошла, то оборачивайте внутри action
 		/// </summary>
-		/// <returns>true - исполняется, false - завершилось</returns>
-		public static async Task<bool> IsLoading(this Task waitTask, bool? isSyncRun = null, TimeSpan? waitDelta = null)
+		public static void Execute(Action action, bool? isSyncRun = null)
 		{
 			if (IsSync(isSyncRun))
-			{
-				return false;
-			}
-
-			await Task.Delay(waitDelta.GetValueOrDefault(TimeSpan.FromMilliseconds(250)));
-			return !waitTask.IsCompleted;
+				action();
+			else
+				Run(action, isSyncRun).ContinueWith(p => p.Dispose());
 		}
 
 		private static bool IsSync(bool? isSyncRun)
 		{
-			return (null == isSyncRun ? IsSyncRun : isSyncRun.Value);
+			return isSyncRun ?? IsSyncRun;
+		}
+
+		private static Task<T> FromResult<T>(T result)
+		{
+			var tcs = new TaskCompletionSource<T>();
+			tcs.SetResult(result);
+			return tcs.Task;
 		}
 	}
 }

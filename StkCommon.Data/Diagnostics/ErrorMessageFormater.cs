@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using StkCommon.Data.Text;
 
 namespace StkCommon.Data.Diagnostics
@@ -6,12 +6,12 @@ namespace StkCommon.Data.Diagnostics
 	public class ErrorMessageFormater
 	{
 		/// <summary>
-		/// Формирует сообщение об ошибке. message + separator + exception.Message
-		/// Если в exception нет сообщения или exception = null, то выводится только message
+		/// Р¤РѕСЂРјРёСЂСѓРµС‚ СЃРѕРѕР±С‰РµРЅРёРµ РѕР± РѕС€РёР±РєРµ. message + separator + exception.Message
+		/// Р•СЃР»Рё РІ exception РЅРµС‚ СЃРѕРѕР±С‰РµРЅРёСЏ РёР»Рё exception = null, С‚Рѕ РІС‹РІРѕРґРёС‚СЃСЏ С‚РѕР»СЊРєРѕ message
 		/// </summary>
 		/// <param name="message"></param>
 		/// <param name="exception"></param>
-		/// <param name="separator">null соответствует одинарному переводу строки</param>
+		/// <param name="separator">null СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ РѕРґРёРЅР°СЂРЅРѕРјСѓ РїРµСЂРµРІРѕРґСѓ СЃС‚СЂРѕРєРё</param>
 		/// <returns></returns>
 		public static string FormatErrorMessage(string message, Exception exception = null, string separator = null)
 		{

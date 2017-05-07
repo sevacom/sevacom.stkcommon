@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package>
+	<metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Sergey Sivolovskiy, Alexander Elizarov</authors>
+    <owners>$author$</owners>
+    <description>$description$</description>
+    <projectUrl>https://github.com/sevacom/sevacom.stkcommon</projectUrl>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <releaseNotes/>
+    <copyright>$copyright$</copyright>
+		<dependencies>
+			<dependency id="NUnit" version="2.6.4"/>
+			<dependency id="Moq" version="4.2.1510.2205"/>
+			<dependency id="Moq.AutoMock" version="0.4.0"/>
+		</dependencies>
+    <tags>common nunit moq mock automock test testing database</tags>
+	</metadata>
+	<files>
+    <file src="bin\$configuration$\$id$.dll" target="lib\net40\" />
+    <file src="bin\$configuration$\$id$.xml" target="lib\net40\" />
+	</files>
+</package>

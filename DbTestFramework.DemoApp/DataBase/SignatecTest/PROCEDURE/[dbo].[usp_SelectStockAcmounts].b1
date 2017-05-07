@@ -1,0 +1,41 @@
+CREATE PROCEDURE [dbo].[usp_SelectStockAcmounts]
+  @stockId INT = NULL
+AS 
+SELECT 
+ ds.Id StockId,
+ dp.Id ProductId,
+ ds.Amount,
+ dp.Weight,
+ dp.Name
+FROM dt_Stock ds
+INNER JOIN dt_Products dp ON ds.ProductId = dp.Id
+WHERE @stockId IS NULL OR @stockId = ds.Id
+GO
+
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<SrlClassTypes>
+  <types>
+    <string>MSSQLCommon.ProcIt</string>
+  </types>
+</SrlClassTypes>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<ProcIt objtype="Proc" f_name="usp_SelectStockAcmounts" f_owner="dbo">
+  <f_transactional>true</f_transactional>
+  <description />
+  <B1ItComment />
+  <StorageStatus>add</StorageStatus>
+  <body_pattern_text>%well_formated_caption&#xD;
+  @stockId INT = NULL&#xD;
+AS &#xD;
+SELECT &#xD;
+ ds.Id StockId,&#xD;
+ dp.Id ProductId,&#xD;
+ ds.Amount,&#xD;
+ dp.Weight,&#xD;
+ dp.Name&#xD;
+FROM dt_Stock ds&#xD;
+INNER JOIN dt_Products dp ON ds.ProductId = dp.Id&#xD;
+WHERE @stockId IS NULL OR @stockId = ds.Id</body_pattern_text>
+</ProcIt>

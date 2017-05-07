@@ -29,7 +29,7 @@ namespace StkCommon.Data.Text
 		/// <param name="count1Name">что подставить если цифра заканчивается на 1 (1 сеанс)</param>
 		/// <param name="countManyName">что подставить если множественное число (25 сеансов)</param>
 		/// <param name="count234Name">что подставить если число заканчивается на 2,3,4 (24 сеанса)</param>
-		/// <param name="countZero">Текст если знчение 0, если не задан то используется countManyName</param>
+		/// <param name="countZero">Текст если знчение 0, если не задан то используется countManyNameFormat</param>
 		/// <returns></returns>
 		public static string NumeralTextEx(int count, string count1Name, string countManyName,
 			string count234Name, string countZero = null)
@@ -61,15 +61,15 @@ namespace StkCommon.Data.Text
 		/// Строковые параметры count поддерживают форматирование '{0}'
 		/// </summary>
 		/// <param name="count">число для которого надо окончание</param>
-		/// <param name="count1Name">что подставить если цифра заканчивается на 1 (1 сеанс)</param>
-		/// <param name="countManyName">что подставить если множественное число (25 сеансов)</param>
-		/// <param name="count234Name">что подставить если число заканчивается на 2,3,4 (24 сеанса)</param>
-		/// <param name="countZero">Текст если знчение 0, если не задан то используется countManyName</param>
+		/// <param name="count1NameFormat">что подставить если цифра заканчивается на 1 (1 сеанс)</param>
+		/// <param name="countManyNameFormat">что подставить если множественное число (25 сеансов)</param>
+		/// <param name="count234NameFormat">что подставить если число заканчивается на 2,3,4 (24 сеанса)</param>
+		/// <param name="countZeroFormat">Текст если знчение 0, если не задан то используется countManyNameFormat</param>
 		/// <returns></returns>
-		public static string NumeralTextFormat(int count, string count1Name,
-			string countManyName, string count234Name, string countZero = null)
+		public static string NumeralTextFormat(int count, string count1NameFormat,
+			string countManyNameFormat, string count234NameFormat, string countZeroFormat = null)
 		{
-			var text = NumeralTextEx(count, count1Name, countManyName, count234Name, countZero);
+			var text = NumeralTextEx(count, count1NameFormat, countManyNameFormat, count234NameFormat, countZeroFormat);
 			return !string.IsNullOrEmpty(text) ? string.Format(text, count) : text;
 		}
 
@@ -89,18 +89,33 @@ namespace StkCommon.Data.Text
 		/// </summary>
 		public static string JoinNotEmpty(string separator, IEnumerable<string> values)
 		{
-			if (separator == null) throw new ArgumentNullException("separator");
-			if (values == null) throw new ArgumentNullException("values");
+			if (separator == null) throw new ArgumentNullException(nameof(separator));
+			if (values == null) throw new ArgumentNullException(nameof(values));
 
-			return string.Join(separator, values.Where(p => !string.IsNullOrWhiteSpace(p))).Trim();
+		    return values.JoinNotEmpty(separator, true);
 		}
 
-		/// <summary>
-		/// TrimIfNotNull
+        /// <summary>
+		/// Объеденить только непустые значения через разделитель
 		/// </summary>
-		/// <param name="str"></param>
-		/// <returns></returns>
-		public static string TrimIfNotNull(this string str)
+		public static string JoinNotEmpty(this IEnumerable<string> values, string separator, bool checkWhiteSpace)
+        {
+            if (separator == null) throw new ArgumentNullException(nameof(separator));
+            if (values == null) throw new ArgumentNullException(nameof(values));
+
+            var valuesTmp = checkWhiteSpace
+                    ? values.Where(p => !string.IsNullOrWhiteSpace(p))
+                    : values.Where(p => !string.IsNullOrEmpty(p));
+
+            return string.Join(separator, valuesTmp).Trim();
+        }
+
+        /// <summary>
+        /// TrimIfNotNull
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static string TrimIfNotNull(this string str)
 		{
 			return !string.IsNullOrEmpty(str) ? str.Trim() : str;
 		}

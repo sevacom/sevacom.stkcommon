@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Linq.Expressions;
 
 namespace StkCommon.Data
@@ -9,7 +9,7 @@ namespace StkCommon.Data
 	public static class PropertyName
 	{
 		/// <summary>
-		/// Получить строковое название свосйтва, поддерживает вложенность
+		/// РџРѕР»СѓС‡РёС‚СЊ СЃС‚СЂРѕРєРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СЃРІРѕСЃР№С‚РІР°, РїРѕРґРґРµСЂР¶РёРІР°РµС‚ РІР»РѕР¶РµРЅРЅРѕСЃС‚СЊ
 		/// </summary>
 		public static string For<T>(
 			Expression<Func<T, object>> expression)
@@ -19,7 +19,7 @@ namespace StkCommon.Data
 		}
 
 		/// <summary>
-		/// Получить строковое название свосйтва, поддерживает вложенность
+		/// РџРѕР»СѓС‡РёС‚СЊ СЃС‚СЂРѕРєРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СЃРІРѕСЃР№С‚РІР°, РїРѕРґРґРµСЂР¶РёРІР°РµС‚ РІР»РѕР¶РµРЅРЅРѕСЃС‚СЊ
 		/// </summary>
 		public static string For(
 			Expression<Func<object>> expression)
@@ -29,7 +29,7 @@ namespace StkCommon.Data
 		}
 
 		/// <summary>
-		/// Получить строковое название свосйтва, поддерживает вложенность
+		/// РџРѕР»СѓС‡РёС‚СЊ СЃС‚СЂРѕРєРѕРІРѕРµ РЅР°Р·РІР°РЅРёРµ СЃРІРѕСЃР№С‚РІР°, РїРѕРґРґРµСЂР¶РёРІР°РµС‚ РІР»РѕР¶РµРЅРЅРѕСЃС‚СЊ
 		/// </summary>
 		public static string For<T>(
 			Expression<Func<T>> expression)

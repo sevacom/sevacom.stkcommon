@@ -1,12 +1,11 @@
-using System;
+п»їusing System;
 using System.Windows.Input;
 
 namespace StkCommon.UI.Wpf.Model
 {
 	/// <summary>
-	/// Сочетание клавиш
+	/// РЎРѕС‡РµС‚Р°РЅРёРµ РєР»Р°РІРёС€
 	/// </summary>
-	[Serializable]
 	public struct ShortCut : IEquatable<ShortCut>
 	{
 		public static readonly ShortCut None = new ShortCut(Key.None, ModifierKeys.None);
@@ -32,9 +31,9 @@ namespace StkCommon.UI.Wpf.Model
 			Modifier = (ModifierKeys)Enum.ToObject(typeof(ModifierKeys), modifier);
 		}
 
-		public Key Key { get; set; }
+		public Key Key { get; private set; }
 
-		public ModifierKeys Modifier { get; set; }
+		public ModifierKeys Modifier { get; private set; }
 
 		public bool Equals(ShortCut other)
 		{

@@ -217,4 +217,7 @@ pip-log.txt
 /packages/Moq.4.2.1502.0911
 /packages/NUnit.2.6.4
 *.DotSettings
-packages/
+/packages/BLToolkit.4.3.4
+/packages/Moq.AutoMock.0.4.0.0
+/packages/Moq.4.2.1510.2205
+/packages/FluentAssertions.4.14.0

@@ -1,17 +1,20 @@
 <?xml version="1.0"?>
 <package>
 	<metadata>
-		<id>$id$</id>
-		<version>$version$</version>
-		<title>$title$</title>
-		<authors>Signatec</authors>
-		<owners>Signatec</owners>
-		<description>Общая библиотека для работы с данными</description>
-		<releaseNotes />
-		<copyright>Copyright 2016</copyright>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Sergey Sivolovskiy</authors>
+    <owners>$author$</owners>
+    <description>$description$</description>
+    <projectUrl>https://github.com/sevacom/sevacom.stkcommon</projectUrl>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <releaseNotes />
+    <copyright>$copyright$</copyright>
+    <tags>common utils data</tags>
 	</metadata>
 	<files>
-		<file src="bin\Release\StkCommon.Data.dll" target="lib\net40\StkCommon.Data.dll" />
-		<file src="bin\Release\StkCommon.Data.xml" target="lib\net40\StkCommon.Data.xml" />
+    <file src="bin\$configuration$\$id$.dll" target="lib\net40\" />
+    <file src="bin\$configuration$\$id$.xml" target="lib\net40\" />
 	</files>
 </package>

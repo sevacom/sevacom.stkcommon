@@ -1,4 +1,4 @@
-using FluentAssertions;
+п»їusing FluentAssertions;
 using NUnit.Framework;
 using StkCommon.UI.Wpf.Commands;
 
@@ -46,9 +46,9 @@ namespace StkCommon.UI.Wpf.Test.Commands
 			var canExecuteActualReturnValue = _target.CanExecute();
 
 			//Then
-			_canExecuteRiseCount.Should().Be(1, "CanExecute не вызвалось");
+			_canExecuteRiseCount.Should().Be(1, "CanExecute РЅРµ РІС‹Р·РІР°Р»РѕСЃСЊ");
 			canExecuteActualReturnValue.Should().Be(_canExecuteExpectedReturnValue,
-				"Возвращаемое значение CanExecute не соответствует заданному");
+				"Р’РѕР·РІСЂР°С‰Р°РµРјРѕРµ Р·РЅР°С‡РµРЅРёРµ CanExecute РЅРµ СЃРѕРѕС‚РІРµС‚СЃС‚РІСѓРµС‚ Р·Р°РґР°РЅРЅРѕРјСѓ");
 		}
 
 		[Test]
@@ -59,7 +59,7 @@ namespace StkCommon.UI.Wpf.Test.Commands
 			var command = new SimpleDelegateCommand(() => { });
 
 			//Then
-			command.CanExecute("Test").Should().BeTrue("CanExecute должен возвращать True если не задан CanExecute Func");
+			command.CanExecute("Test").Should().BeTrue("CanExecute РґРѕР»Р¶РµРЅ РІРѕР·РІСЂР°С‰Р°С‚СЊ True РµСЃР»Рё РЅРµ Р·Р°РґР°РЅ CanExecute Func");
 		}
 
 		[Test]
@@ -70,7 +70,7 @@ namespace StkCommon.UI.Wpf.Test.Commands
 			_target.Execute();
 
 			//Then
-			_executeRiseCount.Should().Be(1, "Execute не вызвалось");
+			_executeRiseCount.Should().Be(1, "Execute РЅРµ РІС‹Р·РІР°Р»РѕСЃСЊ");
 		}
 	}
 }

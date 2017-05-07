@@ -1,4 +1,4 @@
-using System.Linq;
+Ôªøusing System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
 using StkCommon.Data.Extensions;
@@ -26,9 +26,9 @@ namespace StkCommon.Data.Test.Extensions
 			var secondFieldAttribute = secondField.GetCustomAttribute<DescriptionAttribute>();
 
 			//Then
-			firstFieldAttributes.Should().ContainSingle(p => p.Description == "—ÓÁ‰‡ÌËÂ Œ“Ã");
+			firstFieldAttributes.Should().ContainSingle(p => p.Description == "–°–æ–∑–¥–∞–Ω–∏–µ –û–¢–ú");
 			firstFieldAttribute.Should().NotBeNull();
-			firstFieldAttribute.Description.Should().Be("—ÓÁ‰‡ÌËÂ Œ“Ã");
+			firstFieldAttribute.Description.Should().Be("–°–æ–∑–¥–∞–Ω–∏–µ –û–¢–ú");
 			secondFieldAttribute.Should().BeNull();
 		}
 	}

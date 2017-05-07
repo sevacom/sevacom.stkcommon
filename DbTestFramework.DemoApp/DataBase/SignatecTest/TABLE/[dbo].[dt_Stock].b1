@@ -1,0 +1,85 @@
+CREATE TABLE [dbo].[dt_Stock]
+(
+    [Id] [int] NOT NULL IDENTITY(1,1),
+    [ProductId] [int] NOT NULL,
+    [Amount] [int] NOT NULL
+);
+GO
+ALTER TABLE [dbo].[dt_Stock] ADD CONSTRAINT [PK_dt_Stock_Id] PRIMARY KEY CLUSTERED ([Id] ASC) WITH ( STATISTICS_NORECOMPUTE=OFF, PAD_INDEX=OFF, IGNORE_DUP_KEY=OFF, ALLOW_ROW_LOCKS=ON, ALLOW_PAGE_LOCKS=ON ) ON [PRIMARY];
+GO
+ALTER TABLE [dbo].[dt_Stock] ADD CONSTRAINT [FK_dt_Stock_ProductId] FOREIGN KEY (ProductId) REFERENCES dbo.dt_Products (Id) ON DELETE CASCADE;
+GO
+
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<SrlClassTypes>
+  <types>
+    <string>MSSQLCommon.TableIt</string>
+    <string>MSSQLCommon.ForeignKey</string>
+    <string>MSSQLCommon.ColumnDesc</string>
+    <string>MSSQLCommon.ColumnDesc</string>
+    <string>MSSQLCommon.ColumnDesc</string>
+    <string>MSSQLCommon.PKIndexConstraint</string>
+  </types>
+</SrlClassTypes>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<TableIt objtype="TABLE" f_name="dt_Stock" f_owner="dbo">
+  <f_transactional>true</f_transactional>
+  <description />
+  <B1ItComment />
+  <StorageStatus>add</StorageStatus>
+</TableIt>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<ForeignKey objtype="FORIGN_KEY" f_name="FK_dt_Stock_ProductId">
+  <keys>ProductId</keys>
+  <keys2>REFERENCES dbo.dt_Products (Id)</keys2>
+  <cascade> ON DELETE CASCADE</cascade>
+  <with_nocheck>false</with_nocheck>
+</ForeignKey>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<ColumnDesc objtype="COLUMN" f_name="Id">
+  <type_name>int</type_name>
+  <identity>true</identity>
+  <ident_seed>1</ident_seed>
+  <ident_inc>1</ident_inc>
+  <position>1</position>
+  <length>10</length>
+  <nullable>false</nullable>
+</ColumnDesc>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<ColumnDesc objtype="COLUMN" f_name="ProductId">
+  <type_name>int</type_name>
+  <identity>false</identity>
+  <ident_seed>1</ident_seed>
+  <ident_inc>1</ident_inc>
+  <position>2</position>
+  <length>10</length>
+  <nullable>false</nullable>
+</ColumnDesc>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<ColumnDesc objtype="COLUMN" f_name="Amount">
+  <type_name>int</type_name>
+  <identity>false</identity>
+  <ident_seed>1</ident_seed>
+  <ident_inc>1</ident_inc>
+  <position>3</position>
+  <length>10</length>
+  <nullable>false</nullable>
+</ColumnDesc>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<PKIndexConstraint objtype="PRIMARY_KEY" f_name="PK_dt_Stock_Id">
+  <index_keys>Id</index_keys>
+  <index_descr>clustered, unique, primary key located on PRIMARY</index_descr>
+  <include_columns />
+  <WITH_PAD_INDEX>false</WITH_PAD_INDEX>
+  <WITH_IGNORE_DUP_KEY>false</WITH_IGNORE_DUP_KEY>
+  <WITH_ALLOW_ROW_LOCKS>true</WITH_ALLOW_ROW_LOCKS>
+  <WITH_ALLOW_PAGE_LOCKS>true</WITH_ALLOW_PAGE_LOCKS>
+  <WITH_FILLFACTOR>0</WITH_FILLFACTOR>
+</PKIndexConstraint>

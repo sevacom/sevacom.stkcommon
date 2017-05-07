@@ -1,0 +1,35 @@
+CREATE PROCEDURE [dbo].[usp_SelectProducts]
+ @id INT = NULL
+AS 
+ SELECT
+  p.Id,
+  p.Name,
+  p.Weight
+  FROM dbo.dt_Products p
+  WHERE @id IS NULL OR p.id = @id
+GO
+
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<SrlClassTypes>
+  <types>
+    <string>MSSQLCommon.ProcIt</string>
+  </types>
+</SrlClassTypes>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<ProcIt objtype="Proc" f_name="usp_SelectProducts" f_owner="dbo">
+  <f_transactional>true</f_transactional>
+  <description />
+  <B1ItComment />
+  <StorageStatus>add</StorageStatus>
+  <body_pattern_text>%well_formated_caption&#xD;
+ @id INT = NULL&#xD;
+AS &#xD;
+ SELECT&#xD;
+  p.Id,&#xD;
+  p.Name,&#xD;
+  p.Weight&#xD;
+  FROM dbo.dt_Products p&#xD;
+  WHERE @id IS NULL OR p.id = @id</body_pattern_text>
+</ProcIt>

@@ -1,0 +1,27 @@
+CREATE PROCEDURE [dbo].[usp_DeleteProduct]
+  @productId INT
+AS 
+ DELETE FROM dt_Products
+ WHERE Id = @productId
+GO
+
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<SrlClassTypes>
+  <types>
+    <string>MSSQLCommon.ProcIt</string>
+  </types>
+</SrlClassTypes>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<ProcIt objtype="Proc" f_name="usp_DeleteProduct" f_owner="dbo">
+  <f_transactional>true</f_transactional>
+  <description />
+  <B1ItComment />
+  <StorageStatus>add</StorageStatus>
+  <body_pattern_text>%well_formated_caption&#xD;
+  @productId INT&#xD;
+AS &#xD;
+ DELETE FROM dt_Products&#xD;
+ WHERE Id = @productId</body_pattern_text>
+</ProcIt>

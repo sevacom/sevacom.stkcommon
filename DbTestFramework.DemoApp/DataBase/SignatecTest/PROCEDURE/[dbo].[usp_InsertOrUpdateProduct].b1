@@ -1,0 +1,75 @@
+CREATE PROCEDURE [dbo].[usp_InsertOrUpdateProduct]
+  @id INT = NULL,
+  @name NVARCHAR(MAX),
+  @weight INT
+AS 
+DECLARE @idTable TABLE(Id INT)
+IF @id IS NULL 
+BEGIN  
+  INSERT INTO dt_Products (Name, Weight)
+  VALUES (@name, @weight)
+  INSERT INTO @idTable (Id)
+  SELECT SCOPE_IDENTITY()
+END
+ELSE 
+  BEGIN 
+  UPDATE dt_Products 
+    SET Name = @name
+       ,Weight = @weight
+    WHERE Id = @id
+  INSERT INTO @idTable (Id)
+  VALUES (@id)
+
+  END
+DECLARE @resultId INT
+  
+SELECT @resultId = t.Id 
+  FROM @idTable t
+
+EXEC dbo.usp_SelectProducts @resultId
+GO
+
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<SrlClassTypes>
+  <types>
+    <string>MSSQLCommon.ProcIt</string>
+  </types>
+</SrlClassTypes>
+//<!-----------------------------------!>
+<?xml version="1.0" encoding="utf-16"?>
+<ProcIt objtype="Proc" f_name="usp_InsertOrUpdateProduct" f_owner="dbo">
+  <f_transactional>true</f_transactional>
+  <description />
+  <B1ItComment />
+  <StorageStatus>change</StorageStatus>
+  <body_pattern_text>%well_formated_caption&#xD;
+  @id INT = NULL,&#xD;
+  @name NVARCHAR(MAX),&#xD;
+  @weight INT&#xD;
+AS &#xD;
+DECLARE @idTable TABLE(Id INT)&#xD;
+IF @id IS NULL &#xD;
+BEGIN  &#xD;
+  INSERT INTO dt_Products (Name, Weight)&#xD;
+  VALUES (@name, @weight)&#xD;
+  INSERT INTO @idTable (Id)&#xD;
+  SELECT SCOPE_IDENTITY()&#xD;
+END&#xD;
+ELSE &#xD;
+  BEGIN &#xD;
+  UPDATE dt_Products &#xD;
+    SET Name = @name&#xD;
+       ,Weight = @weight&#xD;
+    WHERE Id = @id&#xD;
+  INSERT INTO @idTable (Id)&#xD;
+  VALUES (@id)&#xD;
+&#xD;
+  END&#xD;
+DECLARE @resultId INT&#xD;
+  &#xD;
+SELECT @resultId = t.Id &#xD;
+  FROM @idTable t&#xD;
+&#xD;
+EXEC dbo.usp_SelectProducts @resultId</body_pattern_text>
+</ProcIt>

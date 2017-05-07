@@ -25,32 +25,8 @@ namespace StkCommon.Data.System
 	public class Impersonator : IImpersonator, IDisposable
 	{
 		private WindowsImpersonationContext _wic;
-
-		/// <summary>
-		/// Begins impersonation with the given credentials, Logon type and Logon provider.
-		/// </summary>
-		///<param name="userName">Name of the user.</param>
-		///<param name="domainName">Name of the domain.</param>
-		///<param name="password">The password. <see cref="string"/></param>
-		///<param name="logonType">Type of the logon.</param>
-		///<param name="logonProvider">The logLogonProviderry.Network.LogonProvider"/></param>
-		public Impersonator(string userName, string domainName, string password, LogonType logonType,
-			LogonProvider logonProvider)
-		{
-			Impersonate(userName, domainName, password, logonType, logonProvider);
-		}
-
-		/// <summary>
-		/// Begins impersonation with the given credentials.
-		/// </summary>
-		///<param name="userName">Name of the user.</param>
-		///<param name="domainName">Name of the domain.</param>
-		///<param name="password">The password. <see cref="string"/></param>
-		public Impersonator(string userName, string domainName, string password)
-		{
-			Impersonate(userName, domainName, password, LogonType.Interactive,
-				LogonProvider.Default);
-		}
+		private WindowsIdentity _wi;
+		private WindowsImpersonationContext _wiContext;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Impersonator"/> class.
@@ -65,19 +41,9 @@ namespace StkCommon.Data.System
 		public void Dispose()
 		{
 			UndoImpersonation();
+			DisposeHelper.SafeDispose(ref _wiContext);
+			DisposeHelper.SafeDispose(ref _wi);
 			DisposeHelper.SafeDispose(ref _wic);
-		}
-
-		/// <summary>
-		/// Impersonates the specified user account.
-		/// </summary>
-		///<param name="userName">Name of the user.</param>
-		///<param name="domainName">Name of the domain.</param>
-		///<param name="password">The password. <see cref="string"/></param>
-		public void Impersonate(string userName, string domainName, string password)
-		{
-			Impersonate(userName, domainName, password, LogonType.Interactive,
-				LogonProvider.Default);
 		}
 
 		/// <summary>
@@ -93,8 +59,8 @@ namespace StkCommon.Data.System
 		{
 			UndoImpersonation();
 
-			IntPtr logonToken = IntPtr.Zero;
-			IntPtr logonTokenDuplicate = IntPtr.Zero;
+			var logonToken = IntPtr.Zero;
+			var logonTokenDuplicate = IntPtr.Zero;
 			try
 			{
 				// revert to the application pool identity, saving the identity of the current requestor
@@ -108,12 +74,11 @@ namespace StkCommon.Data.System
 					(int)logonProvider,
 					ref logonToken) != 0)
 				{
-					if (
-						Win32NativeMethods.DuplicateToken(logonToken, (int)ImpersonationLevel.SecurityImpersonation,
+					if (Win32NativeMethods.DuplicateToken(logonToken, (int)ImpersonationLevel.SecurityImpersonation,
 							ref logonTokenDuplicate) != 0)
 					{
-						using(var wi = new WindowsIdentity(logonTokenDuplicate))
-							wi.Impersonate(); // discard the returned identity context (which is the context of the application pool)
+						_wi = new WindowsIdentity(logonTokenDuplicate);
+						_wiContext = _wi.Impersonate(); // discard the returned identity context (which is the context of the application pool)
 					}
 					else
 						throw new Win32Exception(Marshal.GetLastWin32Error());
@@ -136,6 +101,12 @@ namespace StkCommon.Data.System
 		/// </summary>
 		private void UndoImpersonation()
 		{
+			if(_wiContext != null)
+				_wiContext.Undo();
+			_wiContext = null;
+
+			DisposeHelper.SafeDispose(ref _wi);
+
 			// restore saved requestor identity
 			if (_wic != null)
 				_wic.Undo();
