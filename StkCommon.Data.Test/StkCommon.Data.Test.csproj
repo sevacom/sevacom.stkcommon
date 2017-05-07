@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Diagnostics\ExceptionHandlerBaseTest.cs" />
+    <Compile Include="EquatableByKeyTest.cs" />
     <Compile Include="Extensions\CustomAttributeProviderExtensionsTest.cs" />
     <Compile Include="Extensions\DateTimeExTest.cs" />
     <Compile Include="Extensions\DescriptionExtensionsTest.cs" />
@@ -88,7 +89,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\" />
     <Folder Include="Repositories\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
