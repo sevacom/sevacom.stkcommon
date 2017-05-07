@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace StkCommon.Data.Media
+﻿namespace StkCommon.Data.Media
 {
 	/// <summary>
 	/// Информация о формате протока сэмплов.
@@ -32,12 +27,12 @@ namespace StkCommon.Data.Media
 		/// <summary>
 		///  Количество каналов.
 		/// </summary>
-		public int Channels { get; private set; }
+		public int Channels { get; }
 
 		/// <summary>
 		/// Sample rate http://en.wikipedia.org/wiki/Sampling_rate
 		/// </summary>
-		public int SampleRate { get; private set; }
+		public int SampleRate { get; }
 
 		/// <summary>
 		/// Получить длительность в милисекундах по количеству семплов

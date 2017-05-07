@@ -9,33 +9,33 @@ namespace StkCommon.TestUtils.DbTestFramework
 {
     public class TestDbFramework : IDisposable
     {
-        private const string SectionNamePrefix = "#";
-        private const string SetupUdtSection = "#SetupUdt";
+        public const string SectionNamePrefix = "#";
+        public const string SetupUdtSection = "#SetupUdt";
         /// <summary>
         ///  Секция задания начальных значений одной или нескольких таблиц
         /// </summary>
-        private const string SetupTableSection = "#SetupTable";
+        public const string SetupTableSection = "#SetupTable";
         /// <summary>
         /// Секция #ResultState позволяет описать состояние базы после выполения тестов
         /// </summary>
-        private const string ResultStateSection = "#ResultState";
+        public const string ResultStateSection = "#ResultState";
 
         [Obsolete("Следует использовать CommentsSection (#Comments)")]
         private const string ParametersSection = "#Parameters";
         /// <summary>
         /// Секция комментариев
         /// </summary>
-        private const string CommentsSection = "#Comments";
+        public const string CommentsSection = "#Comments";
         /// <summary>
         /// Секция описания набора(-ов) данных, которые ожидаются на выходе. Если наборов несколько их нужно разделять пробельной строкой
         /// </summary>
-        private const string ResultQuerySection = "#ResultQuery";
+        public const string ResultQuerySection = "#ResultQuery";
         /// <summary>
         /// Секция задания списка процедур, которые нужно создать в базе. Каждая процедура на отдельной строке
         /// </summary>
-        private const string SetupProcSection = "#SetupProc";
+        public const string SetupProcSection = "#SetupProc";
 
-        private static readonly string[] FalseStrings =
+        public static readonly string[] FalseStrings =
 		{
 			string.Empty,
 			"0",

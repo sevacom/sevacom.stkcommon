@@ -144,6 +144,7 @@ namespace StkCommon.Data.Mapper
         {
             // Искать маппер по типу
             Dictionary<string, object> mappers;
+            // ReSharper disable once InconsistentlySynchronizedField
             if (!Mappers.TryGetValue(typeof(T), out mappers))
             {
                 lock (Mappers)
