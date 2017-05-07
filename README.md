@@ -2,9 +2,10 @@
 
 A collection of reusable code and components for regular .NET projects (.NET 4.0)
 
-* StkCommon.Data - a set of extensions, primitives, helpers for all types of .NET projects ([nuget])
-* StkCommon.UI.Wpf - infrastructure for WPF projects
+* StkCommon.Data - common infrastructure for all types of .NET projects: extensions, primitives, helpers etc. ([nuget])
+* StkCommon.UI.Wpf - common infrastructure for WPF projects ([nuget])
+* StkCommon.TestUtils - common infrastructure for tests ([nuget])
 * StkCommon.UI.Wpf.Theme - XAML styles
 
 ### Changelog 
-[view] (https://github.com/sevacom/sevacom.stkcommon/blob/master/CHANGELOG.ru.md)
+[view](https://github.com/sevacom/sevacom.stkcommon/blob/master/CHANGELOG.ru.md)

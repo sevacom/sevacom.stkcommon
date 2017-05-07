@@ -4,14 +4,16 @@
 		<id>$id$</id>
 		<version>$version$</version>
 		<title>$title$</title>
-		<authors>$author$</authors>
+    <authors>Sergey Sivolovskiy</authors>
+    <owners>$author$</owners>
 		<description>$description$</description>
     <projectUrl>https://github.com/sevacom/sevacom.stkcommon</projectUrl>
 		<releaseNotes />
 		<copyright>$copyright$</copyright>
 		<dependencies>
-			<dependency id="StkCommon.Data"/>
+			<dependency id="StkCommon.Data" version="1.3.0"/>
 		</dependencies>
+    <tags>common WPF UI viewmodel controls</tags>
 	</metadata>
 	<files>
 		<file src="bin\$configuration$\$id$.dll" target="lib\net40\" />

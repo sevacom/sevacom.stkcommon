@@ -4,16 +4,18 @@
     <id>$id$</id>
     <version>$version$</version>
     <title>$title$</title>
-    <authors>$author$</authors>
+    <authors>Sergey Sivolovskiy, Alexander Elizarov</authors>
+    <owners>$author$</owners>
     <description>$description$</description>
     <projectUrl>https://github.com/sevacom/sevacom.stkcommon</projectUrl>
-    <releaseNotes />
+    <releaseNotes/>
     <copyright>$copyright$</copyright>
 		<dependencies>
-			<dependency id="NUnit" version="2.6"/>
+			<dependency id="NUnit" version="2.6.4"/>
 			<dependency id="Moq" version="4.2.1510.2205"/>
-			<dependency id="Moq.AutoMock"/>
+			<dependency id="Moq.AutoMock" version="0.4.0"/>
 		</dependencies>
+    <tags>common nunit moq mock automock test testing database</tags>
 	</metadata>
 	<files>
     <file src="bin\$configuration$\$id$.dll" target="lib\net40\" />

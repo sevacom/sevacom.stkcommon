@@ -2,7 +2,7 @@
 
 [assembly: AssemblyProduct("StkCommon")]
 [assembly: AssemblyCompany("sevacom")]
-[assembly: AssemblyCopyright("Stk © 2017")]
+[assembly: AssemblyCopyright("Copyright © 2017")]
 
 
 
