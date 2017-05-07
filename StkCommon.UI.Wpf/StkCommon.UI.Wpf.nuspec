@@ -8,6 +8,7 @@
     <owners>$author$</owners>
 		<description>$description$</description>
     <projectUrl>https://github.com/sevacom/sevacom.stkcommon</projectUrl>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
 		<releaseNotes />
 		<copyright>$copyright$</copyright>
 		<dependencies>
