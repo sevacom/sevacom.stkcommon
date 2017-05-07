@@ -1,4 +1,4 @@
-using System;
+п»їusing System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -6,27 +6,27 @@ using System.Linq;
 namespace StkCommon.TestUtils.DbTestFramework
 {
     /// <summary>
-    /// Интерфейс получения исходного текста декларирования SQL-объектов 
+    /// РРЅС‚РµСЂС„РµР№СЃ РїРѕР»СѓС‡РµРЅРёСЏ РёСЃС…РѕРґРЅРѕРіРѕ С‚РµРєСЃС‚Р° РґРµРєР»Р°СЂРёСЂРѕРІР°РЅРёСЏ SQL-РѕР±СЉРµРєС‚РѕРІ 
     /// </summary>
 	public interface IExternalDbStruct
 	{
         /// <summary>
-        /// Получить текст декларирования пользовательского типа данных
+        /// РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ РґРµРєР»Р°СЂРёСЂРѕРІР°РЅРёСЏ РїРѕР»СЊР·РѕРІР°С‚РµР»СЊСЃРєРѕРіРѕ С‚РёРїР° РґР°РЅРЅС‹С…
         /// </summary>
 		string GetUdtBody(string udtName);
 
         /// <summary>
-        /// Получить текст создания хранимой процедуры 
+        /// РџРѕР»СѓС‡РёС‚СЊ С‚РµРєСЃС‚ СЃРѕР·РґР°РЅРёСЏ С…СЂР°РЅРёРјРѕР№ РїСЂРѕС†РµРґСѓСЂС‹ 
         /// </summary>
 		string GetSpBody(string spName);
 
         /// <summary>
-        /// Получить тип данных колонки таблицы
+        /// РџРѕР»СѓС‡РёС‚СЊ С‚РёРї РґР°РЅРЅС‹С… РєРѕР»РѕРЅРєРё С‚Р°Р±Р»РёС†С‹
         /// </summary>
 		string GetTableColumnType(string tableName, string fieldName);
 
         /// <summary>
-        /// Получить тип данных колонки таблицы
+        /// РџРѕР»СѓС‡РёС‚СЊ С‚РёРї РґР°РЅРЅС‹С… РєРѕР»РѕРЅРєРё С‚Р°Р±Р»РёС†С‹
         /// </summary>
 		IEnumerable<TestDbTableConstraint> GetTableConstraints(string tableName);
 	}
@@ -43,7 +43,7 @@ namespace StkCommon.TestUtils.DbTestFramework
 		public DbProjectorDbStruct(string dbpPath)
 		{
 			if (dbpPath == null) throw new ArgumentNullException("dbpPath");
-			if (!Directory.Exists(dbpPath)) throw new DirectoryNotFoundException("Каталог с проектом DbProject не найден: " + dbpPath);
+			if (!Directory.Exists(dbpPath)) throw new DirectoryNotFoundException("РљР°С‚Р°Р»РѕРі СЃ РїСЂРѕРµРєС‚РѕРј DbProject РЅРµ РЅР°Р№РґРµРЅ: " + dbpPath);
 
 			_dbpPath = dbpPath;
 		}
@@ -87,7 +87,7 @@ namespace StkCommon.TestUtils.DbTestFramework
 					return parts[1];
 				}
 			}
-			throw new Exception(string.Format("Тип для колонки {0} не найден", tableName + "." + fieldName));
+			throw new Exception(string.Format("РўРёРї РґР»СЏ РєРѕР»РѕРЅРєРё {0} РЅРµ РЅР°Р№РґРµРЅ", tableName + "." + fieldName));
 		}
 
 		public IEnumerable<TestDbTableConstraint> GetTableConstraints(string tableName)
@@ -120,7 +120,7 @@ namespace StkCommon.TestUtils.DbTestFramework
 			var fileName = types
 				.Select(t => Directory.GetFiles(Path.Combine(_dbpPath, t), string.Format("*{0}].b1", name)).SingleOrDefault())
 				.FirstOrDefault(t => null != t);
-			if (null == fileName) throw new Exception(string.Format("Файл с исходным кодом для '{0}' не найден", name));
+			if (null == fileName) throw new Exception(string.Format("Р¤Р°Р№Р» СЃ РёСЃС…РѕРґРЅС‹Рј РєРѕРґРѕРј РґР»СЏ '{0}' РЅРµ РЅР°Р№РґРµРЅ", name));
 			return fileName;
 		}
 	}

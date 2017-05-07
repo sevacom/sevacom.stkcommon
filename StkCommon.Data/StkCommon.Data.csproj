@@ -38,6 +38,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\VersionAssemblyInfo.cs">
@@ -65,6 +67,9 @@
     <Compile Include="FunctionalComparer.cs" />
     <Compile Include="IKeyModelObject.cs" />
     <Compile Include="IModelObject.cs" />
+    <Compile Include="Mapper\DataReaderStream.cs" />
+    <Compile Include="Mapper\DataReaderToObjectMapper.cs" />
+    <Compile Include="Mapper\StreamSourceDataReader.cs" />
     <Compile Include="Media\SampleFormat.cs" />
     <Compile Include="Primitives\Range.cs" />
     <Compile Include="NotifyPropertyChangedBase.cs" />
@@ -92,9 +97,7 @@
   <ItemGroup>
     <None Include="StkCommon.Data.nuspec" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

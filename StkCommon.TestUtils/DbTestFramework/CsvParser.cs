@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,7 @@ namespace StkCommon.TestUtils.DbTestFramework
         {
             var res = new List<string[]>();
 
-            // Ñ÷èòûâàíèå CSV
+            // Ð¡Ñ‡Ð¸Ñ‚Ñ‹Ð²Ð°Ð½Ð¸Ðµ CSV
             using (var sr = new StreamReader(fileName, encoding ?? Encoding.Default))
             {
                 while (!sr.EndOfStream)
@@ -56,7 +56,7 @@ namespace StkCommon.TestUtils.DbTestFramework
                 }
             }
 
-            // Íîðìàëèçàöèÿ
+            // ÐÐ¾Ñ€Ð¼Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ
             var isPrevZero = true;
             for (var i = res.Count - 1; i >= 0; i--)
             {

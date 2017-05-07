@@ -1,3 +1,4 @@
+﻿using System;
 using FluentAssertions;
 using NUnit.Framework;
 using StkCommon.Data.Settings;
@@ -24,13 +25,31 @@ namespace StkCommon.Data.Test.Settings
 		public void ShouldGetStringValue()
 		{
 			const string expectedDefault = "Default";
-			Target.GetValue(ParamStringName).Should().Be(ExpectedParamString);
-			Target.GetValue(ParamStringName, expectedDefault).Should().Be(ExpectedParamString);
-			Target.GetValue(UndefinedParamName, expectedDefault).Should().Be(expectedDefault);
-			Target.GetValue(UndefinedParamName).Should().BeNull();
+			Target.GetValueStr(ParamStringName).Should().Be(ExpectedParamString);
+			Target.GetValueStr(ParamStringName, expectedDefault).Should().Be(ExpectedParamString);
+			Target.GetValueStr(UndefinedParamName, expectedDefault).Should().Be(expectedDefault);
+			Target.GetValueStr(UndefinedParamName).Should().BeNull();
 		}
 
-		[Test]
+        [Test]
+        public void ShouldGetValueEncrypted()
+        {
+            const string expectedDefault = "Default";
+            Target.GetValueEncrypted(ParamStringName, expectedDefault).Should().Be(ExpectedParamString);
+            Target.GetValueStr(ParamStringName).Should().StartWith("ess:").And.NotContain(ExpectedParamString);
+            Target.GetValueEncrypted(ParamStringName, expectedDefault).Should().Be(ExpectedParamString);
+
+            Target.GetValueEncrypted(UndefinedParamName, expectedDefault).Should().Be(expectedDefault);
+        }
+
+        [Test]
+        public void ShouldGetStringValueThrowExeptionIfNoExist()
+        {
+            Assert.Throws<ArgumentException>(() => Target.GetValueStr(UndefinedParamName, throwIfNoExist: true), 
+                "Настройка не найдена");
+        }
+
+        [Test]
 		public void ShouldGetIntValue()
 		{
 			const int expectedDefault = 1000;

@@ -1,10 +1,10 @@
-using System;
+п»їusing System;
 
 namespace StkCommon.Data.Extensions
 {
 	/// <summary>
-	/// Расширения для работы DateTime, позволяющие переопределять поведение в тестах.
-	/// Например: DateTimeEx.Now вместо DateTime.Now
+	/// Р Р°СЃС€РёСЂРµРЅРёСЏ РґР»СЏ СЂР°Р±РѕС‚С‹ DateTime, РїРѕР·РІРѕР»СЏСЋС‰РёРµ РїРµСЂРµРѕРїСЂРµРґРµР»СЏС‚СЊ РїРѕРІРµРґРµРЅРёРµ РІ С‚РµСЃС‚Р°С….
+	/// РќР°РїСЂРёРјРµСЂ: DateTimeEx.Now РІРјРµСЃС‚Рѕ DateTime.Now
 	/// </summary>
 	public static class DateTimeEx
 	{
@@ -15,8 +15,8 @@ namespace StkCommon.Data.Extensions
 		private static DateTime? _nowDateTime;
 
 		/// <summary>
-		/// Установить значение, которое будет возвращать свойство Now
-		/// Сделан для тестов.
+		/// РЈСЃС‚Р°РЅРѕРІРёС‚СЊ Р·РЅР°С‡РµРЅРёРµ, РєРѕС‚РѕСЂРѕРµ Р±СѓРґРµС‚ РІРѕР·РІСЂР°С‰Р°С‚СЊ СЃРІРѕР№СЃС‚РІРѕ Now
+		/// РЎРґРµР»Р°РЅ РґР»СЏ С‚РµСЃС‚РѕРІ.
 		/// </summary>
 		public static void MockNow(DateTime now)
 		{
@@ -24,8 +24,8 @@ namespace StkCommon.Data.Extensions
 		}
 
 		/// <summary>
-		/// Установить провайдер, через который будут направляться вызовы
-		/// Сделан для тестов, чтобы проверить обращения.
+		/// РЈСЃС‚Р°РЅРѕРІРёС‚СЊ РїСЂРѕРІР°Р№РґРµСЂ, С‡РµСЂРµР· РєРѕС‚РѕСЂС‹Р№ Р±СѓРґСѓС‚ РЅР°РїСЂР°РІР»СЏС‚СЊСЃСЏ РІС‹Р·РѕРІС‹
+		/// РЎРґРµР»Р°РЅ РґР»СЏ С‚РµСЃС‚РѕРІ, С‡С‚РѕР±С‹ РїСЂРѕРІРµСЂРёС‚СЊ РѕР±СЂР°С‰РµРЅРёСЏ.
 		/// </summary>
 		/// <param name="provider"></param>
 		public static void Mock(IDateTimeProvider provider)
@@ -35,7 +35,7 @@ namespace StkCommon.Data.Extensions
 		}
 
 		/// <summary>
-		/// Сбросить переопределённое поведение (вернуть к изначальному)
+		/// РЎР±СЂРѕСЃРёС‚СЊ РїРµСЂРµРѕРїСЂРµРґРµР»С‘РЅРЅРѕРµ РїРѕРІРµРґРµРЅРёРµ (РІРµСЂРЅСѓС‚СЊ Рє РёР·РЅР°С‡Р°Р»СЊРЅРѕРјСѓ)
 		/// </summary>
 		public static void Reset()
 		{
@@ -44,7 +44,7 @@ namespace StkCommon.Data.Extensions
 		}
 
 		/// <summary>
-		/// Возвращает DateTime.Now, если поведение не переопределили.
+		/// Р’РѕР·РІСЂР°С‰Р°РµС‚ DateTime.Now, РµСЃР»Рё РїРѕРІРµРґРµРЅРёРµ РЅРµ РїРµСЂРµРѕРїСЂРµРґРµР»РёР»Рё.
 		/// </summary>
 		public static DateTime Now
 		{
