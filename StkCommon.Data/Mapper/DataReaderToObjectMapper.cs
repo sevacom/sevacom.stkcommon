@@ -128,6 +128,7 @@ namespace StkCommon.Data.Mapper
         /// <param name="ignoreTypeCastWarning"></param>
         /// <returns></returns>
         public static IDataReaderToObjectMapper<T> GetMapper<T>(IDataRecord reader, bool ignoreTypeCastWarning = false)
+         where T:new()
         {
             return GetMapper<T>(reader, null, ignoreTypeCastWarning);
         }
@@ -141,6 +142,7 @@ namespace StkCommon.Data.Mapper
         /// <param name="ignoreTypeCastWarning"></param>
         /// <returns></returns>
         public static IDataReaderToObjectMapper<T> GetMapper<T>(IDataRecord reader, Func<string, MemberInfoEx> propertyFinder, bool ignoreTypeCastWarning = false)
+            where T:new()
         {
             // Искать маппер по типу
             Dictionary<string, object> mappers;
@@ -356,53 +358,53 @@ namespace StkCommon.Data.Mapper
 
         private class GetterMapperSwitcher : BaseDataReaderTypeSwitcher
         {
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> Int16Func = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> Int16Func = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetInt16", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> Int16NullableFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> Int16NullableFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(Int16Func(eReader, recordType, eIndexConst), typeof(Int16?));
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> Int32Func = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> Int32Func = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetInt32", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> Int32NullableFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> Int32NullableFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(Int32Func(eReader, recordType, eIndexConst), typeof(Int32?));
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> Int64Func = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> Int64Func = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetInt64", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> Int64NullableFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> Int64NullableFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(Int64Func(eReader, recordType, eIndexConst), typeof(Int64?));
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> ByteFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> ByteFunc = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetByte", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> ByteNullableFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> ByteNullableFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(ByteFunc(eReader, recordType, eIndexConst), typeof(byte?));
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> StringFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> StringFunc = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetString", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> DateTimeFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> DateTimeFunc = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetDateTime", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> DateTimeNullableFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> DateTimeNullableFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(DateTimeFunc(eReader, recordType, eIndexConst), typeof(DateTime?));
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> GuidFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> GuidFunc = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetGuid", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> GuidNullableFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> GuidNullableFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(GuidFunc(eReader, recordType, eIndexConst), typeof(Guid?));
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> BooleanFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> BooleanFunc = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetBoolean", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> BooleanNullableFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> BooleanNullableFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(BooleanFunc(eReader, recordType, eIndexConst), typeof(bool?));
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> CharFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> CharFunc = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetChar", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> CharNullableFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> CharNullableFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(CharFunc(eReader, recordType, eIndexConst), typeof(char?));
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> FloatFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> FloatFunc = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetFloat", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> FloatNullableFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> FloatNullableFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(FloatFunc(eReader, recordType, eIndexConst), typeof(float?));
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> DoubleFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> DoubleFunc = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetDouble", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> DoubleNullableFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> DoubleNullableFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(DoubleFunc(eReader, recordType, eIndexConst), typeof(double?));
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> DecimalFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> DecimalFunc = (eReader, recordType, eIndexConst)
                 => Expression.Call(eReader, recordType.GetMethod("GetDecimal", new[] { typeof(int) }), eIndexConst);
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> DecimalNullableFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> DecimalNullableFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(DecimalFunc(eReader, recordType, eIndexConst), typeof(decimal?));
-            private readonly static Func<ParameterExpression, Type, Expression, Expression> ByteArrayFunc = (eReader, recordType, eIndexConst)
+            private static readonly Func<ParameterExpression, Type, Expression, Expression> ByteArrayFunc = (eReader, recordType, eIndexConst)
                 => Expression.Convert(Expression.Call(eReader, recordType.GetMethod("get_Item", new[] { typeof(int) }), eIndexConst), typeof(byte[]));
 
             protected override Delegate ActionForByteArray(bool isNullable)
